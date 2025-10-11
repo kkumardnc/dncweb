@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Fairy Walk - AR Experience</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        #ui-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        #info-panel {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-width: 90%;
+            pointer-events: auto;
+        }
+        
+        #info-panel h2 {
+            margin: 0 0 10px 0;
+            color: #7c3aed;
+            font-size: 1.5em;
+        }
+        
+        #info-panel p {
+            margin: 5px 0;
+            color: #333;
+        }
+        
+        #fairy-tracker {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(139, 92, 246, 0.95);
+            padding: 15px 25px;
+            border-radius: 15px;
+            color: white;
+            pointer-events: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .fairy-badge {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 0 5px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 24px;
+        }
+        
+        .fairy-badge.found {
+            background: white;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        #encounter-dialog {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            max-width: 400px;
+            display: none;
+            pointer-events: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        
+        #encounter-dialog.active {
+            display: block;
+        }
+        
+        .fairy-icon {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .dialogue-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-size: 16px;
+            line-height: 1.5;
+            min-height: 80px;
+        }
+        
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #f0f0f0;
+        }
+        
+        #distance-info {
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: #ffd700;
+            font-size: 20px;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 2000;
+            pointer-events: auto;
+        }
+        
+        #start-screen.hidden {
+            display: none;
+        }
+        
+        #start-screen h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        #start-screen p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .fairy-list {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .fairy-list-item {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="start-screen">
+        <h1>🧚 Magical Fairy Walk 🧚</h1>
+        <p>Discover fairies from around the world using AR!</p>
+        <div class="fairy-list">
+            <div class="fairy-list-item">🍀 Siofra - Irish Guardian</div>
+            <div class="fairy-list-item">🌸 Yuki - Japanese Spirit</div>
+            <div class="fairy-list-item">✡️ Laila - Jewish Twilight Being</div>
+            <div class="fairy-list-item">⭐ Zara - Arabian Keeper of Wishes</div>
+        </div>
+        <p style="font-size: 0.9em;">This experience requires camera and location access</p>
+        <button class="btn" onclick="startExperience()">Start AR Adventure ✨</button>
+    </div>
+
+    <a-scene
+        vr-mode-ui="enabled: false"
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        gesture-detector
+        id="ar-scene"
+    >
+        <!-- Siofra - Irish Fairy -->
+        <a-entity
+            gps-entity-place="latitude: 40.95126925822091; longitude: -73.96002783553436"
+            scale="20 20 20"
+        >
+            <a-text
+                value="🍀"
+                align="center"
+                color="#10b981"
+                scale="5 5 5"
+                look-at="[gps-camera]"
+                data-fairy="1"
+                class="fairy-marker"
+            ></a-text>
+        </a-entity>
+
+        <!-- Yuki - Japanese Fairy -->
+        <a-entity
+            gps-entity-place="latitude: 37.7750; longitude: -122.4195"
+            scale="15 15 15"
+        >
+            <a-text
+                value="🌸"
+                align="center"
+                color="#ec4899"
+                scale="5 5 5"
+                look-at="[gps-camera]"
+                data-fairy="2"
+                class="fairy-marker"
+            ></a-text>
+        </a-entity>
+
+        <!-- Laila - Jewish Fairy -->
+        <a-entity
+            gps-entity-place="latitude: 37.7751; longitude: -122.4196"
+            scale="15 15 15"
+        >
+            <a-text
+                value="✡️"
+                align="center"
+                color="#3b82f6"
+                scale="5 5 5"
+                look-at="[gps-camera]"
+                data-fairy="3"
+                class="fairy-marker"
+            ></a-text>
+        </a-entity>
+
+        <!-- Zara - Arabian Fairy -->
+        <a-entity
+            gps-entity-place="latitude: 37.7748; longitude: -122.4193"
+            scale="15 15 15"
+        >
+            <a-text
+                value="⭐"
+                align="center"
+                color="#f59e0b"
+                scale="5 5 5"
+                look-at="[gps-camera]"
+                data-fairy="4"
+                class="fairy-marker"
+            ></a-text>
+        </a-entity>
+
+        <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+
+    <div id="ui-overlay">
+        <div id="info-panel">
+            <h2>🧚 Fairy Quest</h2>
+            <p id="current-info">Walk to find magical fairies nearby!</p>
+            <p id="distance-info"></p>
+        </div>
+
+        <div id="fairy-tracker">
+            <div style="margin-bottom: 10px; font-weight: bold;">Fairies Found:</div>
+            <span class="fairy-badge" id="badge-1">?</span>
+            <span class="fairy-badge" id="badge-2">?</span>
+            <span class="fairy-badge" id="badge-3">?</span>
+            <span class="fairy-badge" id="badge-4">?</span>
+        </div>
+
+        <div id="encounter-dialog">
+            <div class="fairy-icon" id="encounter-icon">🧚</div>
+            <h2 id="encounter-name" style="text-align: center; margin-top: 0;">Fairy Name</h2>
+            <p id="encounter-culture" style="text-align: center; opacity: 0.9;">Culture</p>
+            <div class="dialogue-box" id="encounter-dialogue">"Hello traveler!"</div>
+            <button class="btn" id="dialogue-btn" onclick="nextDialogue()">Continue ✨</button>
+            <p id="encounter-fact" style="font-size: 14px; margin-top: 15px; opacity: 0.9;"></p>
+        </div>
+    </div>
+
+    <script>
+        const fairies = [
+            {
+                id: 1,
+                name: "Siofra",
+                culture: "Irish Guardian of the Oaks",
+                icon: "🍀",
+                dialogue: [
+                    "Top of the morning to ye, young traveler!",
+                    "I'm Siofra, guardian of the ancient oaks. Did you know fairies in Ireland are said to live in fairy forts and mushroom rings?",
+                    "We love music and dance! Can you do a little jig for me?",
+                    "Grand job! Here's some Irish luck for your journey! ☘️"
+                ],
+                fact: "In Irish folklore, fairies are called 'Aos Sí' - the people of the mounds. They're believed to live underground in ancient burial mounds."
+            },
+            {
+                id: 2,
+                name: "Yuki",
+                culture: "Japanese Spirit of Cherry Blossoms",
+                icon: "🌸",
+                dialogue: [
+                    "Konnichiwa! Welcome to my garden!",
+                    "I am Yuki, spirit of the cherry blossoms. In Japan, we fairies are called 'yōsei' - we protect nature's beauty.",
+                    "Each spring, I paint the cherry blossoms pink. Would you like to help me scatter some petals?",
+                    "Arigatō! You have brought harmony to the meadow! 🌸"
+                ],
+                fact: "Japanese folklore features nature spirits called 'kodama' that live in trees, and 'yōsei' - magical beings similar to Western fairies."
+            },
+            {
+                id: 3,
+                name: "Laila",
+                culture: "Jewish Twilight Spirit",
+                icon: "✡️",
+                dialogue: [
+                    "Shalom! Welcome to the garden between day and night!",
+                    "I am Laila, a shedim - a spirit of the twilight. In Jewish folklore, we magical beings appear at dusk and dawn.",
+                    "We love stories and wisdom! The rabbis say we were created on the sixth day, just before the first Shabbat.",
+                    "May you find wonder in every sunset and sunrise! 🌙"
+                ],
+                fact: "In Jewish folklore, 'shedim' are supernatural beings created at twilight on the sixth day of creation. Some are mischievous, others protective, and they're said to love learning and clever riddles."
+            },
+            {
+                id: 4,
+                name: "Zara",
+                culture: "Arabian Keeper of Wishes",
+                icon: "⭐",
+                dialogue: [
+                    "Marhaba! The stars guided you here!",
+                    "I am Zara, keeper of wishes and dreams. In Arabian tales, we are called 'peri' - beings of light and magic.",
+                    "I collect wishes from the evening star. What is your heart's desire?",
+                    "May your wish be carried on the desert winds! ✨"
+                ],
+                fact: "In Persian and Arabian mythology, 'peri' are beautiful, benevolent spirits descended from fallen angels who guide and protect humans."
+            }
+        ];
+
+        let foundFairies = [];
+        let currentFairy = null;
+        let dialogueStep = 0;
+        let userPosition = null;
+
+        function startExperience() {
+            document.getElementById('start-screen').classList.add('hidden');
+            
+            // Request geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(updatePosition, handleError, {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: 27000
+                });
+            }
+            
+            createSparkles();
+        }
+
+        function updatePosition(position) {
+            userPosition = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            
+            // Log current position for debugging
+            console.log('📍 Current Position:');
+            console.log(`Latitude: ${position.coords.latitude}`);
+            console.log(`Longitude: ${position.coords.longitude}`);
+            console.log(`Accuracy: ${position.coords.accuracy} meters`);
+            console.log('---');
+            
+            // Update UI with current position
+            document.getElementById('distance-info').textContent = 
+                `Lat: ${position.coords.latitude.toFixed(6)}, Lon: ${position.coords.longitude.toFixed(6)}`;
+            
+            checkNearbyFairies();
+        }
+
+        function handleError(error) {
+            console.error('❌ Geolocation error:', error.message);
+            console.log('Error code:', error.code);
+            document.getElementById('distance-info').textContent = 
+                'Location access needed. Check console for details.';
+        }
+
+        function checkNearbyFairies() {
+            if (!userPosition) return;
+            
+            console.log('🔍 Checking distances to all fairies:');
+            
+            // Calculate distance to each fairy
+            fairies.forEach(fairy => {
+                // Get fairy GPS coordinates from the scene
+                const fairyCoords = getFairyCoordinates(fairy.id);
+                const distance = calculateDistance(
+                    userPosition.latitude,
+                    userPosition.longitude,
+                    fairyCoords.lat,
+                    fairyCoords.lon
+                );
+                
+                console.log(`${fairy.icon} ${fairy.name}: ${distance.toFixed(2)}m away`);
+                
+                // Auto-trigger encounter if within 20 meters and not yet found
+                if (distance < 20 && !foundFairies.includes(fairy.id) && !currentFairy) {
+                    console.log(`✨ Close enough to ${fairy.name}! Triggering encounter...`);
+                    encounterFairy(fairy.id);
+                }
+            });
+            
+            console.log('---');
+        }
+        
+        function getFairyCoordinates(fairyId) {
+            // These should match your GPS coordinates in the HTML
+            const coords = {
+                1: { lat: 40.95126925822091, lon: -73.96002783553436 }, // Siofra
+                2: { lat: 37.7750, lon: -122.4195 }, // Yuki
+                3: { lat: 37.7751, lon: -122.4196 }, // Laila
+                4: { lat: 37.7748, lon: -122.4193 }  // Zara
+            };
+            return coords[fairyId];
+        }
+        
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            // Haversine formula for distance between two GPS points
+            const R = 6371e3; // Earth's radius in meters
+            const φ1 = lat1 * Math.PI / 180;
+            const φ2 = lat2 * Math.PI / 180;
+            const Δφ = (lat2 - lat1) * Math.PI / 180;
+            const Δλ = (lon2 - lon1) * Math.PI / 180;
+            
+            const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                    Math.cos(φ1) * Math.cos(φ2) *
+                    Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            
+            return R * c; // Distance in meters
+        }
+
+        function encounterFairy(fairyId) {
+            if (foundFairies.includes(fairyId)) return;
+            
+            currentFairy = fairies.find(f => f.id === fairyId);
+            dialogueStep = 0;
+            
+            document.getElementById('encounter-icon').textContent = currentFairy.icon;
+            document.getElementById('encounter-name').textContent = currentFairy.name;
+            document.getElementById('encounter-culture').textContent = currentFairy.culture;
+            document.getElementById('encounter-dialogue').textContent = 
+                `"${currentFairy.dialogue[dialogueStep]}"`;
+            document.getElementById('encounter-fact').textContent = currentFairy.fact;
+            
+            document.getElementById('encounter-dialog').classList.add('active');
+            
+            foundFairies.push(fairyId);
+            updateBadges();
+        }
+
+        function nextDialogue() {
+            dialogueStep++;
+            
+            if (dialogueStep < currentFairy.dialogue.length) {
+                document.getElementById('encounter-dialogue').textContent = 
+                    `"${currentFairy.dialogue[dialogueStep]}"`;
+            } else {
+                closeEncounter();
+            }
+        }
+
+        function closeEncounter() {
+            document.getElementById('encounter-dialog').classList.remove('active');
+            currentFairy = null;
+            
+            if (foundFairies.length === fairies.length) {
+                setTimeout(() => {
+                    alert('🎉 Congratulations! You\'ve found all the fairies from around the world!\n\nYou\'ve learned about Irish Aos Sí, Japanese Yōsei, Jewish Shedim, and Arabian Peri. Magic lives in every culture! ✨');
+                }, 500);
+            }
+        }
+
+        function updateBadges() {
+            foundFairies.forEach(id => {
+                const badge = document.getElementById(`badge-${id}`);
+                const fairy = fairies.find(f => f.id === id);
+                badge.textContent = fairy.icon;
+                badge.classList.add('found');
+            });
+        }
+
+        function createSparkles() {
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = '✨';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                document.getElementById('ui-overlay').appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }, 1000);
+        }
+
+        // Simulate fairy encounters when markers are detected
+        // In production, this would be triggered by actual GPS proximity
+        setTimeout(() => {
+            document.getElementById('current-info').textContent = 
+                'Point your camera around to find fairies! Tap on them when you see them.';
+        }, 3000);
+
+        // Add click handler for fairy markers
+        document.addEventListener('click', (e) => {
+            // Simulate fairy encounter for demo
+            // In production, this would check if user is close enough
+            if (!currentFairy && foundFairies.length < fairies.length) {
+                const nextFairy = fairies.find(f => !foundFairies.includes(f.id));
+                if (nextFairy && Math.random() > 0.7) { // 30% chance on click for demo
+                    encounterFairy(nextFairy.id);
+                }
+            }
+        });
+
+        // IMPORTANT: Replace these coordinates with your actual trail locations
+        // Format: latitude, longitude
+        // Example locations are set to San Francisco area - UPDATE THESE!
+        console.log('🗺️ UPDATE GPS COORDINATES in the HTML before deployment!');
+        console.log('Current demo coordinates: San Francisco area');
+    </script>
+</body>
+</html>
