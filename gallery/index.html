@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Demarest Nature Center</title>
+    <meta name="description" content="Explore photos of wildlife, trails, events, and seasonal beauty at Demarest Nature Center's 55-acre preserve.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/programs/">Programs</a></li>
+                    <li><a href="/events/">Events</a></li>
+                    <li><a href="/visit/">Visit</a></li>
+                    <li><a href="/gallery/" class="active">Gallery</a></li>
+                    <li><a href="/support/">Support</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Photo Gallery</h1>
+                <p class="subtitle">Discover the natural beauty and vibrant community of Demarest Nature Center</p>
+            </div>
+        </section>
+
+        <section class="gallery-intro content-section">
+            <div class="container">
+                <p class="intro-text">Browse our collection of photos showcasing the diverse wildlife, scenic trails, seasonal transformations, and community events that make Demarest Nature Center a special place. From spring wildflowers to winter snowscapes, from busy program days to quiet morning walks, these images capture the essence of our preserve throughout the year.</p>
+            </div>
+        </section>
+
+        <section class="gallery-categories content-section">
+            <div class="container">
+                <div class="category-tabs">
+                    <button class="tab-button active" data-category="all">All Photos</button>
+                    <button class="tab-button" data-category="wildlife">Wildlife</button>
+                    <button class="tab-button" data-category="trails">Trails & Landscapes</button>
+                    <button class="tab-button" data-category="seasons">Seasons</button>
+                    <button class="tab-button" data-category="events">Events & Programs</button>
+                    <button class="tab-button" data-category="flora">Plants & Flowers</button>
+                </div>
+
+                <div class="gallery-grid" id="photo-gallery">
+                    <!-- Wildlife Section -->
+                    <div class="gallery-item" data-category="wildlife">
+                        <img src="/assets/images/gallery/wildlife/great-blue-heron.jpg" alt="Great Blue Heron - Our Symbol" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Great Blue Heron</h3>
+                            <p>Our iconic symbol, frequently spotted along the stream</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="wildlife">
+                        <img src="/assets/images/gallery/wildlife/deer.jpg" alt="White-tailed Deer" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>White-tailed Deer</h3>
+                            <p>Common residents of our woodland trails</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="wildlife">
+                        <img src="/assets/images/gallery/wildlife/red-cardinal.jpg" alt="Northern Cardinal" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Northern Cardinal</h3>
+                            <p>A bright splash of color year-round</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="wildlife">
+                        <img src="/assets/images/gallery/wildlife/eastern-chipmunk.jpg" alt="Eastern Chipmunk" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Eastern Chipmunk</h3>
+                            <p>Busy foragers along the forest floor</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="wildlife">
+                        <img src="/assets/images/gallery/wildlife/red-tailed-hawk.jpg" alt="Red-tailed Hawk" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Red-tailed Hawk</h3>
+                            <p>Majestic raptor soaring overhead</p>
+                        </div>
+                    </div>
+
+                    <!-- Trails & Landscapes -->
+                    <div class="gallery-item" data-category="trails">
+                        <img src="/assets/images/gallery/trails/trestle-bridge.jpg" alt="Historic Trestle Bridge" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Trestle Bridge Trail</h3>
+                            <p>Our most photographed landmark</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="trails">
+                        <img src="/assets/images/gallery/trails/main-loop.jpg" alt="Main Loop Trail" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Main Loop Trail</h3>
+                            <p>Winding through mature hardwood forest</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="trails">
+                        <img src="/assets/images/gallery/trails/stream-view.jpg" alt="Stream Along Trail" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Preserve Stream</h3>
+                            <p>Peaceful water flows through the sanctuary</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="trails">
+                        <img src="/assets/images/gallery/trails/woodland-path.jpg" alt="Woodland Trail Path" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Woodland Loop</h3>
+                            <p>Shaded paths perfect for summer walks</p>
+                        </div>
+                    </div>
+
+                    <!-- Seasonal Photos -->
+                    <div class="gallery-item" data-category="seasons">
+                        <img src="/assets/images/gallery/seasons/spring-wildflowers.jpg" alt="Spring Wildflowers" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Spring Awakening</h3>
+                            <p>Wildflowers carpet the forest floor</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="seasons">
+                        <img src="/assets/images/gallery/seasons/summer-canopy.jpg" alt="Summer Forest Canopy" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Summer Canopy</h3>
+                            <p>Lush green shade from mature trees</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="seasons">
+                        <img src="/assets/images/gallery/seasons/fall-foliage.jpg" alt="Autumn Foliage" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Fall Colors</h3>
+                            <p>Spectacular autumn transformation</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="seasons">
+                        <img src="/assets/images/gallery/seasons/winter-snow.jpg" alt="Winter Snow Scene" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Winter Wonderland</h3>
+                            <p>Fresh snow transforms the landscape</p>
+                        </div>
+                    </div>
+
+                    <!-- Events & Programs -->
+                    <div class="gallery-item" data-category="events">
+                        <img src="/assets/images/gallery/events/maple-syrup-making.jpg" alt="Maple Syrup Making" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Maple Syrup Making</h3>
+                            <p>Annual spring tradition delights families</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="events">
+                        <img src="/assets/images/gallery/events/summer-camp.jpg" alt="Summer Camp Activities" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Summer Nature Camp</h3>
+                            <p>Children explore and learn outdoors</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="events">
+                        <img src="/assets/images/gallery/events/bird-watching.jpg" alt="Bird Watching Group" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Bird Watching Walk</h3>
+                            <p>Guided birding with expert naturalists</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="events">
+                        <img src="/assets/images/gallery/events/oktoberfest.jpg" alt="Oktoberfest Craft Show" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Oktoberfest Craft Show</h3>
+                            <p>Our biggest fundraising event of the year</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="events">
+                        <img src="/assets/images/gallery/events/school-program.jpg" alt="School Education Program" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>School Programs</h3>
+                            <p>Students engage in outdoor learning</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="events">
+                        <img src="/assets/images/gallery/events/birdhouse-building.jpg" alt="Birdhouse Building Workshop" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Birdhouse Building</h3>
+                            <p>Hands-on workshop for all ages</p>
+                        </div>
+                    </div>
+
+                    <!-- Flora -->
+                    <div class="gallery-item" data-category="flora">
+                        <img src="/assets/images/gallery/flora/trillium.jpg" alt="Trillium Wildflower" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Trillium</h3>
+                            <p>Native spring wildflower</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="flora">
+                        <img src="/assets/images/gallery/flora/jack-in-the-pulpit.jpg" alt="Jack-in-the-Pulpit" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Jack-in-the-Pulpit</h3>
+                            <p>Distinctive woodland plant</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="flora">
+                        <img src="/assets/images/gallery/flora/ferns.jpg" alt="Native Ferns" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Native Ferns</h3>
+                            <p>Lush undergrowth in shaded areas</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="flora">
+                        <img src="/assets/images/gallery/flora/mushrooms.jpg" alt="Forest Mushrooms" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Forest Fungi</h3>
+                            <p>Diverse mushroom species thrive here</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="flora">
+                        <img src="/assets/images/gallery/flora/wildflower-meadow.jpg" alt="Meadow Wildflowers" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Meadow Wildflowers</h3>
+                            <p>Native prairie plants support pollinators</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="flora">
+                        <img src="/assets/images/gallery/flora/oak-tree.jpg" alt="Mature Oak Tree" loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Heritage Oak</h3>
+                            <p>Ancient oaks provide vital habitat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="photo-contest content-section">
+            <div class="container">
+                <h2>Annual Photo Contest</h2>
+                <p>Each year, we host a nature photography contest open to all ages. Photographers are invited to capture the beauty of Demarest Nature Center through the seasons. Winners are displayed in our visitor center and featured on our website.</p>
+
+                <div class="contest-info">
+                    <h3>Categories Include:</h3>
+                    <ul class="contest-categories">
+                        <li>Wildlife Photography</li>
+                        <li>Landscape & Trail Scenes</li>
+                        <li>Macro Photography (plants, insects, details)</li>
+                        <li>Seasonal Beauty</li>
+                        <li>Youth Photography (ages 17 and under)</li>
+                    </ul>
+
+                    <p><strong>Contest Timeline:</strong> Submissions typically accepted in late summer/early fall. Winners announced at our Oktoberfest Craft Show.</p>
+
+                    <a href="/contact/" class="btn btn-primary">Learn More About the Photo Contest</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="share-photos content-section">
+            <div class="container">
+                <h2>Share Your Photos</h2>
+                <p>We love seeing photos from our visitors! Share your Demarest Nature Center experiences on social media and tag us:</p>
+
+                <div class="social-sharing">
+                    <p><strong>Instagram:</strong> @demarestnaturecenter<br>
+                    <strong>Facebook:</strong> Demarest Nature Center<br>
+                    <strong>Hashtags:</strong> #DemarestNatureCenter #DNatureC #DemarestNJ</p>
+                </div>
+
+                <p class="submission-note">Professional photographers interested in having their work featured in our gallery can contact us at <a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a></p>
+            </div>
+        </section>
+
+        <section class="photography-programs content-section">
+            <div class="container">
+                <h2>Photography Workshops</h2>
+                <p>Interested in improving your nature photography skills? We offer seasonal photography workshops led by experienced photographers and naturalists.</p>
+
+                <div class="workshop-highlights">
+                    <div class="workshop-item">
+                        <h3>Nature Photography Basics</h3>
+                        <p>Learn composition, lighting, and camera settings for capturing stunning outdoor images</p>
+                    </div>
+
+                    <div class="workshop-item">
+                        <h3>Wildlife Photography</h3>
+                        <p>Techniques for photographing birds and animals in their natural habitat</p>
+                    </div>
+
+                    <div class="workshop-item">
+                        <h3>Macro Photography</h3>
+                        <p>Discover the tiny world of insects, flowers, and forest details</p>
+                    </div>
+
+                    <div class="workshop-item">
+                        <h3>Seasonal Photo Walks</h3>
+                        <p>Guided walks focused on capturing the beauty of each season</p>
+                    </div>
+                </div>
+
+                <a href="/events/" class="btn btn-secondary">View Photography Workshop Schedule</a>
+            </div>
+        </section>
+
+        <section class="visit-cta content-section">
+            <div class="container">
+                <h2>Come See It for Yourself</h2>
+                <p>The best way to experience the beauty of Demarest Nature Center is to visit in person!</p>
+                <div class="cta-buttons">
+                    <a href="/visit/" class="btn btn-primary">Plan Your Visit</a>
+                    <a href="/events/" class="btn btn-secondary">Upcoming Events</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                    <div class="footer-hours">
+                        <strong>Hours:</strong><br>
+                        Monday - Friday: 9:00 AM - 5:00 PM<br>
+                        Saturday - Sunday: 10:00 AM - 4:00 PM
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/support/membership.html">Membership</a></li>
+                        <li><a href="/support/volunteer.html">Volunteer</a></li>
+                        <li><a href="/support/donate.html">Donate</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="footer-newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footerNewsletter" class="mini-newsletter">
+                            <input type="email" placeholder="Your email" required>
+                            <button type="submit" class="btn btn-outline-white btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script>
+        // Gallery filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-button');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (category === 'all' || item.getAttribute('data-category') === category) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Demarest Nature Center</title>
+    <meta name="description" content="Join us for upcoming nature walks, workshops, seasonal celebrations, and community events at Demarest Nature Center.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/rss-feed.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/programs/">Programs</a></li>
+                    <li><a href="/events/" class="active">Events</a></li>
+                    <li><a href="/visit/">Visit</a></li>
+                    <li><a href="/gallery/">Gallery</a></li>
+                    <li><a href="/support/">Support</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Upcoming Events</h1>
+                <p class="subtitle">Join us for nature walks, workshops, seasonal celebrations, and community gatherings</p>
+            </div>
+        </section>
+
+        <section class="events-intro content-section">
+            <div class="container">
+                <p class="intro-text">Throughout the year, Demarest Nature Center hosts a variety of events that bring our community together to explore, learn, and celebrate the natural world. From guided hikes and bird watching expeditions to seasonal festivals and educational workshops, there's always something happening at the nature center.</p>
+            </div>
+        </section>
+
+        <section class="events-calendar content-section">
+            <div class="container">
+                <div class="calendar-header">
+                    <h2>Event Calendar</h2>
+                    <p>Check back regularly for new events, or subscribe to our newsletter to stay informed about upcoming activities.</p>
+                </div>
+
+                <div id="events-container" class="events-list">
+                    <!-- Events will be loaded dynamically via RSS feed -->
+                    <div class="loading-message">
+                        <p>Loading upcoming events...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-types content-section">
+            <div class="container">
+                <h2>Types of Events We Host</h2>
+
+                <div class="event-type-grid">
+                    <div class="event-type">
+                        <h3>Guided Nature Walks</h3>
+                        <p>Join experienced naturalists for interpretive walks through our 55-acre preserve. Learn about local flora and fauna, seasonal changes, and the ecology of our woodlands and streams. Suitable for all ages and fitness levels.</p>
+                        <ul>
+                            <li>Spring wildflower walks</li>
+                            <li>Summer bird watching expeditions</li>
+                            <li>Fall foliage tours</li>
+                            <li>Winter tracking adventures</li>
+                        </ul>
+                    </div>
+
+                    <div class="event-type">
+                        <h3>Family Programs</h3>
+                        <p>Fun, educational activities designed for families to enjoy together. These hands-on programs help children and adults connect with nature while creating lasting memories.</p>
+                        <ul>
+                            <li>Children's scavenger hunts</li>
+                            <li>Birdhouse building workshops</li>
+                            <li>Nature crafts sessions</li>
+                            <li>Seasonal celebrations</li>
+                        </ul>
+                    </div>
+
+                    <div class="event-type">
+                        <h3>Educational Workshops</h3>
+                        <p>In-depth learning experiences on specialized topics led by experts. Perfect for adults and older students interested in expanding their knowledge of natural history and conservation.</p>
+                        <ul>
+                            <li>Native plant lectures</li>
+                            <li>Bird identification classes</li>
+                            <li>Nature photography workshops</li>
+                            <li>Conservation discussions</li>
+                        </ul>
+                    </div>
+
+                    <div class="event-type">
+                        <h3>Seasonal Celebrations</h3>
+                        <p>Special events that mark the changing seasons and celebrate our connection to the natural world.</p>
+                        <ul>
+                            <li>Maple syrup making demonstrations (late winter/early spring)</li>
+                            <li>Spring migration bird counts</li>
+                            <li>Summer nature camp showcases</li>
+                            <li>Oktoberfest Craft Show (fall)</li>
+                        </ul>
+                    </div>
+
+                    <div class="event-type">
+                        <h3>Specialized Expeditions</h3>
+                        <p>Unique opportunities to explore specific aspects of our natural environment with expert guides.</p>
+                        <ul>
+                            <li>Mushroom foraging walks</li>
+                            <li>Stream ecology studies</li>
+                            <li>Bird counts and surveys</li>
+                            <li>Night hikes and astronomy</li>
+                        </ul>
+                    </div>
+
+                    <div class="event-type">
+                        <h3>Community Events</h3>
+                        <p>Larger gatherings that bring the entire community together to support the nature center and enjoy outdoor activities.</p>
+                        <ul>
+                            <li>Annual Oktoberfest Craft Show</li>
+                            <li>Trail cleanup days</li>
+                            <li>Community trail walks</li>
+                            <li>Fundraising events</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="annual-highlights content-section">
+            <div class="container">
+                <h2>Annual Event Highlights</h2>
+
+                <div class="highlight-event">
+                    <div class="highlight-content">
+                        <h3>Maple Syrup Making</h3>
+                        <p><strong>When:</strong> Late February - Early March</p>
+                        <p>Experience the traditional process of tapping maple trees and transforming sap into delicious syrup. This beloved annual tradition includes demonstrations of tree tapping, sap collection, and the boiling process. Families can observe every step and sample the final product!</p>
+                        <p><em>This free community event is one of our most popular programs. Registration typically opens in January.</em></p>
+                    </div>
+                </div>
+
+                <div class="highlight-event">
+                    <div class="highlight-content">
+                        <h3>Bird Watching & Bird Counts</h3>
+                        <p><strong>When:</strong> Year-round, with special counts in spring and fall</p>
+                        <p>Join fellow birding enthusiasts for guided bird watching sessions throughout the year. Participate in official bird counts during spring and fall migration seasons, and help contribute valuable data to bird conservation efforts. Binoculars and field guides provided for beginners.</p>
+                        <p><em>All skill levels welcome, from curious beginners to experienced birders.</em></p>
+                    </div>
+                </div>
+
+                <div class="highlight-event">
+                    <div class="highlight-content">
+                        <h3>Oktoberfest Craft Show</h3>
+                        <p><strong>When:</strong> October (specific date announced each summer)</p>
+                        <p>Our signature fall fundraising event features local artisans, craft vendors, food, music, and family-friendly activities. This beloved community tradition supports our educational programs and preserve maintenance. Browse unique handmade items while enjoying the beautiful fall foliage!</p>
+                        <p><em>Vendor applications typically open in early summer. Proceeds support DNC programs.</em></p>
+                    </div>
+                </div>
+
+                <div class="highlight-event">
+                    <div class="highlight-content">
+                        <h3>Mushroom Foraging Walks</h3>
+                        <p><strong>When:</strong> Spring and Fall</p>
+                        <p>Explore the fascinating world of fungi with expert mycologists. Learn to identify edible and poisonous mushrooms, understand their ecological roles, and discover the incredible diversity of mushrooms in our preserve. These walks combine science, safety, and the thrill of discovery.</p>
+                        <p><em>Limited capacity. Registration required. Please note: foraging is for educational purposes only.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-registration content-section">
+            <div class="container">
+                <h2>How to Register</h2>
+                <div class="registration-info">
+                    <div class="registration-method">
+                        <h3>Online</h3>
+                        <p>Most events can be registered for through our website. Event listings will include registration links when available.</p>
+                    </div>
+                    <div class="registration-method">
+                        <h3>Email</h3>
+                        <p>Send registration requests to <a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a> with the event name and number of attendees.</p>
+                    </div>
+                    <div class="registration-method">
+                        <h3>Walk-Ins Welcome</h3>
+                        <p>Many of our trail walks and community events welcome walk-in participants. Check individual event listings for details.</p>
+                    </div>
+                </div>
+
+                <div class="event-policies">
+                    <h3>Event Policies</h3>
+                    <ul>
+                        <li><strong>Weather:</strong> Events may be cancelled due to severe weather. Check your email or our website for updates.</li>
+                        <li><strong>What to Bring:</strong> Wear comfortable walking shoes and weather-appropriate clothing. Bring water and insect repellent.</li>
+                        <li><strong>Accessibility:</strong> Contact us in advance if you have accessibility needs so we can accommodate you.</li>
+                        <li><strong>Age Requirements:</strong> Most events are family-friendly. Specific age requirements are noted in event descriptions.</li>
+                        <li><strong>Pets:</strong> For the safety of wildlife and other visitors, pets are not permitted at events unless specifically noted.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="stay-informed content-section">
+            <div class="container">
+                <h2>Stay Informed</h2>
+                <p>Don't miss out on upcoming events and activities!</p>
+                <div class="cta-buttons">
+                    <a href="/contact/" class="btn btn-primary">Subscribe to Newsletter</a>
+                    <a href="/support/membership.html" class="btn btn-secondary">Become a Member</a>
+                </div>
+                <p class="member-benefit">Members receive advance notice of events and priority registration for popular programs.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                    <div class="footer-hours">
+                        <strong>Hours:</strong><br>
+                        Monday - Friday: 9:00 AM - 5:00 PM<br>
+                        Saturday - Sunday: 10:00 AM - 4:00 PM
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/support/membership.html">Membership</a></li>
+                        <li><a href="/support/volunteer.html">Volunteer</a></li>
+                        <li><a href="/support/donate.html">Donate</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="footer-newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footerNewsletter" class="mini-newsletter">
+                            <input type="email" placeholder="Your email" required>
+                            <button type="submit" class="btn btn-outline-white btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/events.js"></script>
+</body>
+</html>
