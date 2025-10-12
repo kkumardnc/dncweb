@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoExplorer: The Meadow - Demarest Nature Center</title>
+    <meta name="description" content="Explore the meadow ecosystem and learn about the vital role of pollinators.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <style>
+        .ecoexplorer-hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            padding: 3rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .ecoexplorer-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ecoexplorer-hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .audio-player {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.25rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .audio-player audio {
+            max-width: 100%;
+            width: 100%;
+            height: 54px;
+            outline: none;
+        }
+
+        .audio-player audio::-webkit-media-controls-enclosure {
+            border-radius: 8px;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .ecoexplorer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .ecoexplorer-section {
+            margin-bottom: 3rem;
+        }
+
+        .ecoexplorer-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #4a7c2d;
+            padding-bottom: 0.5rem;
+        }
+
+        .ecoexplorer-section h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .ecoexplorer-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            color: #333;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4a7c2d;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #2d5016;
+            margin-top: 0;
+        }
+
+        .poetry-corner {
+            background: #f5f5f0;
+            border-left: 4px solid #8b6914;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .poetry-corner h3 {
+            color: #8b6914;
+            margin-top: 0;
+        }
+
+        .poetry-corner .poem {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-top: 1rem;
+        }
+
+        .poetry-corner .poem-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .poetry-corner .attribution {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-box a {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: white;
+            color: #2d5016;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-box a:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-buttons a {
+            padding: 0.75rem 1.5rem;
+            background: #4a7c2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background: #2d5016;
+        }
+    </style>  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">                            <li><a href="/events/">Upcoming Events</a></li>                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li><a href="/photocontest/">Photo Contest</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="ecoexplorer-hero">
+            <div class="container">
+                <h1>EcoExplorer: The Meadow</h1>
+                <p class="subtitle">Discover the vital ecosystem that supports our pollinators</p>
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="/assets/audio/the-meadow.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="ecoexplorer-content">
+            <div class="ecoexplorer-section">
+                <h2>Welcome to the Meadow</h2>
+                <p>
+                    Welcome to the meadow. This magical place is home to many different insects and wildlife. The meadow is also
+                    a great spot for aspiring ornithologists (people who study birds).
+                </p>
+                <p>
+                    As you look around, keep an eye out for the rustle of feathers in a tree or flying overhead. Listen carefully
+                    for the trill of a sparrow, the whistle of a grackle, or the call of a woodpecker tapping away. These birds
+                    also play a very important role in the ecosystem of the meadow, helping to keep the bug population under control.
+                </p>
+                <p>
+                    This clearing in the middle of the Demarest Nature Center is where many plants grow, including native grasses,
+                    milkweed, and wildflowers. These plants play an important role in helping our local pollinators.
+                </p>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <h2>Image Gallery</h2>
+                <div class="image-gallery">
+                    <img src="/assets/images/ecoexplorer/meadow/meadow-1.png" alt="Meadow wildflowers and butterflies">
+                    <img src="/assets/images/ecoexplorer/meadow/meadow-2.png" alt="Butterfly on vibrant flowers">
+                    <img src="/assets/images/ecoexplorer/meadow/meadow-3.png" alt="Native meadow grasses and wildflowers">
+                    <img src="/assets/images/ecoexplorer/meadow/meadow-4.png" alt="Close-up of tall meadow grasses">
+                    <img src="/assets/images/ecoexplorer/meadow/meadow-5.png" alt="Open meadow with trees in background">
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <h3>What is a Pollinator?</h3>
+                <div class="info-box">
+                    <p>
+                        Pollinators are creatures like bees, butterflies, flies, beetles, and even some birds and bats. They play
+                        a crucial role in helping plants grow and reproduce.
+                    </p>
+                    <p>
+                        For instance, bees visit flowers to collect nectar and gather pollen for making honey, and in the process,
+                        they unintentionally carry pollen from one flower to another, enabling the plants to produce seeds and fruits.
+                    </p>
+                    <p>
+                        Roughly somewhere around 85% of all flowering plants need pollinators to survive. That means that around
+                        every one out of three bites of food that you eat is owed to pollinators. So, when you see a bee buzzing
+                        around or a butterfly flitting by, remember that they're hard at work making sure we all have enough food to eat!
+                    </p>
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <div class="cta-box">
+                    <h3>Support Pollinators Today!</h3>
+                    <p>Learn seven simple ways you can help protect pollinators in your own backyard.</p>
+                    <a href="https://www.pollinator.org/7things" target="_blank" rel="noopener">Learn More</a>
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <div class="poetry-corner">
+                    <h3>Poetry Corner</h3>
+                    <div class="poem">
+                        <div class="poem-line">To make a prairie it takes a clover and one bee,</div>
+                        <div class="poem-line">One clover, and a bee.</div>
+                        <div class="poem-line" style="margin-top: 1rem;">And revery.</div>
+                        <div class="poem-line">The revery alone will do,</div>
+                        <div class="poem-line">If bees are few.</div>
+                    </div>
+                    <div class="attribution">
+                        — Emily Dickinson, <a href="https://poets.org/poem/make-prairie-1755" target="_blank" rel="noopener">"To make a prairie" (1755)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="/eco3/">← Previous: Ash Tree</a>
+                <a href="/eco0/">← Back to EcoExplorer</a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

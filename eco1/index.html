@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoExplorer: Tenakill Brook - Demarest Nature Center</title>
+    <meta name="description" content="Explore Tenakill Brook, a vital watershed running through the Demarest Nature Center preserve.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <style>
+        .ecoexplorer-hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            padding: 3rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .ecoexplorer-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ecoexplorer-hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .audio-player {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.25rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .audio-player audio {
+            max-width: 100%;
+            width: 100%;
+            height: 54px;
+            outline: none;
+        }
+
+        .audio-player audio::-webkit-media-controls-enclosure {
+            border-radius: 8px;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .ecoexplorer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .ecoexplorer-section {
+            margin-bottom: 3rem;
+        }
+
+        .ecoexplorer-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #4a7c2d;
+            padding-bottom: 0.5rem;
+        }
+
+        .ecoexplorer-section h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .ecoexplorer-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            color: #333;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .historical-excerpt {
+            background: #f5f5f0;
+            border-left: 4px solid #4a7c2d;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .historical-excerpt h3 {
+            color: #2d5016;
+            margin-top: 0;
+        }
+
+        .historical-excerpt p {
+            font-style: italic;
+            color: #555;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-buttons a {
+            padding: 0.75rem 1.5rem;
+            background: #4a7c2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background: #2d5016;
+        }
+    </style>  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">                            <li><a href="/events/">Upcoming Events</a></li>                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li><a href="/photocontest/">Photo Contest</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="ecoexplorer-hero">
+            <div class="container">
+                <h1>EcoExplorer: Tenakill Brook</h1>
+                <p class="subtitle">Discover the vital watershed flowing through our preserve</p>
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="/assets/audio/tenakill-brook.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="ecoexplorer-content">
+            <div class="ecoexplorer-section">
+                <h2>About Tenakill Brook</h2>
+                <p>
+                    Tenakill Brook is more than just a stream—it's a vital lifeline running through the Demarest Nature Center.
+                    Starting in Closter and winding its way through Demarest, this brook ultimately flows into the Hackensack River,
+                    connecting our preserve to the larger watershed that sustains life throughout Bergen County.
+                </p>
+                <p>
+                    As you stand beside the brook, take a moment to listen. The gentle babble of water over rocks tells a story of
+                    constant motion and change. This brook has shaped the landscape around it for thousands of years, carving its path
+                    through rock and soil, creating habitats for countless species of plants and animals.
+                </p>
+                <p>
+                    The banks of Tenakill Brook are lined with native vegetation—ferns, wildflowers, and trees that depend on the
+                    moisture provided by the stream. In spring, you might spot salamanders making their way to the water to breed.
+                    In summer, dragonflies and damselflies patrol the area, while birds come to drink and bathe.
+                </p>
+                <p>
+                    The water quality of Tenakill Brook is an important indicator of the health of our local ecosystem. Clean,
+                    flowing water supports diverse aquatic life, from tiny invertebrates to larger fish. These creatures, in turn,
+                    support the birds and mammals that depend on them for food.
+                </p>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <h2>Image Gallery</h2>
+                <div class="image-gallery">
+                    <img src="/assets/images/ecoexplorer/tenakill-brook/tenakill-brook-1.png" alt="Tenakill Brook flowing through the preserve">
+                    <img src="/assets/images/ecoexplorer/tenakill-brook/tenakill-brook-2.png" alt="Wooden bridge over Tenakill Brook">
+                    <img src="/assets/images/ecoexplorer/tenakill-brook/tenakill-brook-3.png" alt="Brook with reflections">
+                    <img src="/assets/images/ecoexplorer/tenakill-brook/tenakill-brook-4.png" alt="Brook in sunny meadow area">
+                    <img src="/assets/images/ecoexplorer/tenakill-brook/tenakill-brook-5.png" alt="Duck pond with lily pads">
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <div class="historical-excerpt">
+                    <h3>A Living Classroom</h3>
+                    <p>
+                        Tenakill Brook serves as an outdoor classroom for students, researchers, and nature enthusiasts. By studying
+                        the brook, we can learn about water quality, erosion, aquatic ecosystems, and the impact of human activity on
+                        natural systems. It's a perfect place to observe the interconnectedness of all living things.
+                    </p>
+                    <p>
+                        Whether you're interested in hydrology, biology, or simply the peaceful beauty of flowing water, Tenakill Brook
+                        offers endless opportunities for discovery and reflection.
+                    </p>
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <div class="historical-excerpt">
+                    <h3>Historical Memories</h3>
+                    <p>
+                        "As a boy of six or seven, after my grandparents and I moved to Demarest in 1936, I discovered a small creek
+                        that ran through the Nature Center and all the way to Piermont Road in the neighboring town of Closter. I spent
+                        many hours as a boy wading down this creek in search of adventures and wildlife. I was introduced to frogs,
+                        snakes, and a host of fish (mainly crayfish) in what I knew then as Tenakill Creek..."
+                    </p>
+                    <p>
+                        — Ralph William Larsen, from his memoir of growing up in Demarest
+                    </p>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="/eco0/">← Back to EcoExplorer</a>
+                <a href="/eco2/">Next: Cottonwood Stump →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

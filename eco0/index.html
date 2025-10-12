@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoExplorer - Demarest Nature Center</title>
+    <meta name="description" content="Explore the natural wonders of Demarest Nature Center with our EcoExplorer self-guided trail experiences.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <style>
+        .ecoexplorer-hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            padding: 4rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .ecoexplorer-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .ecoexplorer-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .ecoexplorer-intro {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .ecoexplorer-intro h2 {
+            color: #2d5016;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ecoexplorer-intro p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .exhibits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .exhibit-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .exhibit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .exhibit-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .exhibit-card-content {
+            padding: 1.5rem;
+        }
+
+        .exhibit-card-content h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .exhibit-card-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .exhibit-card-content .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #4a7c2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .exhibit-card-content .btn:hover {
+            background: #2d5016;
+        }
+
+        .how-to-use {
+            background: #f5f5f0;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .how-to-use .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .how-to-use h2 {
+            color: #2d5016;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .how-to-use ol {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .how-to-use ol li {
+            margin-bottom: 1rem;
+        }
+    </style>  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">                            <li><a href="/events/">Upcoming Events</a></li>                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li><a href="/photocontest/">Photo Contest</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="ecoexplorer-hero">
+            <div class="container">
+                <h1>EcoExplorer</h1>
+                <p>Discover the natural wonders of Demarest Nature Center through our self-guided audio trail experiences</p>
+            </div>
+        </div>
+
+        <div class="ecoexplorer-intro">
+            <h2>Welcome to EcoExplorer</h2>
+            <p>
+                EcoExplorer is a series of self-guided educational experiences designed to help you discover the fascinating
+                natural and cultural history of the Demarest Nature Center. Each exhibit features an audio guide, educational
+                content, and interactive elements to enhance your visit.
+            </p>
+            <p>
+                As you explore our trails, you'll encounter four unique exhibits that tell the story of our preserve's
+                ecology, history, and the interconnected web of life that thrives here.
+            </p>
+        </div>
+
+        <div class="exhibits-grid">
+            <div class="exhibit-card">
+                <img src="/assets/images/ecoexplorer/tenakill-brook/brook-1.png"
+                     alt="Tenakill Brook"
+                     class="exhibit-card-image">
+                <div class="exhibit-card-content">
+                    <h3>Exhibit 1: Tenakill Brook</h3>
+                    <p>
+                        Discover the vital watershed flowing through our preserve. Learn about the brook's role in our local
+                        ecosystem and its connection to the larger Hackensack River watershed.
+                    </p>
+                    <a href="/eco1/" class="btn">Explore This Exhibit</a>
+                </div>
+            </div>
+
+            <div class="exhibit-card">
+                <img src="/assets/images/ecoexplorer/cottonwood-stump/cottonwood-1.png"
+                     alt="Cottonwood Stump"
+                     class="exhibit-card-image">
+                <div class="exhibit-card-content">
+                    <h3>Exhibit 2: Our Cottonwood Stump</h3>
+                    <p>
+                        Explore the remarkable story of a majestic Eastern Cottonwood tree. Count the rings and discover
+                        75 years of history, from the tree's growth to significant historical events.
+                    </p>
+                    <a href="/eco2/" class="btn">Explore This Exhibit</a>
+                </div>
+            </div>
+
+            <div class="exhibit-card">
+                <img src="/assets/images/ecoexplorer/ash-tree/ash-tree-1.png"
+                     alt="White Ash Tree"
+                     class="exhibit-card-image">
+                <div class="exhibit-card-content">
+                    <h3>Exhibit 3: The Ash Tree</h3>
+                    <p>
+                        Learn about the White Ash tree and the challenges it faces from the invasive Emerald Ash Borer.
+                        Discover why these trees are so important to our forest ecosystem.
+                    </p>
+                    <a href="/eco3/" class="btn">Explore This Exhibit</a>
+                </div>
+            </div>
+
+            <div class="exhibit-card">
+                <img src="/assets/images/ecoexplorer/meadow/meadow-1.png"
+                     alt="The Meadow"
+                     class="exhibit-card-image">
+                <div class="exhibit-card-content">
+                    <h3>Exhibit 4: The Meadow</h3>
+                    <p>
+                        Explore the meadow ecosystem and learn about the vital role of pollinators. Discover the native
+                        grasses, wildflowers, and the creatures that depend on this important habitat.
+                    </p>
+                    <a href="/eco4/" class="btn">Explore This Exhibit</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="how-to-use">
+            <div class="container">
+                <h2>How to Use EcoExplorer</h2>
+                <ol>
+                    <li><strong>Pick up a trail map</strong> at the visitor center or download it from our website</li>
+                    <li><strong>Locate the EcoExplorer markers</strong> along the trail - they're numbered 1 through 4</li>
+                    <li><strong>Click on an exhibit above</strong> or scan the QR code at each marker to access the audio guide and educational content</li>
+                    <li><strong>Listen and explore</strong> - each exhibit features an audio narration, photos, videos, and interactive content</li>
+                    <li><strong>Take your time</strong> - there's no rush! Each exhibit can be explored at your own pace</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

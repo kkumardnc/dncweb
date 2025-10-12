@@ -6,6 +6,8 @@
     <title>Sitemap - Demarest Nature Center</title>
     <meta name="description" content="Complete sitemap of Demarest Nature Center website. Find all pages and navigation links.">
     <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -17,18 +19,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -61,7 +96,7 @@
                         <p>Learn about our history, mission, and impact</p>
                         <ul class="sitemap-links">
                             <li><a href="/about/#history">Our History</a></li>
-                            <li><a href="/about/#mission">Our Mission</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
                             <li><a href="/about/#what-we-sponsor">What We Sponsor</a></li>
                             <li><a href="/about/#volunteer-organization">Volunteer-Run Organization</a></li>
                         </ul>
@@ -304,6 +339,7 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -6,7 +6,9 @@
     <title>Events - Demarest Nature Center</title>
     <meta name="description" content="Join us for upcoming nature walks, workshops, seasonal celebrations, and community events at Demarest Nature Center.">
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/rss-feed.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/rss-feed.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -18,18 +20,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/" class="active">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -50,22 +85,6 @@
         <section class="events-intro content-section">
             <div class="container">
                 <p class="intro-text">Throughout the year, Demarest Nature Center hosts a variety of events that bring our community together to explore, learn, and celebrate the natural world. From guided hikes and bird watching expeditions to seasonal festivals and educational workshops, there's always something happening at the nature center.</p>
-            </div>
-        </section>
-
-        <section class="events-calendar content-section">
-            <div class="container">
-                <div class="calendar-header">
-                    <h2>Event Calendar</h2>
-                    <p>Check back regularly for new events, or subscribe to our newsletter to stay informed about upcoming activities.</p>
-                </div>
-
-                <div id="events-container" class="events-list">
-                    <!-- Events will be loaded dynamically via RSS feed -->
-                    <div class="loading-message">
-                        <p>Loading upcoming events...</p>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -216,6 +235,16 @@
             </div>
         </section>
 
+        <section id="calendar" class="calendar-section content-section">
+            <div class="container">
+                <h2>Event Calendar</h2>
+                <p class="section-intro">View all upcoming events on our calendar below. Mark your calendar and join us!</p>
+
+                <!-- Google Calendar Embed -->
+                <div id="google-calendar-embed" style="margin-bottom: 2rem;"></div>
+            </div>
+        </section>
+
         <section class="stay-informed content-section">
             <div class="container">
                 <h2>Stay Informed</h2>
@@ -302,7 +331,9 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/events.js"></script>
+    <script src="/assets/js/google-calendar.js"></script>
+    <script src="/assets/js/newsletter.js"></script>
 </body>
 </html>

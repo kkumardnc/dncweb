@@ -6,6 +6,8 @@
     <title>Visit Us - Demarest Nature Center</title>
     <meta name="description" content="Plan your visit to Demarest Nature Center. Find directions, hours, trail maps, and visitor information for our 55-acre nature preserve in Demarest, NJ.">
     <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -17,18 +19,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/" class="active">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -85,7 +120,7 @@
 
                 <div class="directions-content">
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.8234567890123!2d-73.9633456!3d40.9567890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDU3JzI0LjQiTiA3M8KwNTcnNDguMCJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3014.7234567890123!2d-73.9633!3d40.9568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2eafc5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2s90%20Park%20St%2C%20Demarest%2C%20NJ%2007627!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus" width="100%" height="450" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
                     <div class="directions-text">
@@ -303,6 +338,33 @@
             </div>
         </section>
 
+        <section id="eco-explorer" class="eco-explorer content-section">
+            <div class="container">
+                <h2>Interactive Trail Guide</h2>
+                <p class="section-intro">Do you ever find yourself walking through the woods and wondering about the trees around you or the history of the area?</p>
+                <p>EcoExplorer is a tool to help you become a bit more aware or just to add some background knowledge as you explore the Demarest Nature Center.</p>
+
+                <p><strong>Here's how it works.</strong> As you walk, look for a QR code posted along the trail for these landmarks:</p>
+
+                <ul class="eco-explorer-landmarks">
+                    <li><a href="/eco1/">Tenakill Brook</a></li>
+                    <li><a href="/eco2/">Our Cottonwood Stump</a></li>
+                    <li><a href="/eco3/">Ash Tree</a></li>
+                    <li><a href="/eco4/">The Meadow</a></li>
+                </ul>
+
+                <p>Use your camera app to scan the QR code, then click on the link that appears. You can read or listen along. More QR codes and content will be added over the seasons.</p>
+
+                <p>This content is primarily designed with kids in mind, but it's accessible to all ages. Don't forget to scroll to the bottom for some extra fun features.</p>
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <a href="/eco0/" class="btn btn-primary">View All EcoExplorer Exhibits</a>
+                </div>
+
+                <p class="eco-explorer-credit"><em>EcoExplorer is a project by Amrita Kumar. More QR codes and content will be added over the seasons. Please contact us if you have a feature you'd like to see included.</em></p>
+            </div>
+        </section>
+
         <section class="plan-visit content-section">
             <div class="container">
                 <h2>Plan Your Visit</h2>
@@ -389,6 +451,7 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
 </body>
 </html>

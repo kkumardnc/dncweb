@@ -6,6 +6,265 @@
     <title>Donate - Demarest Nature Center</title>
     <meta name="description" content="Support environmental education and conservation at Demarest Nature Center. Your tax-deductible donation helps preserve nature for future generations.">
     <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <style>
+        /* Donate Page Styling */
+        .hero-donate-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #4a7c2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(74, 124, 45, 0.3);
+        }
+
+        .hero-donate-button:hover {
+            background: #2d5016;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 124, 45, 0.4);
+        }
+
+        .donate-intro {
+            background: #f5f5f0;
+            padding: 3rem 0;
+        }
+
+        .donate-intro .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .donation-options {
+            padding: 4rem 0;
+        }
+
+        .donation-options h2 {
+            text-align: center;
+            color: #2d5016;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .giving-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .giving-option {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .giving-option:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .giving-option.featured {
+            border: 2px solid #4a7c2d;
+        }
+
+        .option-header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .option-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .option-content {
+            padding: 2rem;
+        }
+
+        .option-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-content h4 {
+            color: #2d5016;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .option-content ul,
+        .option-content ol {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-content ul li,
+        .option-content ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        .other-giving-methods {
+            background: #f5f5f0;
+            padding: 4rem 0;
+        }
+
+        .other-giving-methods h2 {
+            text-align: center;
+            color: #2d5016;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .method {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .method h3 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .method p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .mail-address,
+        .visit-address {
+            background: #f5f5f0;
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #4a7c2d;
+            margin: 1rem 0;
+        }
+
+        .donor-recognition,
+        .tax-information,
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .donor-recognition h2,
+        .tax-information h2,
+        .faq-section h2 {
+            color: #2d5016;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .recognition-list {
+            max-width: 800px;
+            margin: 2rem auto;
+            line-height: 2;
+        }
+
+        .recognition-list li {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .privacy-note,
+        .tax-disclaimer {
+            font-style: italic;
+            color: #888;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .tax-details {
+            background: #f5f5f0;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .tax-details p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 2rem auto;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-item h3 {
+            color: #2d5016;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .faq-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .thank-you-section {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .thank-you-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .thank-you-message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
     <header id="header">
@@ -17,18 +276,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/" class="active">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -43,6 +335,7 @@
             <div class="container">
                 <h1>Make a Donation</h1>
                 <p class="subtitle">Every gift helps preserve nature and inspire environmental stewardship</p>
+                <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="hero-donate-button" target="_blank" rel="noopener">Donate Now with Stripe</a>
             </div>
         </section>
 
@@ -63,20 +356,7 @@
                         </div>
                         <div class="option-content">
                             <p>Make a single gift of any amount to support our mission. Every contribution helps maintain trails, fund programs, and protect wildlife habitat.</p>
-
-                            <div class="suggested-amounts">
-                                <h4>Suggested Gift Levels:</h4>
-                                <div class="amount-grid">
-                                    <button class="amount-button" data-amount="25">$25</button>
-                                    <button class="amount-button" data-amount="50">$50</button>
-                                    <button class="amount-button" data-amount="100">$100</button>
-                                    <button class="amount-button" data-amount="250">$250</button>
-                                    <button class="amount-button" data-amount="500">$500</button>
-                                    <button class="amount-button" data-amount="other">Other</button>
-                                </div>
-                            </div>
-
-                            <a href="#donate-form" class="btn btn-primary">Donate Now</a>
+                            <p>Please see "Other Ways to Give" below for information on how to make your donation.</p>
                         </div>
                     </div>
 
@@ -99,9 +379,8 @@
                                 </ul>
                             </div>
 
-                            <p class="example-text">Even $10/month = $120/year of support!</p>
-
-                            <a href="#donate-form" class="btn btn-primary">Become a Monthly Donor</a>
+                            <p class="example-text">Even small monthly gifts add up to make a significant impact over time!</p>
+                            <p><a href="/contact/">Contact us</a> to set up a monthly donation plan.</p>
                         </div>
                     </div>
 
@@ -119,8 +398,7 @@
                                 <li>To celebrate a graduation or achievement</li>
                                 <li>In appreciation of a teacher or mentor</li>
                             </ul>
-
-                            <a href="#donate-form" class="btn btn-secondary">Make a Tribute Gift</a>
+                            <p><a href="/contact/">Contact us</a> to make a memorial or honor gift.</p>
                         </div>
                     </div>
 
@@ -185,220 +463,6 @@
 
                             <p>Please <a href="/contact/">contact us</a> before donating items to ensure they meet our current needs.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="impact-section content-section">
-            <div class="container">
-                <h2>Your Donation at Work</h2>
-                <p class="section-intro">See exactly how your gift makes a difference:</p>
-
-                <div class="impact-levels">
-                    <div class="impact-level">
-                        <div class="impact-amount">$25</div>
-                        <h3>Nature Explorer</h3>
-                        <ul>
-                            <li>Provides educational materials for 10 students</li>
-                            <li>Funds one family nature program</li>
-                            <li>Supplies field guides for visitor use</li>
-                        </ul>
-                    </div>
-
-                    <div class="impact-level">
-                        <div class="impact-amount">$50</div>
-                        <h3>Trail Guardian</h3>
-                        <ul>
-                            <li>Maintains 100 feet of trail for one year</li>
-                            <li>Provides tools for volunteer trail crews</li>
-                            <li>Funds invasive plant removal efforts</li>
-                        </ul>
-                    </div>
-
-                    <div class="impact-level">
-                        <div class="impact-amount">$100</div>
-                        <h3>Program Supporter</h3>
-                        <ul>
-                            <li>Sponsors a school field trip for one classroom</li>
-                            <li>Funds supplies for two educational workshops</li>
-                            <li>Supports wildlife monitoring equipment</li>
-                        </ul>
-                    </div>
-
-                    <div class="impact-level">
-                        <div class="impact-amount">$250</div>
-                        <h3>Conservation Partner</h3>
-                        <ul>
-                            <li>Funds an entire week of summer nature camp</li>
-                            <li>Supports habitat restoration projects</li>
-                            <li>Provides scholarships for youth programs</li>
-                        </ul>
-                    </div>
-
-                    <div class="impact-level">
-                        <div class="impact-amount">$500</div>
-                        <h3>Preserve Protector</h3>
-                        <ul>
-                            <li>Sponsors a complete K-4 school program series</li>
-                            <li>Funds major trail improvements</li>
-                            <li>Supports year-round interpretive programs</li>
-                        </ul>
-                    </div>
-
-                    <div class="impact-level">
-                        <div class="impact-amount">$1,000+</div>
-                        <h3>Legacy Builder</h3>
-                        <ul>
-                            <li>Major preserve improvements and infrastructure</li>
-                            <li>Comprehensive educational program expansion</li>
-                            <li>Long-term conservation initiatives</li>
-                            <li>Opportunity for named recognition</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="donate-form-section content-section" id="donate-form">
-            <div class="container">
-                <h2>Donate Online</h2>
-
-                <div class="form-container">
-                    <form class="donation-form" action="/process-donation.php" method="POST">
-                        <h3>Donation Information</h3>
-
-                        <div class="form-group">
-                            <label>Donation Type *</label>
-                            <label class="radio-label">
-                                <input type="radio" name="donation_type" value="one_time" checked>
-                                One-Time Donation
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="donation_type" value="monthly">
-                                Monthly Recurring Donation
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="amount">Donation Amount *</label>
-                            <div class="amount-input-wrapper">
-                                <span class="currency-symbol">$</span>
-                                <input type="number" id="amount" name="amount" min="1" step="1" placeholder="0.00" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>This donation is:</label>
-                            <label class="radio-label">
-                                <input type="radio" name="gift_type" value="general" checked>
-                                General Support
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="gift_type" value="memorial">
-                                Memorial Gift
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="gift_type" value="honor">
-                                In Honor Of
-                            </label>
-                        </div>
-
-                        <div class="form-group conditional-field" id="tribute-fields" style="display: none;">
-                            <label for="tribute_name">Honoree Name</label>
-                            <input type="text" id="tribute_name" name="tribute_name">
-
-                            <label for="tribute_notification">Send acknowledgment to:</label>
-                            <input type="text" id="tribute_notification" name="tribute_notification" placeholder="Name">
-                            <input type="text" name="tribute_address" placeholder="Address">
-                            <input type="email" name="tribute_email" placeholder="Email (optional)">
-                        </div>
-
-                        <h3>Your Information</h3>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="first_name">First Name *</label>
-                                <input type="text" id="first_name" name="first_name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="last_name">Last Name *</label>
-                                <input type="text" id="last_name" name="last_name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                            <small>We'll send your tax receipt to this email</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Street Address</label>
-                            <input type="text" id="address" name="address">
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="city">City</label>
-                                <input type="text" id="city" name="city">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <input type="text" id="state" name="state" value="NJ">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="zip">ZIP Code</label>
-                                <input type="text" id="zip" name="zip">
-                            </div>
-                        </div>
-
-                        <h3>Additional Options</h3>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="employer_matching">
-                                My employer offers matching gifts
-                            </label>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="anonymous">
-                                Make this donation anonymous (your name won't be publicly recognized)
-                            </label>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="mailing_list" checked>
-                                Keep me updated on DNC programs and events
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="comments">Comments or Special Instructions</label>
-                            <textarea id="comments" name="comments" rows="3"></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Proceed to Secure Payment</button>
-                        </div>
-
-                        <p class="form-note">You'll be directed to our secure payment processor. We accept credit cards, debit cards, and PayPal. Your information is encrypted and secure.</p>
-                    </form>
-
-                    <div class="security-badges">
-                        <p><strong>Secure Donation:</strong> Your payment information is processed securely and never stored on our servers.</p>
-                        <p><strong>Tax Deductible:</strong> Demarest Nature Center is a 501(c)(3) nonprofit. Tax ID available upon request.</p>
                     </div>
                 </div>
             </div>
@@ -517,9 +581,8 @@
                 <p class="thank-you-message">Every donation, regardless of size, makes a real difference in preserving our natural environment and inspiring the next generation of environmental stewards. Thank you for considering a gift to Demarest Nature Center.</p>
 
                 <div class="cta-buttons">
-                    <a href="#donate-form" class="btn btn-primary">Make a Donation</a>
+                    <a href="/contact/" class="btn btn-primary">Contact Us to Donate</a>
                     <a href="/support/membership.html" class="btn btn-secondary">Become a Member</a>
-                    <a href="/contact/" class="btn btn-secondary">Contact Us</a>
                 </div>
             </div>
         </section>
@@ -598,40 +661,7 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
-    <script>
-        // Show/hide tribute fields based on gift type selection
-        document.addEventListener('DOMContentLoaded', function() {
-            const giftTypeRadios = document.querySelectorAll('input[name="gift_type"]');
-            const tributeFields = document.getElementById('tribute-fields');
-
-            giftTypeRadios.forEach(radio => {
-                radio.addEventListener('change', function() {
-                    if (this.value === 'memorial' || this.value === 'honor') {
-                        tributeFields.style.display = 'block';
-                    } else {
-                        tributeFields.style.display = 'none';
-                    }
-                });
-            });
-
-            // Amount button functionality
-            const amountButtons = document.querySelectorAll('.amount-button');
-            const amountInput = document.getElementById('amount');
-
-            amountButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const amount = this.getAttribute('data-amount');
-                    if (amount !== 'other') {
-                        amountInput.value = amount;
-                    } else {
-                        amountInput.value = '';
-                        amountInput.focus();
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>

@@ -6,6 +6,8 @@
     <title>Contact Us - Demarest Nature Center</title>
     <meta name="description" content="Get in touch with Demarest Nature Center. Visit us, call, email, or use our contact form for questions about programs, events, volunteering, and more.">
     <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -17,18 +19,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/">Support</a></li>
-                    <li><a href="/contact/" class="active">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -56,9 +91,6 @@
             <div class="container">
                 <div class="contact-grid">
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <img src="/assets/images/icons/location.svg" alt="Location">
-                        </div>
                         <h3>Visit Us</h3>
                         <p><strong>Demarest Nature Center</strong><br>
                         90 Park Street<br>
@@ -72,9 +104,6 @@
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <img src="/assets/images/icons/hours.svg" alt="Hours">
-                        </div>
                         <h3>Hours</h3>
                         <p><strong>Monday - Friday</strong><br>
                         9:00 AM - 5:00 PM</p>
@@ -86,9 +115,6 @@
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <img src="/assets/images/icons/email.svg" alt="Email">
-                        </div>
                         <h3>Email Us</h3>
                         <p><a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a></p>
 
@@ -96,9 +122,6 @@
                     </div>
 
                     <div class="contact-card">
-                        <div class="contact-icon">
-                            <img src="/assets/images/icons/phone.svg" alt="Phone">
-                        </div>
                         <h3>Call Us</h3>
                         <p>Contact us by phone during office hours:</p>
 
@@ -107,74 +130,6 @@
 
                         <p class="note">If we're unable to answer, please leave a message and we'll return your call promptly.</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact-form-section content-section">
-            <div class="container">
-                <h2>Send Us a Message</h2>
-                <p>Fill out the form below and we'll get back to you as soon as possible.</p>
-
-                <div class="form-container">
-                    <form class="contact-form" action="/process-contact.php" method="POST">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="first_name">First Name *</label>
-                                <input type="text" id="first_name" name="first_name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="last_name">Last Name *</label>
-                                <input type="text" id="last_name" name="last_name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">-- Select a subject --</option>
-                                <option value="general">General Inquiry</option>
-                                <option value="programs">Programs & Education</option>
-                                <option value="events">Events & Activities</option>
-                                <option value="membership">Membership</option>
-                                <option value="volunteer">Volunteering</option>
-                                <option value="donations">Donations & Support</option>
-                                <option value="school_groups">School Groups & Field Trips</option>
-                                <option value="facilities">Facility Use & Rentals</option>
-                                <option value="media">Media Inquiry</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="6" required></textarea>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="newsletter">
-                                I'd like to receive updates about programs and events
-                            </label>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </div>
-
-                        <p class="form-note">We respect your privacy. Your information will never be shared with third parties.</p>
-                    </form>
                 </div>
             </div>
         </section>
@@ -286,14 +241,14 @@
                 <p>Follow us for the latest updates, beautiful nature photos, event announcements, and wildlife sightings!</p>
 
                 <div class="social-links-large">
-                    <a href="#" class="social-link facebook">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.demarestnaturecenter.org%2F" class="social-link facebook" target="_blank" rel="noopener">
                         <span class="social-icon">Facebook</span>
                         <span class="social-handle">@DemarestNatureCenter</span>
                     </a>
 
-                    <a href="#" class="social-link instagram">
+                    <a href="https://www.instagram.com/demarestnaturectr/" class="social-link instagram" target="_blank" rel="noopener">
                         <span class="social-icon">Instagram</span>
-                        <span class="social-handle">@demarestnaturecenter</span>
+                        <span class="social-handle">@demarestnaturectr</span>
                     </a>
                 </div>
 
@@ -306,7 +261,7 @@
                 <h2>Subscribe to Our Newsletter</h2>
                 <p>Stay informed about upcoming programs, events, and conservation news. We send quarterly updates directly to your inbox.</p>
 
-                <form class="newsletter-form" action="/process-newsletter.php" method="POST">
+                <form class="newsletter-form">
                     <div class="form-row-inline">
                         <input type="email" name="newsletter_email" placeholder="Enter your email address" required>
                         <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -423,6 +378,8 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/newsletter.js"></script>
 </body>
 </html>

@@ -6,6 +6,8 @@
     <title>Membership - Demarest Nature Center</title>
     <meta name="description" content="Become a member of Demarest Nature Center and support environmental education and conservation while enjoying exclusive benefits.">
     <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -17,18 +19,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/" class="active">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -59,96 +94,103 @@
                 <div class="membership-tiers">
                     <div class="tier-card">
                         <div class="tier-header">
-                            <h3>Individual</h3>
-                            <div class="tier-price">$35/year</div>
+                            <h3>Individual Member (Trail Walker)</h3>
+                            <div class="tier-price">$25/year</div>
                         </div>
                         <div class="tier-benefits">
                             <h4>Benefits Include:</h4>
                             <ul>
-                                <li>Quarterly newsletter with program updates</li>
-                                <li>Priority registration for popular programs</li>
-                                <li>Invitations to members-only events</li>
-                                <li>10% discount on select workshops</li>
-                                <li>Recognition in annual report</li>
-                                <li>Satisfaction of supporting conservation</li>
+                                <li>Subscription to the Demarest Nature Center's newsletter</li>
+                                <li>Recognition in the DNC newsletter and website</li>
+                                <li>Invitation to members only events</li>
+                                <li>Discounts on Nature Center programs</li>
+                                <li>Merchandise Discounts at participating local stores and restaurants</li>
+                                <li>Basic membership benefits for one adult person (18+)</li>
+                                <li>Renews automatically</li>
                             </ul>
                         </div>
-                        <a href="#join-form" class="btn btn-primary">Join Now</a>
+                        <button class="btn btn-primary stripe-checkout-btn" data-membership-type="individual" data-price="2500">Join Now</button>
                     </div>
 
                     <div class="tier-card featured">
                         <div class="tier-badge">Most Popular</div>
                         <div class="tier-header">
-                            <h3>Family</h3>
-                            <div class="tier-price">$60/year</div>
+                            <h3>Family Membership (Trail Hikers)</h3>
+                            <div class="tier-price">$50/year</div>
                         </div>
                         <div class="tier-benefits">
-                            <h4>All Individual Benefits, Plus:</h4>
+                            <h4>Benefits Include:</h4>
                             <ul>
-                                <li>Coverage for up to 2 adults and children under 18</li>
-                                <li>15% discount on select workshops</li>
-                                <li>Early access to summer camp registration</li>
-                                <li>Exclusive family event invitations</li>
-                                <li>Free admission to fundraising events</li>
-                                <li>DNC window decal</li>
+                                <li>Subscription to the Demarest Nature Center's newsletter</li>
+                                <li>Recognition in the DNC newsletter and website</li>
+                                <li>Invitation to members only events</li>
+                                <li>Discounts on Nature Center programs</li>
+                                <li>Merchandise Discounts at participating local stores and restaurants</li>
+                                <li>Basic membership benefits for one adult person (18+) & family</li>
+                                <li>Renews automatically</li>
                             </ul>
                         </div>
-                        <a href="#join-form" class="btn btn-primary">Join Now</a>
+                        <button class="btn btn-primary stripe-checkout-btn" data-membership-type="family" data-price="5000">Join Now</button>
                     </div>
 
                     <div class="tier-card">
                         <div class="tier-header">
-                            <h3>Supporting</h3>
-                            <div class="tier-price">$125/year</div>
+                            <h3>Trail Ranger</h3>
+                            <div class="tier-price">$100/year</div>
                         </div>
                         <div class="tier-benefits">
-                            <h4>All Family Benefits, Plus:</h4>
+                            <h4>Benefits Include:</h4>
                             <ul>
-                                <li>Complimentary workshop for 2 (up to $50 value)</li>
-                                <li>Special recognition at annual events</li>
-                                <li>Behind-the-scenes preserve tours</li>
-                                <li>Invitation to annual donor appreciation event</li>
-                                <li>DNC tote bag</li>
+                                <li>Subscription to the Demarest Nature Center's newsletter</li>
+                                <li>Recognition in the DNC newsletter and website</li>
+                                <li>Invitation to members only events</li>
+                                <li>Discounts on Nature Center programs</li>
+                                <li>Merchandise Discounts at participating local stores and restaurants</li>
+                                <li>Basic membership benefits for two adults (18+) and children (18 & under) living in the same household</li>
+                                <li>Renews automatically</li>
                             </ul>
                         </div>
-                        <a href="#join-form" class="btn btn-primary">Join Now</a>
+                        <button class="btn btn-primary stripe-checkout-btn" data-membership-type="ranger" data-price="10000">Join Now</button>
                     </div>
 
                     <div class="tier-card">
                         <div class="tier-header">
-                            <h3>Patron</h3>
-                            <div class="tier-price">$250/year</div>
+                            <h3>Trail Steward</h3>
+                            <div class="tier-price">$200/year</div>
                         </div>
                         <div class="tier-benefits">
-                            <h4>All Supporting Benefits, Plus:</h4>
+                            <h4>Benefits Include:</h4>
                             <ul>
-                                <li>Private guided nature walk for up to 6 people</li>
-                                <li>Opportunity to sponsor a program or trail</li>
-                                <li>Prominent recognition on website and materials</li>
-                                <li>Exclusive preview events for new programs</li>
-                                <li>Personalized nature center tour</li>
+                                <li>Subscription to the Demarest Nature Center's newsletter</li>
+                                <li>Recognition in the DNC newsletter and website</li>
+                                <li>Invitation to members only events</li>
+                                <li>Discounts on Nature Center programs</li>
+                                <li>Merchandise Discounts at participating local stores and restaurants</li>
+                                <li>Basic membership benefits for two adults (18+) and children (18 & under) living in the same household</li>
+                                <li>Renews automatically</li>
                             </ul>
                         </div>
-                        <a href="#join-form" class="btn btn-primary">Join Now</a>
+                        <button class="btn btn-primary stripe-checkout-btn" data-membership-type="steward" data-price="20000">Join Now</button>
                     </div>
 
                     <div class="tier-card premium">
                         <div class="tier-header">
-                            <h3>Conservationist Circle</h3>
-                            <div class="tier-price">$500+/year</div>
+                            <h3>Trail Benefactor</h3>
+                            <div class="tier-price">$500/year</div>
                         </div>
                         <div class="tier-benefits">
-                            <h4>All Patron Benefits, Plus:</h4>
+                            <h4>Benefits Include:</h4>
                             <ul>
-                                <li>Leadership recognition as a conservation champion</li>
-                                <li>Annual meeting with executive board</li>
-                                <li>Named recognition on preserve signage</li>
-                                <li>Exclusive conservation briefings</li>
-                                <li>Legacy plaque opportunity (for multi-year members)</li>
-                                <li>Custom nature photography print</li>
+                                <li>Subscription to the Demarest Nature Center's newsletter</li>
+                                <li>Recognition in the DNC newsletter and website</li>
+                                <li>Invitation to members only events</li>
+                                <li>Discounts on Nature Center programs</li>
+                                <li>Merchandise Discounts at participating local stores and restaurants</li>
+                                <li>Basic membership benefits for two adult person (18+) and children (18 & under) living in the same household</li>
+                                <li>Renews automatically</li>
                             </ul>
                         </div>
-                        <a href="#join-form" class="btn btn-primary">Join Now</a>
+                        <button class="btn btn-primary stripe-checkout-btn" data-membership-type="benefactor" data-price="50000">Join Now</button>
                     </div>
                 </div>
             </div>
@@ -173,8 +215,8 @@
 
                     <div class="special-option">
                         <h3>Lifetime Membership</h3>
-                        <p class="price">$2,500 one-time</p>
-                        <p>Make a lasting commitment to conservation. Lifetime members receive Conservationist Circle benefits in perpetuity and permanent recognition on our Wall of Honor.</p>
+                        <p class="price">$1,000 one-time</p>
+                        <p>Make a lasting commitment to conservation. Lifetime members receive Trail Benefactor benefits in perpetuity and permanent recognition on our Wall of Honor.</p>
                     </div>
                 </div>
             </div>
@@ -224,7 +266,7 @@
 
                 <div class="impact-examples">
                     <div class="impact-example">
-                        <h3>$35 Individual Membership</h3>
+                        <h3>$25 Individual Member</h3>
                         <ul>
                             <li>Provides environmental education materials for 10 students</li>
                             <li>Maintains 50 feet of trail for one year</li>
@@ -233,7 +275,7 @@
                     </div>
 
                     <div class="impact-example">
-                        <h3>$60 Family Membership</h3>
+                        <h3>$50 Family Membership</h3>
                         <ul>
                             <li>Supports one full classroom field trip</li>
                             <li>Funds supplies for two family programs</li>
@@ -242,7 +284,7 @@
                     </div>
 
                     <div class="impact-example">
-                        <h3>$125 Supporting Membership</h3>
+                        <h3>$100 Trail Ranger</h3>
                         <ul>
                             <li>Sponsors a week of summer nature camp</li>
                             <li>Funds invasive plant removal projects</li>
@@ -251,7 +293,7 @@
                     </div>
 
                     <div class="impact-example">
-                        <h3>$250 Patron Membership</h3>
+                        <h3>$200 Trail Steward</h3>
                         <ul>
                             <li>Funds an entire K-4 school program series</li>
                             <li>Supports major trail improvements and bridge maintenance</li>
@@ -262,142 +304,28 @@
             </div>
         </section>
 
-        <section class="join-form-section content-section" id="join-form">
+        <section class="alternative-payment-section content-section">
             <div class="container">
-                <h2>Join Today</h2>
-
-                <div class="form-container">
-                    <form class="membership-form" action="/process-membership.php" method="POST">
-                        <h3>Select Membership Level</h3>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="radio" name="membership_level" value="senior_student" required>
-                                Senior/Student - $25/year
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="radio" name="membership_level" value="individual" required>
-                                Individual - $35/year
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="radio" name="membership_level" value="family" required>
-                                Family - $60/year
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="radio" name="membership_level" value="supporting" required>
-                                Supporting - $125/year
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="radio" name="membership_level" value="patron" required>
-                                Patron - $250/year
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="radio" name="membership_level" value="conservationist" required>
-                                Conservationist Circle - $500+/year
-                            </label>
-                        </div>
-
-                        <h3>Contact Information</h3>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="first_name">First Name *</label>
-                                <input type="text" id="first_name" name="first_name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="last_name">Last Name *</label>
-                                <input type="text" id="last_name" name="last_name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Street Address *</label>
-                            <input type="text" id="address" name="address" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="city">City *</label>
-                                <input type="text" id="city" name="city" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="state">State *</label>
-                                <input type="text" id="state" name="state" value="NJ" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="zip">ZIP Code *</label>
-                                <input type="text" id="zip" name="zip" required>
-                            </div>
-                        </div>
-
-                        <h3>Additional Information</h3>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="volunteer_interest">
-                                I'm interested in volunteering
-                            </label>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="newsletter" checked>
-                                Send me email updates about programs and events
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="comments">Comments or Questions</label>
-                            <textarea id="comments" name="comments" rows="4"></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Proceed to Payment</button>
-                        </div>
-
-                        <p class="form-note">After submitting, you'll be directed to our secure payment processor. You can pay by credit card, debit card, or PayPal. You'll receive a confirmation email and tax receipt upon completion.</p>
-                    </form>
-
-                    <div class="alternative-payment">
-                        <h3>Other Ways to Join</h3>
-                        <p><strong>Mail:</strong> Send a check payable to "Demarest Nature Center" along with your contact information to:</p>
+                <h2>Other Ways to Join</h2>
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <h3>Mail</h3>
+                        <p>Send a check payable to "Demarest Nature Center" along with your contact information to:</p>
                         <p class="mail-address">
                             Demarest Nature Center<br>
                             Box 41<br>
                             Demarest, NJ 07627
                         </p>
+                    </div>
 
-                        <p><strong>In Person:</strong> Visit us during office hours (Mon-Fri 9-5, Sat-Sun 10-4) to join in person.</p>
+                    <div class="payment-option">
+                        <h3>In Person</h3>
+                        <p>Visit us during office hours (Mon-Fri 9-5, Sat-Sun 10-4) to join in person.</p>
+                    </div>
 
-                        <p><strong>Questions?</strong> Email us at <a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a></p>
+                    <div class="payment-option">
+                        <h3>Questions?</h3>
+                        <p>Email us at <a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a></p>
                     </div>
                 </div>
             </div>
@@ -407,14 +335,14 @@
             <div class="container">
                 <h2>Give the Gift of Membership</h2>
                 <p>A Demarest Nature Center membership makes a thoughtful, meaningful gift for nature lovers, families, and anyone who cares about the environment. Gift memberships include all member benefits plus a special gift card announcing the membership.</p>
-                <p>To purchase a gift membership, fill out the form above with the recipient's information, or contact us at <a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a> to arrange a personalized gift.</p>
+                <p>To purchase a gift membership, contact us at <a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a> to arrange a personalized gift.</p>
             </div>
         </section>
 
         <section class="renewal-section content-section">
             <div class="container">
                 <h2>Renewing Your Membership?</h2>
-                <p>Thank you for your continued support! Current members can renew online using the form above, by mail, or in person. We'll send renewal reminders 30 days before your membership expires.</p>
+                <p>Thank you for your continued support! Current members can renew by mail or in person. We'll send renewal reminders 30 days before your membership expires.</p>
                 <p>Auto-renewal is available - contact us to set up automatic annual renewal and never miss a year of support.</p>
             </div>
         </section>
@@ -493,6 +421,11 @@
         </div>
     </footer>
 
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/assets/js/stripe-config.js"></script>
+
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -6,6 +6,8 @@
     <title>Programs - Demarest Nature Center</title>
     <meta name="description" content="Explore our diverse programs including school education, summer camps, family activities, and adult workshops at Demarest Nature Center.">
     <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -17,18 +19,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/" class="active">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -54,7 +89,7 @@
 
         <section class="programs-grid content-section">
             <div class="container">
-                <div class="program-category">
+                <div class="program-category" id="school">
                     <div class="program-image">
                         <img src="/assets/images/programs/school-programs.jpg" alt="School Programs">
                     </div>
@@ -83,7 +118,7 @@
                     </div>
                 </div>
 
-                <div class="program-category">
+                <div class="program-category" id="camps">
                     <div class="program-image">
                         <img src="/assets/images/programs/summer-camps.jpg" alt="Summer Camps">
                     </div>
@@ -115,7 +150,7 @@
                     </div>
                 </div>
 
-                <div class="program-category">
+                <div class="program-category" id="family">
                     <div class="program-image">
                         <img src="/assets/images/programs/family-programs.jpg" alt="Family Programs">
                     </div>
@@ -145,7 +180,7 @@
                     </div>
                 </div>
 
-                <div class="program-category">
+                <div class="program-category" id="adult">
                     <div class="program-image">
                         <img src="/assets/images/programs/adult-workshops.jpg" alt="Adult Workshops">
                     </div>
@@ -214,6 +249,91 @@
                 <p>Each year, Demarest Nature Center awards an annual scholarship to a high school senior pursuing studies in environmental science, ecology, conservation, or related fields. This scholarship supports the next generation of environmental leaders and reflects our commitment to education.</p>
                 <p><strong>Eligibility:</strong> High school seniors planning to study environmental or natural sciences</p>
                 <a href="/contact/" class="btn btn-secondary">Learn More About Our Scholarship</a>
+            </div>
+        </section>
+
+        <section class="what-we-sponsor content-section" id="what-we-sponsor">
+            <div class="container">
+                <h2>What We Sponsor</h2>
+                <p class="intro-text">The Demarest Nature Center sponsors numerous programs throughout the year to bring residents of Demarest and surrounding areas into closer contact with wildlife and the natural world.</p>
+
+                <div class="sponsor-content">
+                    <h3>Sponsored Programs</h3>
+                    <div class="sponsor-grid">
+                        <div class="sponsor-item">
+                            <h4>🌿 Lectures on Native Plants</h4>
+                            <p>Educational presentations about native plant species, their ecological importance, and how to incorporate them into your landscape.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>👨‍👩‍👧‍👦 Family Hikes</h4>
+                            <p>Guided nature walks designed for families to explore our trails together and learn about local ecosystems.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🍁 Maple Syrup Making</h4>
+                            <p>Annual demonstrations showing the traditional process of collecting sap and making pure maple syrup.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🦅 Bird Watching and Counting</h4>
+                            <p>Regular birding sessions and participation in annual bird counts to track local avian populations.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🏠 Birdhouse Building</h4>
+                            <p>Hands-on workshops where families build and decorate birdhouses to take home.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🔍 Children's Scavenger Hunts</h4>
+                            <p>Fun outdoor activities that engage children in discovering nature through interactive exploration.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🍄 Mushroom Foraging Walks</h4>
+                            <p>Expert-led walks teaching safe mushroom identification and the role of fungi in forest ecosystems.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🛶 Canoe Day</h4>
+                            <p>Special events allowing participants to experience the Tenakill Brook from a unique water perspective.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>🎃 Annual Oktoberfest</h4>
+                            <p>Community celebration featuring local crafters, vendors, nature activities, and family fun.</p>
+                        </div>
+
+                        <div class="sponsor-item">
+                            <h4>📸 Photo Contest</h4>
+                            <p>Annual photography competition showcasing the beauty of nature at the Demarest Nature Center.</p>
+                        </div>
+                    </div>
+
+                    <div class="sponsor-locations">
+                        <h3>Program Locations</h3>
+                        <p>Our outdoor activities are held at various locations throughout the community:</p>
+                        <ul>
+                            <li>Demarest Nature Center trails and grounds</li>
+                            <li>Wakelee Field</li>
+                            <li>Local school grounds</li>
+                            <li>Duck Pond area</li>
+                        </ul>
+                    </div>
+
+                    <div class="sponsor-support">
+                        <h3>Supporting the Community</h3>
+                        <p>In addition to public and school events and the development and maintenance of the Nature Center grounds, the Association provides:</p>
+                        <ul>
+                            <li>Subscriptions of nature and environmentally oriented publications to the Demarest Public Library</li>
+                            <li>Occasional grants to the library for purchasing environmental publications and videos</li>
+                            <li>Scholarship awards to graduating seniors interested in environmental sciences</li>
+                        </ul>
+
+                        <p class="highlight-text">Your membership dollars allow us to continue sponsoring these valuable programs for the community!</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -303,6 +423,7 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
 </body>
 </html>

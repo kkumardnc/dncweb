@@ -13,6 +13,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="/assets/css/carousel.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">
   <link rel="stylesheet" href="/assets/css/rss-feed.css">
 
   <!-- Open Graph for social sharing -->
@@ -33,16 +34,56 @@
         </a>
       </div>
 
-      <nav id="mainNav">
+                              <nav id="mainNav">
         <ul>
-          <li><a href="/" class="active">Home</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/programs/">Programs</a></li>
-          <li><a href="/events/">Events</a></li>
-          <li><a href="/visit/">Visit</a></li>
-          <li><a href="/gallery/">Gallery</a></li>
-          <li><a href="/support/">Support</a></li>
-          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li class="has-dropdown">
+                <a href="/photocontest/">Photo Contest</a>
+                <ul class="dropdown">
+                  <li><a href="/photocontest/annual-photo-contest/">John C. Goodwin Nature Photo Contest</a></li>
+                  <li><a href="/photocontest/2025-winners/">2025 Photo Contest Winners</a></li>
+                  <li><a href="/photocontest/memorial/">In Memory of John Goodwin</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
         </ul>
       </nav>
 
@@ -219,10 +260,8 @@
           <p>Join us for exciting seasonal activities and special programs</p>
         </div>
 
-        <div class="events-grid" id="upcomingEvents">
-          <!-- Events will be loaded here via JavaScript from Google Sheets -->
-          <div class="event-loading">Loading upcoming events...</div>
-        </div>
+        <!-- Google Calendar Embed -->
+        <div id="google-calendar-embed" style="margin-bottom: 2rem;"></div>
 
         <div class="text-center mt-3">
           <a href="/events/" class="btn btn-secondary">View All Events</a>
@@ -364,7 +403,7 @@
       <div class="footer-content">
         <div class="footer-section">
           <h3>Demarest Nature Center</h3>
-          <p>123 Nature Way<br>
+          <p>90 Park Street<br>
           Demarest, NJ 07627</p>
           <p><strong>Phone:</strong> (555) 123-4567<br>
           <strong>Email:</strong> info@demarestnaturecenter.org</p>
@@ -433,9 +472,12 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="/assets/js/dropdown.js"></script>
   <script src="/assets/js/carousel.js"></script>
   <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/google-calendar.js"></script>
   <script src="/assets/js/events.js"></script>
   <script src="/assets/js/rss-feed.js"></script>
+  <script src="/assets/js/newsletter.js"></script>
 </body>
 </html>

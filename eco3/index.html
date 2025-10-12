@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoExplorer: Ash Tree - Demarest Nature Center</title>
+    <meta name="description" content="Explore the White Ash tree and learn about the threats facing this important native species.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <style>
+        .ecoexplorer-hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2d 100%);
+            padding: 3rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .ecoexplorer-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .ecoexplorer-hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .audio-player {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.25rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .audio-player audio {
+            max-width: 100%;
+            width: 100%;
+            height: 54px;
+            outline: none;
+        }
+
+        .audio-player audio::-webkit-media-controls-enclosure {
+            border-radius: 8px;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .ecoexplorer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .ecoexplorer-section {
+            margin-bottom: 3rem;
+        }
+
+        .ecoexplorer-section h2 {
+            color: #2d5016;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #4a7c2d;
+            padding-bottom: 0.5rem;
+        }
+
+        .ecoexplorer-section h3 {
+            color: #2d5016;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .ecoexplorer-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            color: #333;
+        }
+
+        .ecoexplorer-section ul {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-left: 2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .ecoexplorer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .video-container {
+            margin: 2rem 0;
+            background: #f5f5f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .video-container h3 {
+            margin-top: 0;
+            color: #2d5016;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-top: 1rem;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4a7c2d;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .info-box h3 {
+            color: #2d5016;
+            margin-top: 0;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box h3 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-buttons a {
+            padding: 0.75rem 1.5rem;
+            background: #4a7c2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-buttons a:hover {
+            background: #2d5016;
+        }
+    </style>  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">                            <li><a href="/events/">Upcoming Events</a></li>                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li><a href="/photocontest/">Photo Contest</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="ecoexplorer-hero">
+            <div class="container">
+                <h1>EcoExplorer: Ash Tree</h1>
+                <p class="subtitle">Learn about the White Ash and the challenges it faces</p>
+                <div class="audio-player">
+                    <audio controls>
+                        <source src="/assets/audio/ash-tree.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="ecoexplorer-content">
+            <div class="ecoexplorer-section">
+                <h2>The White Ash Tree</h2>
+                <p>
+                    Standing before you is a White Ash tree (Fraxinus americana), one of the most valuable and versatile hardwood
+                    trees in North America. For centuries, this species has been prized for its strength, flexibility, and beautiful
+                    wood grain. White Ash is commonly used to make baseball bats, tool handles, furniture, and even canoe paddles.
+                </p>
+                <p>
+                    White Ash trees can grow to impressive heights of 60-80 feet, with a tall, straight trunk and a rounded crown.
+                    In autumn, their leaves turn a stunning purple or yellow color, making them a favorite for fall foliage displays.
+                    The tree produces seeds called samaras—these are winged seeds that spin like helicopter blades as they fall,
+                    helping them travel away from the parent tree.
+                </p>
+                <p>
+                    These trees play an important role in forest ecosystems. Their seeds provide food for birds and small mammals,
+                    while their leaves decompose quickly, enriching the soil. Many species of birds nest in ash trees, and their
+                    flowers provide early-season nectar for pollinators.
+                </p>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <h2>Image Gallery</h2>
+                <div class="image-gallery">
+                    <img src="/assets/images/ecoexplorer/ash-tree/ash-tree-1.png" alt="White Ash tree canopy view">
+                    <img src="/assets/images/ecoexplorer/ash-tree/ash-tree-2.png" alt="Ash tree in forest">
+                    <img src="/assets/images/ecoexplorer/ash-tree/ash-tree-3.png" alt="Ash tree detail">
+                    <img src="/assets/images/ecoexplorer/ash-tree/ash-tree-4.png" alt="Ash tree landscape">
+                    <img src="/assets/images/ecoexplorer/ash-tree/emerald-ash-borer.jpg" alt="Emerald Ash Borer beetle - invasive pest">
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <div class="info-box">
+                    <h3>How to Identify a White Ash</h3>
+                    <ul>
+                        <li><strong>Leaves:</strong> Compound leaves with 5-9 leaflets arranged opposite each other along a central stem. Leaflets are oval with smooth edges.</li>
+                        <li><strong>Bark:</strong> Gray bark with a distinctive diamond-shaped ridge pattern on mature trees.</li>
+                        <li><strong>Branches:</strong> Branches grow in opposite pairs from the trunk (most trees have alternate branching).</li>
+                        <li><strong>Seeds:</strong> Paddle-shaped samaras (winged seeds) that hang in clusters and persist through winter.</li>
+                        <li><strong>Fall Color:</strong> Leaves turn deep purple or golden yellow in autumn.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <div class="warning-box">
+                    <h3>A Threat to Ash Trees: The Emerald Ash Borer</h3>
+                    <p>
+                        Unfortunately, ash trees across North America face a serious threat from an invasive insect called the
+                        Emerald Ash Borer (EAB). This metallic green beetle, native to Asia, was first discovered in the United
+                        States in 2002. Since then, it has killed hundreds of millions of ash trees.
+                    </p>
+                    <p>
+                        The damage is done by EAB larvae, which tunnel under the bark of ash trees, disrupting the tree's ability
+                        to transport water and nutrients. Infested trees typically die within 2-4 years. The adult beetles are
+                        small (about half an inch long), metallic green, and emerge from trees in late spring and summer.
+                    </p>
+                    <p>
+                        Conservation efforts are underway to save ash trees through treatments, biological controls, and breeding
+                        programs. At the Demarest Nature Center, we monitor our ash trees closely and work to protect these
+                        valuable members of our forest community.
+                    </p>
+                </div>
+            </div>
+
+            <div class="ecoexplorer-section">
+                <h2>Learn More</h2>
+
+                <div class="video-container">
+                    <h3>How to ID that Tree: White Ash</h3>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/f5t0knTWFYY"
+                                title="How to ID that Tree: White Ash"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="/eco2/">← Previous: Cottonwood Stump</a>
+                <a href="/eco4/">Next: The Meadow →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

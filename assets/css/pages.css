@@ -1,0 +1,447 @@
+/* Custom page styles for Scholarship, Photo Contest, Mission and Policies pages */
+
+/* Mission Page Styles */
+.mission-section {
+    margin: 3rem 0;
+}
+
+.mission-section h2 {
+    color: #2c5f2d;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.mission-intro {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #555;
+    text-align: center;
+}
+
+.mission-list {
+    list-style: decimal;
+    margin: 2rem auto;
+    max-width: 900px;
+    padding-left: 2rem;
+}
+
+.mission-list li {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    padding-left: 1rem;
+}
+
+.mission-highlight {
+    background: #e8f5e9;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #4a7c59;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.mission-highlight strong {
+    color: #2c5f2d;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Policies Page Styles */
+.policies-section {
+    margin: 3rem 0;
+}
+
+.policies-section .intro-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    color: #555;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.policy-area {
+    background: #f8f9fa;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #4a7c59;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.policy-area h3 {
+    color: #2c5f2d;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.policy-area p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.policy-area ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.policy-area li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.policy-area li strong {
+    color: #2c5f2d;
+}
+
+.policy-note {
+    background: #fff9e6;
+    border: 2px solid #ffc107;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.policy-note strong {
+    color: #856404;
+}
+
+.policy-note a {
+    color: #2c5f2d;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.policy-note a:hover {
+    color: #4a7c59;
+}
+
+/* Custom page styles for Scholarship and Photo Contest pages */
+
+/* Scholarship Page Styles */
+.scholarship-intro {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.scholarship-intro h2 {
+    color: #2c5f2d;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.scholarship-intro .lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.requirements-section {
+    margin: 3rem 0;
+}
+
+.requirements-section h3 {
+    color: #2c5f2d;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid #4a7c59;
+    padding-bottom: 0.5rem;
+}
+
+.requirement-block {
+    background: #f8f9fa;
+    border-left: 4px solid #4a7c59;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.requirement-block h4 {
+    color: #2c5f2d;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.requirement-block p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.requirement-block ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    margin-top: 1rem;
+}
+
+.requirement-block li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.submission-section {
+    background: #e8f5e9;
+    padding: 2.5rem;
+    border-radius: 8px;
+    margin: 3rem 0;
+}
+
+.submission-section h3 {
+    color: #2c5f2d;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.address-box {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid #4a7c59;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.address-box p {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.or-divider {
+    color: #4a7c59;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.notification-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: #fff9e6;
+    border-radius: 8px;
+}
+
+.notification-section p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.note-box {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-top: 1.5rem;
+}
+
+.note-box p {
+    margin: 0;
+    color: #856404;
+    font-weight: 500;
+}
+
+/* Photo Contest Page Styles */
+.intro-section {
+    margin-bottom: 3rem;
+}
+
+.intro-section h2 {
+    color: #2c5f2d;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.intro-section .lead {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.wildlife-highlights {
+    margin: 4rem 0;
+}
+
+.wildlife-highlights h3 {
+    color: #2c5f2d;
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.wildlife-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.5rem;
+    margin: 2rem 0;
+}
+
+.wildlife-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.wildlife-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.wildlife-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.wildlife-item h4 {
+    color: #2c5f2d;
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.links-section {
+    margin: 4rem 0;
+}
+
+.links-section h3 {
+    color: #2c5f2d;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.link-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.link-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid #4a7c59;
+    transition: all 0.3s ease;
+}
+
+.link-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.link-card h4 {
+    margin-bottom: 1rem;
+}
+
+.link-card h4 a {
+    color: #2c5f2d;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.link-card h4 a:hover {
+    color: #4a7c59;
+    text-decoration: underline;
+}
+
+.link-card p {
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Shared CTA Section */
+.cta-section {
+    margin: 4rem 0;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
+    border-radius: 12px;
+}
+
+.cta-section h3 {
+    color: #2c5f2d;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .scholarship-intro h2,
+    .intro-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .requirements-section h3,
+    .wildlife-highlights h3,
+    .links-section h3 {
+        font-size: 1.4rem;
+    }
+
+    .requirement-block {
+        padding: 1.5rem;
+    }
+
+    .wildlife-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .link-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .wildlife-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .wildlife-item {
+        padding: 1rem;
+    }
+
+    .requirement-block ul {
+        margin-left: 1.5rem;
+    }
+}

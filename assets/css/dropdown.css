@@ -1,0 +1,123 @@
+/* Dropdown Navigation Styles */
+
+/* Dropdown container */
+#mainNav .has-dropdown {
+  position: relative;
+}
+
+#mainNav .has-dropdown > a::after {
+  content: ' ▾';
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+/* Dropdown menu */
+#mainNav .dropdown {
+  display: flex !important;
+  flex-direction: column !important;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-top: 10px;
+  padding: 0.5rem 0;
+  list-style: none;
+  gap: 0 !important;
+}
+
+/* Show dropdown on hover */
+#mainNav .has-dropdown:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown items */
+#mainNav .dropdown li {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block !important;
+}
+
+#mainNav .dropdown a {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+#mainNav .dropdown a:hover {
+  background-color: #f5f5f5;
+  border-left-color: #4a7c59;
+  color: #4a7c59;
+  padding-left: 1.5rem;
+}
+
+/* Mobile dropdown styles */
+@media (max-width: 768px) {
+  #mainNav .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: rgba(0, 0, 0, 0.05);
+    margin: 0.5rem 0 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  #mainNav .has-dropdown.mobile-open .dropdown {
+    max-height: 300px;
+  }
+
+  #mainNav .has-dropdown > a::after {
+    float: right;
+    transition: transform 0.3s ease;
+  }
+
+  #mainNav .has-dropdown.mobile-open > a::after {
+    transform: rotate(180deg);
+  }
+
+  #mainNav .dropdown a {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  #mainNav .dropdown a:hover {
+    padding-left: 1rem;
+  }
+}
+
+/* Dark theme dropdown (if header has dark background) */
+#header.scrolled #mainNav .dropdown {
+  background: #fff;
+}
+
+#header:not(.scrolled) #mainNav .dropdown {
+  background: #fff;
+  margin-top: 5px;
+}
+
+/* Ensure dropdown doesn't break layout */
+#mainNav ul {
+  position: relative;
+}
+
+#mainNav > ul > li {
+  position: relative;
+}

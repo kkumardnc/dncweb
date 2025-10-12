@@ -6,6 +6,8 @@
     <title>Volunteer - Demarest Nature Center</title>
     <meta name="description" content="Volunteer with Demarest Nature Center. Share your time and talents to support environmental education, trail maintenance, and conservation efforts.">
     <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/dropdown.css">  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
 </head>
 <body>
     <header id="header">
@@ -17,18 +19,51 @@
                 </a>
             </div>
 
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/programs/">Programs</a></li>
-                    <li><a href="/events/">Events</a></li>
-                    <li><a href="/visit/">Visit</a></li>
-                    <li><a href="/gallery/">Gallery</a></li>
-                    <li><a href="/support/" class="active">Support</a></li>
-                    <li><a href="/contact/">Contact</a></li>
-                </ul>
-            </nav>
+                                    <nav id="mainNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="has-dropdown">
+            <a href="/about/">About</a>
+            <ul class="dropdown">
+              <li><a href="/about/">About</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="/about/board.html">Board of Trustees</a></li>
+              <li><a href="/about/mission.html">Our Mission</a></li>
+              <li><a href="/about/policies.html">Policies</a></li>
+              <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/visit/">Maps and Trails</a>
+            <ul class="dropdown">
+              <li><a href="/visit/#getting-here">Getting Here</a></li>
+              <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+              <li><a href="/visit/#trail-maps">Trail Map</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/events/">News and Events</a>
+            <ul class="dropdown">              <li><a href="/events/">Upcoming Events</a></li>              <li><a href="/events/#nature-walks">Nature Walks</a></li>
+              <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+              <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+              <li><a href="/scholarship/">Scholarship</a></li>
+              <li><a href="/photocontest/">Photo Contest</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <a href="/programs/">Public Services</a>
+            <ul class="dropdown">
+              <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+              <li><a href="/programs/">Educational Programs</a></li>
+              <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+              <li><a href="/about/#preservation">Preservation</a></li>
+            </ul>
+          </li>
+          <li><a href="/events/#calendar">Calendar</a></li>
+          <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+        </ul>
+      </nav>
 
             <button id="mobileMenuToggle" aria-label="Toggle menu">
                 <span></span>
@@ -59,7 +94,7 @@
                 <div class="opportunities-grid">
                     <div class="opportunity-card">
                         <div class="opportunity-icon">
-                            <img src="/assets/images/icons/trail-maintenance.svg" alt="Trail Maintenance">
+                            🛤️
                         </div>
                         <h3>Trail Maintenance & Stewardship</h3>
                         <p>Help maintain over 2 miles of trails, clear brush, repair bridges, install benches, and keep our preserve accessible and beautiful.</p>
@@ -82,7 +117,7 @@
 
                     <div class="opportunity-card">
                         <div class="opportunity-icon">
-                            <img src="/assets/images/icons/education.svg" alt="Education">
+                            📚
                         </div>
                         <h3>Education & Program Leadership</h3>
                         <p>Share your knowledge and passion for nature by leading programs, assisting with school groups, or teaching workshops.</p>
@@ -105,7 +140,7 @@
 
                     <div class="opportunity-card">
                         <div class="opportunity-icon">
-                            <img src="/assets/images/icons/events.svg" alt="Events">
+                            🎉
                         </div>
                         <h3>Event Support</h3>
                         <p>Help make our events successful by assisting with setup, registration, activities, and logistics for programs throughout the year.</p>
@@ -128,7 +163,7 @@
 
                     <div class="opportunity-card">
                         <div class="opportunity-icon">
-                            <img src="/assets/images/icons/admin.svg" alt="Administrative">
+                            💼
                         </div>
                         <h3>Administrative & Office Support</h3>
                         <p>Provide behind-the-scenes support that keeps our organization running smoothly.</p>
@@ -152,7 +187,7 @@
 
                     <div class="opportunity-card">
                         <div class="opportunity-icon">
-                            <img src="/assets/images/icons/wildlife.svg" alt="Wildlife Monitoring">
+                            🦉
                         </div>
                         <h3>Wildlife Monitoring & Citizen Science</h3>
                         <p>Contribute to scientific research and conservation by participating in wildlife surveys and monitoring programs.</p>
@@ -175,7 +210,7 @@
 
                     <div class="opportunity-card">
                         <div class="opportunity-icon">
-                            <img src="/assets/images/icons/board.svg" alt="Board Service">
+                            🤝
                         </div>
                         <h3>Board & Committee Service</h3>
                         <p>Provide leadership and strategic direction as a board member or committee participant.</p>
@@ -276,179 +311,11 @@
             <div class="container">
                 <h2>Volunteer Application</h2>
 
-                <div class="form-container">
-                    <form class="volunteer-form" action="/process-volunteer.php" method="POST">
-                        <h3>Personal Information</h3>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="first_name">First Name *</label>
-                                <input type="text" id="first_name" name="first_name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="last_name">Last Name *</label>
-                                <input type="text" id="last_name" name="last_name" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Street Address</label>
-                            <input type="text" id="address" name="address">
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="city">City</label>
-                                <input type="text" id="city" name="city">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <input type="text" id="state" name="state" value="NJ">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="zip">ZIP Code</label>
-                                <input type="text" id="zip" name="zip">
-                            </div>
-                        </div>
-
-                        <h3>Volunteer Interests</h3>
-                        <p>Please select all areas that interest you:</p>
-
-                        <div class="checkbox-grid">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="trail_maintenance">
-                                Trail Maintenance & Stewardship
-                            </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="education">
-                                Education & Program Leadership
-                            </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="events">
-                                Event Support
-                            </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="admin">
-                                Administrative & Office Support
-                            </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="wildlife">
-                                Wildlife Monitoring & Citizen Science
-                            </label>
-
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="board">
-                                Board & Committee Service
-                            </label>
-                        </div>
-
-                        <h3>Availability</h3>
-
-                        <div class="form-group">
-                            <label>What time commitment works best for you?</label>
-                            <label class="radio-label">
-                                <input type="radio" name="commitment" value="one_time">
-                                One-time events or projects
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="commitment" value="occasional">
-                                Occasional (a few times per year)
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="commitment" value="monthly">
-                                Monthly commitment
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="commitment" value="regular">
-                                Regular ongoing commitment
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Which days are you typically available? (Check all that apply)</label>
-                            <div class="checkbox-grid">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="days[]" value="weekdays">
-                                    Weekdays
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="days[]" value="weekends">
-                                    Weekends
-                                </label>
-                                <label class="checkbox-label">
-                                    <input type="checkbox" name="days[]" value="flexible">
-                                    Flexible
-                                </label>
-                            </div>
-                        </div>
-
-                        <h3>Skills & Experience</h3>
-
-                        <div class="form-group">
-                            <label for="skills">Please describe any relevant skills, experience, or certifications:</label>
-                            <textarea id="skills" name="skills" rows="4" placeholder="Examples: teaching experience, naturalist training, landscaping, photography, writing, grant writing, etc."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="why_volunteer">Why are you interested in volunteering at Demarest Nature Center?</label>
-                            <textarea id="why_volunteer" name="why_volunteer" rows="4"></textarea>
-                        </div>
-
-                        <h3>Additional Information</h3>
-
-                        <div class="form-group">
-                            <label for="emergency_name">Emergency Contact Name</label>
-                            <input type="text" id="emergency_name" name="emergency_name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="emergency_phone">Emergency Contact Phone</label>
-                            <input type="tel" id="emergency_phone" name="emergency_phone">
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="background_check_consent">
-                                I understand that volunteers working with children may require a background check
-                            </label>
-                        </div>
-
-                        <div class="form-group checkbox-group">
-                            <label>
-                                <input type="checkbox" name="waiver_consent" required>
-                                I agree to the volunteer waiver and release of liability *
-                            </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="additional_comments">Additional Comments or Questions</label>
-                            <textarea id="additional_comments" name="additional_comments" rows="3"></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Submit Application</button>
-                        </div>
-
-                        <p class="form-note">After submitting your application, a volunteer coordinator will contact you within one week to discuss opportunities and next steps.</p>
-                    </form>
+                <div class="google-form-container">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSecR1cMmMLt-UXqJwS0M5O4nrRN3Z0UpPAz7ZKFpVv5nxqhjA/viewform?embedded=true" width="100%" height="2400" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
+
+                <p class="form-note">After submitting your application, a volunteer coordinator will contact you within one week to discuss opportunities and next steps.</p>
             </div>
         </section>
 
@@ -573,6 +440,7 @@
         </div>
     </footer>
 
+    <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
 </body>
 </html>
