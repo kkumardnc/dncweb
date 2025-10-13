@@ -22,10 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Close mobile menu when clicking a link
+    // Close mobile menu when clicking a link (but not dropdown parent links)
     const navLinks = mainNav.querySelectorAll('a');
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        // Don't close menu if this is a dropdown parent link on mobile
+        const parentLi = link.parentElement;
+        const isDropdownParent = parentLi && parentLi.classList.contains('has-dropdown');
+        const isMobile = window.innerWidth <= 768;
+
+        if (isDropdownParent && isMobile) {
+          // Let the dropdown.js handle this
+          return;
+        }
+
+        // For regular links, close the menu
         mainNav.classList.remove('active');
         mobileMenuToggle.classList.remove('active');
       });

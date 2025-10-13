@@ -13,8 +13,8 @@
 
 /* Dropdown menu */
 #mainNav .dropdown {
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 100%;
   left: 0;
@@ -30,7 +30,7 @@
   margin-top: 10px;
   padding: 0.5rem 0;
   list-style: none;
-  gap: 0 !important;
+  gap: 0;
 }
 
 /* Show dropdown on hover */
@@ -78,15 +78,27 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
+    display: none !important;
   }
 
   #mainNav .has-dropdown.mobile-open .dropdown {
-    max-height: 300px;
+    max-height: 500px;
+    display: flex !important;
+  }
+
+  #mainNav .has-dropdown > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    min-height: 48px; /* Minimum touch target size */
   }
 
   #mainNav .has-dropdown > a::after {
-    float: right;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
     transition: transform 0.3s ease;
+    flex-shrink: 0;
   }
 
   #mainNav .has-dropdown.mobile-open > a::after {
@@ -94,12 +106,23 @@
   }
 
   #mainNav .dropdown a {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 
   #mainNav .dropdown a:hover {
-    padding-left: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  /* Make main navigation links also have good touch targets */
+  #mainNav > ul > li > a {
+    padding: 1rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
   }
 }
 
