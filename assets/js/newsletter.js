@@ -48,7 +48,7 @@ async function handleNewsletterSubmit(e) {
     }
 
     // Check if script URL is configured
-    if (SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbz-2N2QuFjiXnPa9Q_DJo2TnS8wd992_CWevQkWsU9vtQ_P6TUbLNuUnBkOR8_ImGk_/exec') {
         showMessage(form, 'Newsletter service is not yet configured. Please contact us directly.', 'error');
         console.error('Newsletter script URL not configured. Please update SCRIPT_URL in newsletter.js');
         return;
