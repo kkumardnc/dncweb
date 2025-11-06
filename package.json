@@ -1,0 +1,22 @@
+{
+  "name": "dncweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "google-apps-script-newsletter.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "validate:images": "node validate-images.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:40902/git/kkumardnc/dncweb"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
+  }
+}
