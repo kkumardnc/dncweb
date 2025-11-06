@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liability Waiver - Demarest Nature Center</title>
+    <meta name="description" content="Complete the liability waiver form for visiting Demarest Nature Center. Required for all visitors and program participants.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    <style>
+        .waiver-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .waiver-intro {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color, #2d5016);
+            border-radius: 4px;
+        }
+
+        .waiver-intro h2 {
+            margin-top: 0;
+            color: var(--primary-color, #2d5016);
+        }
+
+        .waiver-intro ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .waiver-intro li {
+            margin-bottom: 0.5rem;
+        }
+
+        .waiver-form-wrapper {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-placeholder {
+            border: 2px dashed #ccc;
+            padding: 3rem;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .form-placeholder h3 {
+            color: #666;
+            margin-top: 0;
+        }
+
+        .form-placeholder p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Waiver Form Styles */
+        .waiver-form-wrapper h2 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .waiver-form-wrapper .form-group {
+            margin-bottom: 15px;
+        }
+
+        .waiver-form-wrapper label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .waiver-form-wrapper input[type="text"],
+        .waiver-form-wrapper input[type="email"],
+        .waiver-form-wrapper input[type="tel"],
+        .waiver-form-wrapper textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .waiver-form-wrapper textarea {
+            resize: vertical;
+        }
+
+        .waiver-form-wrapper .agreement {
+            height: 150px;
+            overflow-y: scroll;
+            border: 1px solid #bdc3c7;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .waiver-form-wrapper .signature-container {
+            position: relative;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #bdc3c7;
+        }
+
+        .waiver-form-wrapper #signature-pad {
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            background-color: #fff;
+            width: 100%;
+            height: 200px;
+            touch-action: none;
+        }
+
+        .waiver-form-wrapper #clear-signature {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .waiver-form-wrapper #clear-signature:hover {
+            background-color: #c0392b;
+        }
+
+        .waiver-form-wrapper button[type="submit"] {
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .waiver-form-wrapper button[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        .loading-feedback {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .waiver-form-wrapper .agreement {
+                height: 120px;
+                font-size: 12px;
+            }
+            .waiver-form-wrapper #signature-pad {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">                            <li><a href="/events/">Upcoming Events</a></li>                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li><a href="/photocontest/">Photo Contest</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="https://www.demarestnaturecenter.org/shop/">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Liability Waiver</h1>
+                <p class="subtitle">Required for all visitors and program participants</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="waiver-container">
+                <div class="waiver-intro">
+                    <h2>Before You Visit</h2>
+                    <p>For the safety of all visitors, we require a signed liability waiver before participating in any programs or activities at Demarest Nature Center.</p>
+
+                    <p><strong>This waiver is required for:</strong></p>
+                    <ul>
+                        <li>All educational programs and guided nature walks</li>
+                        <li>School field trips and group visits</li>
+                        <li>Special events and workshops</li>
+                        <li>Volunteer activities</li>
+                        <li>Any organized activities on DNC property</li>
+                    </ul>
+
+                    <p><strong>Please note:</strong> Parents or legal guardians must sign for minors under 18 years of age.</p>
+                </div>
+
+                <div class="waiver-form-wrapper">
+                    <h2>Assumption of Risk and Complete Release Form</h2>
+
+                    <form id="waiver-form">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email address:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="agreement">
+                            <p>In consideration of permission to use the canoes provided during the Oktoberfest, held by the Demarest Nature Center on 11 October 2025, the undersigned hereby expressly agrees:</p>
+                            <ol>
+                                <li>THAT canoeing is a participation sport, and I am fully aware of the risks and hazards involved in or arising from my use, participation, or presence upon the canoes. I HEREBY ASSUME ANY AND ALL RISKS INVOLVED IN OR ARISING FROM MY USE OF OR PRESENCE UPON THE DEMAREST DUCK POND AND CANOES including, without limitation, the risks of bodily injury, death and/or loss or damage to personal property with respect to myself and any and all passengers in the canoe.</li>
+                                <li>TO RELEASE THE DEMAREST NATURE CENTER and all of its successors, assigns, affiliates, officers, directors, trustees, instructors, employees, members and agents from, and AGREE NOT TO SUE ANY OR ALL OF THEM on account of or in connection with any claims, causes of action, injuries, damages, costs or expenses arising from my use of or presence upon the canoes or the Demarest Duck Pond, including but not limited to those claims for bodily injury, whether or not caused by the negligence or other fault of the Demarest Nature Center, with respect to myself and any and all passengers in the canoe.</li>
+                                <li>THIS RELEASE shall be binding upon my heirs, administrators, executors, assigns and legal representatives.</li>
+                                <li>I have read and understand this agreement. I understand that by making and signing this agreement I have given up substantial rights. I have signed it freely and without any inducement or assurance of any nature and intend it to be a complete and unconditional release of all liability to the greatest extent allowed by law and agree that if any portion of this agreement is held to be invalid the other portions shall remain in full force and effect.</li>
+                            </ol>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parent-guardian">PARENT/GUARDIAN (if participant is under the age of 18):</label>
+                            <input type="text" id="parent-guardian" name="parent-guardian">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="underage-participants">Name(s) of participant(s) under the age of 18:</label>
+                            <textarea id="underage-participants" name="underage-participants" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date:</label>
+                            <input type="text" id="date" name="date" readonly>
+                        </div>
+
+                        <div class="form-group signature-container">
+                            <label for="signature-pad">Signature:</label>
+                            <canvas id="signature-pad"></canvas>
+                            <button type="button" id="clear-signature">Clear</button>
+                        </div>
+
+                        <button type="submit">Sign and Submit</button>
+                    </form>
+                </div>
+
+                <div class="waiver-intro" style="margin-top: 2rem; border-left-color: #0066cc;">
+                    <h2>Questions?</h2>
+                    <p>If you have any questions about the waiver or need assistance, please <a href="/contact/">contact us</a>.</p>
+                    <p>For general visit information, see our <a href="/visit/">Plan Your Visit</a> page.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>90 Park Street<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                    <div class="footer-hours">
+                        <strong>Hours:</strong><br>
+                        Monday - Friday: 9:00 AM - 5:00 PM<br>
+                        Saturday - Sunday: 10:00 AM - 4:00 PM
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/support/membership.html">Membership</a></li>
+                        <li><a href="/support/volunteer.html">Volunteer</a></li>
+                        <li><a href="/support/donate.html">Donate</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/YOUR_PAGE" target="_blank" rel="noopener" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="footer-newsletter">
+                        <h4>Newsletter</h4>
+                        <form id="footerNewsletter" class="mini-newsletter">
+                            <input type="email" placeholder="Your email" required>
+                            <button type="submit" class="btn btn-outline-white btn-small">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="loading-feedback">
+        <div>
+            <div class="loading-spinner"></div>
+            <p>Submitting your form...</p>
+        </div>
+    </div>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize signature pad
+            var canvas = document.getElementById('signature-pad');
+            var signaturePad = new SignaturePad(canvas);
+
+            // Adjust canvas size
+            function resizeCanvas() {
+                var ratio = Math.max(window.devicePixelRatio || 1, 1);
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                canvas.getContext("2d").scale(ratio, ratio);
+                signaturePad.clear(); // otherwise isEmpty() might return incorrect value
+            }
+
+            window.addEventListener("resize", resizeCanvas);
+            resizeCanvas();
+
+            // Clear signature button
+            document.getElementById('clear-signature').addEventListener('click', function() {
+                signaturePad.clear();
+            });
+
+            // Set current date
+            document.getElementById('date').value = new Date().toLocaleDateString();
+
+            // Form submission
+            document.getElementById('waiver-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (signaturePad.isEmpty()) {
+                    alert('Please provide a signature');
+                    return;
+                }
+
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    signature: signaturePad.toDataURL(),
+                    date: document.getElementById('date').value,
+                    parentGuardian: document.getElementById('parent-guardian').value,
+                    underageParticipants: document.getElementById('underage-participants').value
+                };
+
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycbwBQkrlkXpgTb2jhRJgkFZxpqGn8_8YVofNYBJNXll4IA9Baqp842weGPua1ZuR-dIqeQ/exec';
+
+                // Show loading feedback
+                document.querySelector('.loading-feedback').style.display = 'flex';
+
+                fetch(scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                })
+                .then(response => {
+                    // Hide loading feedback
+                    document.querySelector('.loading-feedback').style.display = 'none';
+                    alert('Form submitted successfully! Enjoy the canoe rides!');
+                    document.getElementById('waiver-form').reset();
+                    signaturePad.clear();
+                })
+                .catch((error) => {
+                    // Hide loading feedback
+                    document.querySelector('.loading-feedback').style.display = 'none';
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the form.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
