@@ -192,6 +192,27 @@
                         </div>
                         <button class="btn btn-primary stripe-checkout-btn" data-membership-type="benefactor" data-price="50000">Join Now</button>
                     </div>
+
+                    <div class="tier-card premium">
+                        <div class="tier-header">
+                            <h3>Lifetime Member</h3>
+                            <div class="tier-price">$1,000 one-time</div>
+                        </div>
+                        <div class="tier-benefits">
+                            <h4>Benefits Include:</h4>
+                            <ul>
+                                <li>All Trail Benefactor benefits in perpetuity</li>
+                                <li>Subscription to the Demarest Nature Center's newsletter</li>
+                                <li>Permanent recognition on our Wall of Honor</li>
+                                <li>Invitation to members only events</li>
+                                <li>Discounts on Nature Center programs</li>
+                                <li>Merchandise Discounts at participating local stores and restaurants</li>
+                                <li>Basic membership benefits for two adults (18+) and children (18 &amp; under) living in the same household</li>
+                                <li>One-time payment &mdash; never expires</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-primary stripe-checkout-btn" data-membership-type="lifetime" data-price="100000">Join Now</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -211,12 +232,6 @@
                         <h3>Corporate/Business Membership</h3>
                         <p class="price">$500+/year</p>
                         <p>Support conservation while gaining visibility in the community. Includes logo recognition, networking opportunities, and employee volunteer days. Contact us for custom corporate packages.</p>
-                    </div>
-
-                    <div class="special-option">
-                        <h3>Lifetime Membership</h3>
-                        <p class="price">$1,000 one-time</p>
-                        <p>Make a lasting commitment to conservation. Lifetime members receive Trail Benefactor benefits in perpetuity and permanent recognition on our Wall of Honor.</p>
                     </div>
                 </div>
             </div>
@@ -421,9 +436,305 @@
         </div>
     </footer>
 
-    <!-- Stripe.js -->
+    <!-- Membership Payment Modal -->
+    <div id="membership-modal" class="membership-modal" aria-hidden="true">
+      <div class="membership-modal__backdrop" data-modal-close></div>
+      <div class="membership-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="membership-modal-title">
+        <button type="button" class="membership-modal__close" aria-label="Close" data-modal-close>&times;</button>
+
+        <div class="membership-modal__header">
+          <h2 id="membership-modal-title">Complete Your Membership</h2>
+          <p class="membership-modal__subtitle"><span id="modal-tier-label"></span> &mdash; <span id="modal-price-label"></span></p>
+        </div>
+
+        <div class="membership-modal__success" id="modal-success" hidden>
+          Payment successful! Thank you for becoming a member of Demarest Nature Center.
+        </div>
+        <div class="membership-modal__error" id="modal-error" hidden></div>
+
+        <form id="membership-payment-form" class="membership-modal__form" novalidate>
+          <input type="hidden" id="modal-membership-type" name="membershipType">
+          <input type="hidden" id="modal-amount" name="amount">
+
+          <div class="form-row">
+            <label for="modal-name">Full Name *</label>
+            <input type="text" id="modal-name" required>
+          </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label for="modal-email">Email *</label>
+              <input type="email" id="modal-email" required>
+            </div>
+            <div>
+              <label for="modal-phone">Phone</label>
+              <input type="tel" id="modal-phone">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="modal-address">Street Address *</label>
+            <input type="text" id="modal-address" required>
+          </div>
+          <div class="form-row">
+            <label for="modal-address2">Apt, Suite, etc.</label>
+            <input type="text" id="modal-address2">
+          </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label for="modal-city">City *</label>
+              <input type="text" id="modal-city" required>
+            </div>
+            <div>
+              <label for="modal-state">State *</label>
+              <input type="text" id="modal-state" required>
+            </div>
+          </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label for="modal-zip">ZIP *</label>
+              <input type="text" id="modal-zip" required>
+            </div>
+            <div>
+              <label for="modal-country">Country</label>
+              <input type="text" id="modal-country" value="United States">
+            </div>
+          </div>
+
+          <div class="form-row form-row--checkbox" id="modal-autorenew-row">
+            <label>
+              <input type="checkbox" id="modal-auto-renew" checked>
+              Automatically renew my membership annually
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label for="modal-card-element">Card Information *</label>
+            <div id="modal-card-element"></div>
+            <div id="modal-card-errors" role="alert"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="modal-submit-button">
+            <span id="modal-button-text">Pay <span id="modal-button-amount"></span></span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <style>
+      .membership-modal { position: fixed; inset: 0; display: none; z-index: 1000; }
+      .membership-modal.is-open { display: block; }
+      .membership-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+      .membership-modal__dialog {
+        position: relative; max-width: 640px; width: calc(100% - 32px);
+        margin: 40px auto; background: #fff; border-radius: 10px; padding: 32px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-height: calc(100vh - 80px);
+        overflow-y: auto;
+      }
+      .membership-modal__close {
+        position: absolute; top: 12px; right: 16px; background: transparent;
+        border: 0; font-size: 28px; line-height: 1; cursor: pointer; color: #666;
+      }
+      .membership-modal__header { margin-bottom: 20px; }
+      .membership-modal__header h2 { color: #2d5016; margin: 0 0 6px; }
+      .membership-modal__subtitle { color: #555; margin: 0; }
+      .membership-modal__form .form-row { margin-bottom: 14px; }
+      .membership-modal__form .form-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .membership-modal__form label { display: block; font-weight: 500; margin-bottom: 4px; font-size: 14px; }
+      .membership-modal__form input[type="text"],
+      .membership-modal__form input[type="email"],
+      .membership-modal__form input[type="tel"] {
+        width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
+      }
+      .membership-modal__form .form-row--checkbox label { display: flex; align-items: center; gap: 8px; font-weight: normal; }
+      #modal-card-element { padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
+      #modal-card-errors { color: #c0392b; margin-top: 6px; font-size: 13px; min-height: 1em; }
+      .membership-modal__success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+      .membership-modal__error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+      @media (max-width: 600px) {
+        .membership-modal__form .form-row-half { grid-template-columns: 1fr; }
+        .membership-modal__dialog { padding: 22px; }
+      }
+    </style>
+
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="/assets/js/stripe-config.js"></script>
+    <script>
+      (function () {
+        // Configure these for your environment.
+        var STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_KEY_HERE';
+        var GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+        var TIER_LABELS = {
+          individual: 'Individual Member (Trail Walker)',
+          family: 'Family Membership (Trail Hikers)',
+          ranger: 'Trail Ranger',
+          steward: 'Trail Steward',
+          benefactor: 'Trail Benefactor',
+          lifetime: 'Lifetime Member'
+        };
+
+        var modal = document.getElementById('membership-modal');
+        var form = document.getElementById('membership-payment-form');
+        var tierLabel = document.getElementById('modal-tier-label');
+        var priceLabel = document.getElementById('modal-price-label');
+        var typeInput = document.getElementById('modal-membership-type');
+        var amountInput = document.getElementById('modal-amount');
+        var autoRenewRow = document.getElementById('modal-autorenew-row');
+        var autoRenewBox = document.getElementById('modal-auto-renew');
+        var buttonAmount = document.getElementById('modal-button-amount');
+        var submitButton = document.getElementById('modal-submit-button');
+        var buttonText = document.getElementById('modal-button-text');
+        var successBox = document.getElementById('modal-success');
+        var errorBox = document.getElementById('modal-error');
+        var cardErrors = document.getElementById('modal-card-errors');
+
+        var stripe = window.Stripe ? window.Stripe(STRIPE_PUBLISHABLE_KEY) : null;
+        var elements = stripe ? stripe.elements() : null;
+        var cardElement = null;
+
+        function ensureCardMounted() {
+          if (!stripe || cardElement) return;
+          cardElement = elements.create('card', {
+            style: {
+              base: {
+                fontSize: '16px', color: '#32325d',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                '::placeholder': { color: '#aab7c4' }
+              },
+              invalid: { color: '#c0392b' }
+            }
+          });
+          cardElement.mount('#modal-card-element');
+          cardElement.addEventListener('change', function (e) {
+            cardErrors.textContent = e.error ? e.error.message : '';
+          });
+        }
+
+        function formatDollars(cents) {
+          var dollars = (cents / 100);
+          return '$' + dollars.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        function openModal(membershipType, priceCents) {
+          var label = TIER_LABELS[membershipType] || membershipType;
+          var isLifetime = membershipType === 'lifetime';
+          var period = isLifetime ? 'one-time' : 'per year';
+
+          tierLabel.textContent = label;
+          priceLabel.textContent = formatDollars(priceCents) + ' ' + period;
+          typeInput.value = membershipType;
+          amountInput.value = String(priceCents / 100); // dollars, sent to Apps Script
+          buttonAmount.textContent = formatDollars(priceCents);
+
+          autoRenewRow.style.display = isLifetime ? 'none' : '';
+          if (isLifetime) autoRenewBox.checked = false;
+
+          successBox.hidden = true;
+          errorBox.hidden = true;
+          cardErrors.textContent = '';
+
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden', 'false');
+          ensureCardMounted();
+        }
+
+        function closeModal() {
+          modal.classList.remove('is-open');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+
+        document.querySelectorAll('.stripe-checkout-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var type = btn.getAttribute('data-membership-type');
+            var priceCents = parseInt(btn.getAttribute('data-price'), 10);
+            openModal(type, priceCents);
+          });
+        });
+
+        modal.querySelectorAll('[data-modal-close]').forEach(function (el) {
+          el.addEventListener('click', closeModal);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        });
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          if (!stripe || !cardElement) {
+            errorBox.textContent = 'Payment system is not loaded. Please refresh and try again.';
+            errorBox.hidden = false;
+            return;
+          }
+
+          successBox.hidden = true;
+          errorBox.hidden = true;
+          submitButton.disabled = true;
+          var originalText = buttonText.innerHTML;
+          buttonText.textContent = 'Processing...';
+
+          var formData = {
+            name: document.getElementById('modal-name').value,
+            email: document.getElementById('modal-email').value,
+            phone: document.getElementById('modal-phone').value,
+            address: document.getElementById('modal-address').value,
+            address2: document.getElementById('modal-address2').value,
+            city: document.getElementById('modal-city').value,
+            state: document.getElementById('modal-state').value,
+            zip: document.getElementById('modal-zip').value,
+            country: document.getElementById('modal-country').value,
+            membershipType: typeInput.value,
+            autoRenew: autoRenewBox.checked,
+            amount: amountInput.value
+          };
+
+          try {
+            var intentResponse = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+              method: 'POST',
+              body: JSON.stringify(Object.assign({ action: 'createPaymentIntent' }, formData))
+            });
+            var intentData = await intentResponse.json();
+            if (intentData.error) throw new Error(intentData.error);
+
+            var result = await stripe.confirmCardPayment(intentData.clientSecret, {
+              payment_method: {
+                card: cardElement,
+                billing_details: {
+                  name: formData.name,
+                  email: formData.email,
+                  phone: formData.phone,
+                  address: {
+                    line1: formData.address,
+                    line2: formData.address2,
+                    city: formData.city,
+                    state: formData.state,
+                    postal_code: formData.zip,
+                    country: 'US'
+                  }
+                }
+              }
+            });
+            if (result.error) throw new Error(result.error.message);
+
+            if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+              await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(Object.assign({
+                  action: 'recordPayment',
+                  paymentIntentId: result.paymentIntent.id
+                }, formData))
+              });
+              successBox.hidden = false;
+              form.reset();
+              cardElement.clear();
+            }
+          } catch (err) {
+            errorBox.textContent = err.message || 'Payment failed. Please try again.';
+            errorBox.hidden = false;
+          } finally {
+            submitButton.disabled = false;
+            buttonText.innerHTML = originalText;
+          }
+        });
+      })();
+    </script>
 
     <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>

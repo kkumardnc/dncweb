@@ -229,13 +229,12 @@
                 <label for="membership-type">Select Membership Level *</label>
                 <select id="membership-type" required>
                     <option value="">Choose your membership</option>
-                    <option value="individual" data-price="35">Individual - $35/year</option>
-                    <option value="family" data-price="60">Family - $60/year</option>
-                    <option value="contributing" data-price="100">Contributing - $100/year</option>
-                    <option value="supporting" data-price="250">Supporting - $250/year</option>
-                    <option value="sustaining" data-price="500">Sustaining - $500/year</option>
-                    <option value="patron" data-price="1000">Patron - $1,000/year</option>
-                    <option value="benefactor" data-price="2500">Benefactor - $2,500/year</option>
+                    <option value="individual" data-price="25" data-period="year">Individual (Trail Walker) - $25/year</option>
+                    <option value="family" data-price="50" data-period="year">Family (Trail Hikers) - $50/year</option>
+                    <option value="ranger" data-price="100" data-period="year">Trail Ranger - $100/year</option>
+                    <option value="steward" data-price="200" data-period="year">Trail Steward - $200/year</option>
+                    <option value="benefactor" data-price="500" data-period="year">Trail Benefactor - $500/year</option>
+                    <option value="lifetime" data-price="1000" data-period="one-time">Lifetime Member - $1,000 one-time</option>
                 </select>
             </div>
             
@@ -331,32 +330,28 @@
         // Membership descriptions based on Demarest Nature Center website
         const MEMBERSHIP_DETAILS = {
             individual: {
-                title: 'Individual Membership',
-                description: 'Perfect for nature enthusiasts! Includes all member benefits and supports our conservation efforts.'
+                title: 'Individual Member (Trail Walker)',
+                description: 'Basic membership for one adult (18+). Includes newsletter, members-only events, program discounts, and merchandise discounts at participating local stores.'
             },
             family: {
-                title: 'Family Membership',
-                description: 'Great for families! All household members receive benefits and invitations to family programs.'
+                title: 'Family Membership (Trail Hikers)',
+                description: 'Membership for one adult (18+) and family. Includes newsletter, members-only events, program discounts, and merchandise discounts at participating local stores.'
             },
-            contributing: {
-                title: 'Contributing Member',
-                description: 'Make a greater impact! Receive recognition in our newsletter and special invitations to member events.'
+            ranger: {
+                title: 'Trail Ranger',
+                description: 'Membership for two adults (18+) and children (18 & under) in the same household. Includes all standard member benefits.'
             },
-            supporting: {
-                title: 'Supporting Member',
-                description: 'Your support helps us expand programming. Includes VIP event access and recognition on our website.'
-            },
-            sustaining: {
-                title: 'Sustaining Member',
-                description: 'Sustain our mission with this leadership level. Receive personalized recognition and exclusive benefits.'
-            },
-            patron: {
-                title: 'Patron Member',
-                description: 'Join our leadership circle! Enjoy private tours, recognition opportunities, and our deepest gratitude.'
+            steward: {
+                title: 'Trail Steward',
+                description: 'Membership for two adults (18+) and children (18 & under) in the same household. Includes all standard member benefits with greater impact.'
             },
             benefactor: {
-                title: 'Benefactor Member',
-                description: 'Our highest honor! Includes all benefits plus naming opportunities and private naturalist-led experiences.'
+                title: 'Trail Benefactor',
+                description: 'Top annual giving level. Membership for two adults (18+) and children (18 & under) in the same household, with all member benefits.'
+            },
+            lifetime: {
+                title: 'Lifetime Member',
+                description: 'A lasting commitment to conservation. Receive Trail Benefactor benefits in perpetuity and permanent recognition on our Wall of Honor.'
             }
         };
 
