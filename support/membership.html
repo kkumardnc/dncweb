@@ -513,7 +513,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary" id="modal-submit-button">
-            <span id="modal-button-text">Pay <span id="modal-button-amount"></span></span>
+            <span id="modal-button-text">Pay</span>
           </button>
         </form>
       </div>
@@ -580,7 +580,6 @@
         var amountInput = document.getElementById('modal-amount');
         var autoRenewRow = document.getElementById('modal-autorenew-row');
         var autoRenewBox = document.getElementById('modal-auto-renew');
-        var buttonAmount = document.getElementById('modal-button-amount');
         var submitButton = document.getElementById('modal-submit-button');
         var buttonText = document.getElementById('modal-button-text');
         var successBox = document.getElementById('modal-success');
@@ -623,7 +622,7 @@
           priceLabel.textContent = formatDollars(priceCents) + ' ' + period;
           typeInput.value = membershipType;
           amountInput.value = String(priceCents / 100); // dollars, sent to Apps Script
-          buttonAmount.textContent = formatDollars(priceCents);
+          buttonText.textContent = 'Pay ' + formatDollars(priceCents);
 
           autoRenewRow.style.display = isLifetime ? 'none' : '';
           if (isLifetime) autoRenewBox.checked = false;
@@ -668,7 +667,7 @@
           successBox.hidden = true;
           errorBox.hidden = true;
           submitButton.disabled = true;
-          var originalText = buttonText.innerHTML;
+          var originalText = buttonText.textContent;
           buttonText.textContent = 'Processing...';
 
           var formData = {
@@ -731,7 +730,7 @@
             errorBox.hidden = false;
           } finally {
             submitButton.disabled = false;
-            buttonText.innerHTML = originalText;
+            buttonText.textContent = originalText;
           }
         });
       })();
