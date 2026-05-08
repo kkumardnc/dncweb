@@ -264,6 +264,51 @@
             flex-wrap: wrap;
             margin-top: 2rem;
         }
+
+        /* Donation Modal */
+        .donate-modal { position: fixed; inset: 0; display: none; z-index: 1000; }
+        .donate-modal.is-open { display: block; }
+        .donate-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.55); }
+        .donate-modal__dialog {
+            position: relative; max-width: 620px; width: calc(100% - 32px);
+            margin: 40px auto; background: #fff; border-radius: 10px; padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+        .donate-modal__close {
+            position: absolute; top: 12px; right: 16px; background: transparent;
+            border: 0; font-size: 28px; line-height: 1; cursor: pointer; color: #666;
+        }
+        .donate-modal__header { margin-bottom: 20px; }
+        .donate-modal__header h2 { color: #2d5016; margin: 0 0 6px; }
+        .donate-modal__subtitle { color: #555; margin: 0; }
+        .donate-modal__success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+        .donate-modal__error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
+        .donate-modal__form .form-row { margin-bottom: 14px; }
+        .donate-modal__form .form-row-half { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .donate-modal__form label { display: block; font-weight: 500; margin-bottom: 4px; font-size: 14px; }
+        .donate-modal__form input[type="text"],
+        .donate-modal__form input[type="email"],
+        .donate-modal__form input[type="number"] {
+            width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
+            box-sizing: border-box;
+        }
+        .donate-amount-row { display: flex; align-items: center; gap: 0; }
+        .donate-amount-prefix {
+            padding: 10px 12px; border: 1px solid #ccc; border-right: 0;
+            border-radius: 6px 0 0 6px; background: #f5f5f0; font-size: 14px; color: #555;
+        }
+        .donate-amount-row input[type="number"] {
+            border-radius: 0 6px 6px 0; border-left: 1px solid #ccc; flex: 1;
+        }
+        #donate-card-number,
+        #donate-card-expiry,
+        #donate-card-cvc { padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
+        #donate-card-errors { color: #c0392b; margin-top: 6px; font-size: 13px; min-height: 1em; }
+        @media (max-width: 600px) {
+            .donate-modal__form .form-row-half { grid-template-columns: 1fr; }
+            .donate-modal__dialog { padding: 22px; }
+        }
     </style>
 </head>
 <body>
@@ -336,7 +381,7 @@
             <div class="container">
                 <h1>Make a Donation</h1>
                 <p class="subtitle">Every gift helps preserve nature and inspire environmental stewardship</p>
-                <a href="YOUR_STRIPE_PAYMENT_LINK_HERE" class="hero-donate-button" target="_blank" rel="noopener">Donate Now with Stripe</a>
+                <button id="donate-open-btn" class="hero-donate-button">Donate Now with Stripe</button>
             </div>
         </section>
 
@@ -486,20 +531,14 @@
                     </div>
 
                     <div class="method">
-                        <h3>Donate by Phone</h3>
-                        <p>Call us during office hours to make a donation over the phone:</p>
-                        <p><strong>Hours:</strong> Mon-Fri 9-5, Sat-Sun 10-4</p>
-                        <p>Have your credit card information ready.</p>
+                        <h3>Donate by Email</h3>
+                        <p>Email us to coordinate your giving and we'll help arrange the details:</p>
+                        <p><a href="mailto:info@demarestnaturecenter.org">info@demarestnaturecenter.org</a></p>
                     </div>
 
                     <div class="method">
                         <h3>Give in Person</h3>
-                        <p>Visit us at:</p>
-                        <p class="visit-address">
-                            P.O. Box 41<br>
-                            Demarest, NJ 07627
-                        </p>
-                        <p>We accept cash, checks, and credit cards.</p>
+                        <p>Meet us during our monthly board meeting or other Nature Center events to give us a check in person. <a href="/about/policies.html#meetings">See meeting schedule</a>.</p>
                     </div>
 
                     <div class="method">
@@ -661,6 +700,243 @@
             </div>
         </div>
     </footer>
+
+    <!-- Donation Modal -->
+    <div id="donate-modal" class="donate-modal" aria-hidden="true">
+      <div class="donate-modal__backdrop" data-modal-close></div>
+      <div class="donate-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="donate-modal-title">
+        <button type="button" class="donate-modal__close" aria-label="Close" data-modal-close>&times;</button>
+
+        <div class="donate-modal__header">
+          <h2 id="donate-modal-title">Make a Donation</h2>
+          <p class="donate-modal__subtitle">Your tax-deductible gift supports Demarest Nature Center</p>
+        </div>
+
+        <div class="donate-modal__success" id="donate-success" hidden>
+          Thank you for your generous donation! Your contribution directly supports our mission.
+        </div>
+        <div class="donate-modal__error" id="donate-error" hidden></div>
+
+        <form id="donation-payment-form" class="donate-modal__form" novalidate>
+          <div class="form-row">
+            <label for="donate-amount">Donation Amount *</label>
+            <div class="donate-amount-row">
+              <span class="donate-amount-prefix">$</span>
+              <input type="number" id="donate-amount" min="1" step="1" value="100" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="donate-name">Full Name *</label>
+            <input type="text" id="donate-name" required>
+          </div>
+          <div class="form-row">
+            <label for="donate-email">Email *</label>
+            <input type="email" id="donate-email" required>
+          </div>
+          <div class="form-row">
+            <label for="donate-address">Street Address *</label>
+            <input type="text" id="donate-address" required>
+          </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label for="donate-city">City *</label>
+              <input type="text" id="donate-city" required>
+            </div>
+            <div>
+              <label for="donate-state">State *</label>
+              <input type="text" id="donate-state" required>
+            </div>
+          </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label for="donate-zip">ZIP *</label>
+              <input type="text" id="donate-zip" required>
+            </div>
+            <div>
+              <label for="donate-country">Country</label>
+              <input type="text" id="donate-country" value="United States">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Card Number *</label>
+            <div id="donate-card-number"></div>
+          </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label>Expiration Date *</label>
+              <div id="donate-card-expiry"></div>
+            </div>
+            <div>
+              <label>Security Code (CVC) *</label>
+              <div id="donate-card-cvc"></div>
+            </div>
+          </div>
+          <div id="donate-card-errors" role="alert"></div>
+
+          <button type="submit" class="btn btn-primary" id="donate-submit-btn" style="width:100%;margin-top:8px;">
+            <span id="donate-btn-text">Donate $100</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      (function () {
+        var STRIPE_PUBLISHABLE_KEY = 'pk_live_51LkeMcA1N6seFAaOqxBs8DHhoqGgzrJTo7bAQoEbr3ylLzVuda6RNWbR1eWz4JxVOTTGpU5etk0og1Rfv0fNiyWp00uwDpQuxY';
+        var GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTPazMNNqF6KJFoxcsmfr0LBf3x89fncfBqgYIPjyRG8t1n27--QHazuISSFX1rEyI/exec';
+
+        var modal = document.getElementById('donate-modal');
+        var form = document.getElementById('donation-payment-form');
+        var amountInput = document.getElementById('donate-amount');
+        var submitBtn = document.getElementById('donate-submit-btn');
+        var btnText = document.getElementById('donate-btn-text');
+        var successBox = document.getElementById('donate-success');
+        var errorBox = document.getElementById('donate-error');
+        var cardErrors = document.getElementById('donate-card-errors');
+
+        var stripe = window.Stripe ? window.Stripe(STRIPE_PUBLISHABLE_KEY) : null;
+        var elements = stripe ? stripe.elements() : null;
+        var cardNumber = null, cardExpiry = null, cardCvc = null;
+
+        function mountCards() {
+          if (!stripe || cardNumber) return;
+          var style = {
+            base: {
+              fontSize: '16px', color: '#32325d',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              '::placeholder': { color: '#aab7c4' }
+            },
+            invalid: { color: '#c0392b' }
+          };
+          cardNumber = elements.create('cardNumber', { style: style });
+          cardExpiry = elements.create('cardExpiry', { style: style });
+          cardCvc    = elements.create('cardCvc',    { style: style });
+          cardNumber.mount('#donate-card-number');
+          cardExpiry.mount('#donate-card-expiry');
+          cardCvc.mount('#donate-card-cvc');
+          [cardNumber, cardExpiry, cardCvc].forEach(function (el) {
+            el.addEventListener('change', function (e) {
+              cardErrors.textContent = e.error ? e.error.message : '';
+            });
+          });
+        }
+
+        function updateButtonText() {
+          var val = parseFloat(amountInput.value) || 100;
+          btnText.textContent = 'Donate $' + Math.round(val);
+        }
+
+        amountInput.addEventListener('input', updateButtonText);
+
+        document.getElementById('donate-open-btn').addEventListener('click', function () {
+          successBox.hidden = true;
+          errorBox.hidden = true;
+          cardErrors.textContent = '';
+          modal.classList.add('is-open');
+          modal.setAttribute('aria-hidden', 'false');
+          mountCards();
+        });
+
+        modal.querySelectorAll('[data-modal-close]').forEach(function (el) {
+          el.addEventListener('click', function () {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+          });
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            modal.classList.remove('is-open');
+            modal.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          if (!stripe || !cardNumber) {
+            errorBox.textContent = 'Payment system not loaded. Please refresh and try again.';
+            errorBox.hidden = false;
+            return;
+          }
+          var dollars = parseFloat(amountInput.value);
+          if (!dollars || dollars < 1) {
+            errorBox.textContent = 'Please enter a valid donation amount.';
+            errorBox.hidden = false;
+            return;
+          }
+
+          successBox.hidden = true;
+          errorBox.hidden = true;
+          submitBtn.disabled = true;
+          var originalText = btnText.textContent;
+          btnText.textContent = 'Processing...';
+
+          var formData = {
+            name: document.getElementById('donate-name').value,
+            email: document.getElementById('donate-email').value,
+            address: document.getElementById('donate-address').value,
+            city: document.getElementById('donate-city').value,
+            state: document.getElementById('donate-state').value,
+            zip: document.getElementById('donate-zip').value,
+            country: document.getElementById('donate-country').value,
+            amount: String(dollars),
+            paymentType: 'donation'
+          };
+
+          try {
+            var intentResponse = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+              method: 'POST',
+              body: JSON.stringify(Object.assign({ action: 'createPaymentIntent' }, formData))
+            });
+            var intentData = await intentResponse.json();
+            if (intentData.error) throw new Error(intentData.error);
+
+            var result = await stripe.confirmCardPayment(intentData.clientSecret, {
+              payment_method: {
+                card: cardNumber,
+                billing_details: {
+                  name: formData.name,
+                  email: formData.email,
+                  address: {
+                    line1: formData.address,
+                    city: formData.city,
+                    state: formData.state,
+                    postal_code: formData.zip,
+                    country: 'US'
+                  }
+                }
+              }
+            });
+            if (result.error) throw new Error(result.error.message);
+
+            if (result.paymentIntent && result.paymentIntent.status === 'succeeded') {
+              await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(Object.assign({
+                  action: 'recordPayment',
+                  paymentIntentId: result.paymentIntent.id
+                }, formData))
+              });
+              successBox.hidden = false;
+              form.reset();
+              amountInput.value = '100';
+              updateButtonText();
+              cardNumber.clear();
+              cardExpiry.clear();
+              cardCvc.clear();
+            }
+          } catch (err) {
+            errorBox.textContent = err.message || 'Payment failed. Please try again.';
+            errorBox.hidden = false;
+          } finally {
+            submitBtn.disabled = false;
+            btnText.textContent = originalText;
+          }
+        });
+      })();
+    </script>
 
     <script src="/assets/js/dropdown.js"></script>
     <script src="/assets/js/main.js"></script>
