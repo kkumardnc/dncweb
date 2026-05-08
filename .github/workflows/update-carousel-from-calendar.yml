@@ -19,16 +19,10 @@ jobs:
       - name: Update carousel images from upcoming events
         run: node scripts/update-carousel-from-calendar.mjs
 
-      - name: Open pull request with changes
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: Update carousel images from upcoming calendar events
-          branch: automation/update-carousel-from-calendar
-          delete-branch: true
-          title: Update carousel images from upcoming calendar events
-          body: |
-            Auto-generated update of homepage carousel slide images, sourced
-            from the image URLs in upcoming Google Calendar event descriptions.
-
-            Slides are ordered by event start time (soonest first). Re-run the
-            "Update carousel from calendar" workflow to refresh.
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "Update carousel slides from upcoming calendar events"
+          git push
