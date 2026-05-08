@@ -203,6 +203,17 @@
     margin-bottom: 1.5rem;
 }
 
+.contest-rules {
+    padding-left: 1.4rem;
+    margin: 0;
+}
+
+.contest-rules li {
+    margin-bottom: 0.85rem;
+    line-height: 1.65;
+    color: #333;
+}
+
 .address-box {
     background: #fff;
     padding: 2rem;
