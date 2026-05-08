@@ -508,10 +508,20 @@
           </div>
 
           <div class="form-row">
-            <label for="modal-card-element">Card Information *</label>
-            <div id="modal-card-element"></div>
-            <div id="modal-card-errors" role="alert"></div>
+            <label>Card Number *</label>
+            <div id="modal-card-number"></div>
           </div>
+          <div class="form-row form-row-half">
+            <div>
+              <label>Expiration Date *</label>
+              <div id="modal-card-expiry"></div>
+            </div>
+            <div>
+              <label>Security Code (CVC) *</label>
+              <div id="modal-card-cvc"></div>
+            </div>
+          </div>
+          <div id="modal-card-errors" role="alert"></div>
 
           <button type="submit" class="btn btn-primary" id="modal-submit-button">
             <span id="modal-button-text">Pay</span>
@@ -546,7 +556,9 @@
         width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
       }
       .membership-modal__form .form-row--checkbox label { display: flex; align-items: center; gap: 8px; font-weight: normal; }
-      #modal-card-element { padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
+      #modal-card-number,
+      #modal-card-expiry,
+      #modal-card-cvc { padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
       #modal-card-errors { color: #c0392b; margin-top: 6px; font-size: 13px; min-height: 1em; }
       .membership-modal__success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
       .membership-modal__error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 12px; border-radius: 6px; margin-bottom: 16px; }
@@ -589,23 +601,30 @@
 
         var stripe = window.Stripe ? window.Stripe(STRIPE_PUBLISHABLE_KEY) : null;
         var elements = stripe ? stripe.elements() : null;
-        var cardElement = null;
+        var cardNumber = null;
+        var cardExpiry = null;
+        var cardCvc = null;
 
         function ensureCardMounted() {
-          if (!stripe || cardElement) return;
-          cardElement = elements.create('card', {
-            style: {
-              base: {
-                fontSize: '16px', color: '#32325d',
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-                '::placeholder': { color: '#aab7c4' }
-              },
-              invalid: { color: '#c0392b' }
-            }
-          });
-          cardElement.mount('#modal-card-element');
-          cardElement.addEventListener('change', function (e) {
-            cardErrors.textContent = e.error ? e.error.message : '';
+          if (!stripe || cardNumber) return;
+          var style = {
+            base: {
+              fontSize: '16px', color: '#32325d',
+              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              '::placeholder': { color: '#aab7c4' }
+            },
+            invalid: { color: '#c0392b' }
+          };
+          cardNumber = elements.create('cardNumber', { style: style });
+          cardExpiry = elements.create('cardExpiry', { style: style });
+          cardCvc    = elements.create('cardCvc',    { style: style });
+          cardNumber.mount('#modal-card-number');
+          cardExpiry.mount('#modal-card-expiry');
+          cardCvc.mount('#modal-card-cvc');
+          [cardNumber, cardExpiry, cardCvc].forEach(function (el) {
+            el.addEventListener('change', function (e) {
+              cardErrors.textContent = e.error ? e.error.message : '';
+            });
           });
         }
 
@@ -696,7 +715,7 @@
 
             var result = await stripe.confirmCardPayment(intentData.clientSecret, {
               payment_method: {
-                card: cardElement,
+                card: cardNumber,
                 billing_details: {
                   name: formData.name,
                   email: formData.email,
@@ -724,7 +743,9 @@
               });
               successBox.hidden = false;
               form.reset();
-              cardElement.clear();
+              cardNumber.clear();
+              cardExpiry.clear();
+              cardCvc.clear();
             }
           } catch (err) {
             errorBox.textContent = err.message || 'Payment failed. Please try again.';
