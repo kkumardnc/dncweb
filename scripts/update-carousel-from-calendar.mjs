@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Updates the homepage carousel slide images from the public Google Calendar
-// feed. The first https:// URL found in each upcoming event's description is
-// used as the slide image, ordered by event start time (soonest first).
+// Updates the homepage carousel with the next 4 upcoming events from the
+// public Google Calendar ICS feed.  Slide 1 (static nature photo) is left
+// untouched.  Event slides are injected between CAROUSEL-EVENTS-START /
+// CAROUSEL-EVENTS-END markers and the existing static slides 2-4 are kept.
 //
 // Run locally:  node scripts/update-carousel-from-calendar.mjs
 
@@ -11,9 +12,11 @@ import path from 'node:path';
 
 const CALENDAR_ID = 'c_581c56b4d09b99b96af9481e68dcc181cf7102482f19fcbcf71f453dc493d6d2@group.calendar.google.com';
 const ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(CALENDAR_ID)}/public/basic.ics`;
-const SLIDE_COUNT = 4;
+const EVENT_SLIDE_COUNT = 4;
+const STATIC_FIRST = 1;   // slide 1 is always kept
+const STATIC_REST  = 3;   // slides 2-4 are always kept at the end
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot  = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const indexPath = path.join(repoRoot, 'index.html');
 
 async function fetchIcs() {
@@ -52,83 +55,118 @@ function parseEvents(ics) {
   let cur = null;
   for (const line of lines) {
     if (line === 'BEGIN:VEVENT') { cur = {}; continue; }
-    if (line === 'END:VEVENT') { if (cur) events.push(cur); cur = null; continue; }
+    if (line === 'END:VEVENT')   { if (cur) events.push(cur); cur = null; continue; }
     if (!cur) continue;
     const colon = line.indexOf(':');
     if (colon < 0) continue;
-    const left = line.slice(0, colon);
+    const left  = line.slice(0, colon);
     const value = line.slice(colon + 1);
-    const semi = left.indexOf(';');
-    const name = (semi < 0 ? left : left.slice(0, semi)).toUpperCase();
+    const semi  = left.indexOf(';');
+    const name   = (semi < 0 ? left : left.slice(0, semi)).toUpperCase();
     const params = semi < 0 ? '' : left.slice(semi);
 
-    if (name === 'DTSTART') cur.start = parseDate(value, params);
+    if      (name === 'DTSTART')     cur.start       = parseDate(value, params);
     else if (name === 'DESCRIPTION') cur.description = unescapeIcsText(value);
-    else if (name === 'SUMMARY') cur.summary = unescapeIcsText(value);
-    else if (name === 'STATUS') cur.status = value;
-    else if (name === 'UID') cur.uid = value;
+    else if (name === 'SUMMARY')     cur.summary     = unescapeIcsText(value);
+    else if (name === 'STATUS')      cur.status      = value;
+    else if (name === 'UID')         cur.uid         = value;
   }
   return events;
 }
 
 function extractImageUrl(description) {
   if (!description) return null;
-  // Strip HTML tags Google sometimes wraps URLs in (<a href="...">...</a>).
   const stripped = description.replace(/<[^>]+>/g, ' ');
   const urls = stripped.match(/https?:\/\/[^\s<>"']+/g);
   if (!urls) return null;
   const imgExt = /\.(jpe?g|png|gif|webp|avif|svg)(\?|#|$)/i;
-  const imageMatch = urls.find((u) => imgExt.test(u));
-  return imageMatch || urls[0];
+  return urls.find((u) => imgExt.test(u)) || urls[0];
 }
 
-function updateCarousel(html, imageUrls) {
-  const slideRe = /(<div class="carousel-slide[^"]*">\s*<img\s+src=")[^"]+(")/g;
-  let i = 0;
-  let replacements = 0;
-  const updated = html.replace(slideRe, (match, p1, p2) => {
-    const url = imageUrls[i++];
-    if (!url) return match;
-    replacements++;
-    return p1 + url + p2;
+function escapeAttr(s) {
+  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+function buildEventSlide(event, imageUrl) {
+  const title   = escapeAttr(event.summary || 'Upcoming Event');
+  const dateStr = event.start.toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric',
+    timeZone: 'America/New_York',
   });
-  return { updated, replacements };
+  return `\
+          <div class="carousel-slide">
+            <img src="${imageUrl}" alt="${title}">
+            <div class="carousel-caption">
+              <div class="container">
+                <h2>${title}</h2>
+                <p>${dateStr}</p>
+                <a href="/events/" class="btn btn-primary">View Events</a>
+              </div>
+            </div>
+          </div>`;
 }
 
-const ics = await fetchIcs();
-const events = parseEvents(ics);
-const now = Date.now();
+function buildIndicators(totalSlides) {
+  return Array.from({ length: totalSlides }, (_, i) =>
+    `          <button${i === 0 ? ' class="active"' : ''} aria-label="Slide ${i + 1}"></button>`
+  ).join('\n');
+}
+
+function updateCarousel(html, events, imageUrls) {
+  // Replace event slide zone
+  const eventSlidesHtml = events.length
+    ? '\n' + events.map((e, i) => buildEventSlide(e, imageUrls[i])).join('\n') + '\n          '
+    : '';
+
+  let updated = html.replace(
+    /<!-- CAROUSEL-EVENTS-START -->[\s\S]*?<!-- CAROUSEL-EVENTS-END -->/,
+    `<!-- CAROUSEL-EVENTS-START -->${eventSlidesHtml}<!-- CAROUSEL-EVENTS-END -->`,
+  );
+
+  // Rebuild indicators for total slide count
+  const totalSlides = STATIC_FIRST + events.length + STATIC_REST;
+  const indicators  = buildIndicators(totalSlides);
+
+  updated = updated.replace(
+    /<!-- CAROUSEL-INDICATORS-START -->[\s\S]*?<!-- CAROUSEL-INDICATORS-END -->/,
+    `<!-- CAROUSEL-INDICATORS-START -->\n${indicators}\n          <!-- CAROUSEL-INDICATORS-END -->`,
+  );
+
+  return updated;
+}
+
+// ── Main ──────────────────────────────────────────────────────────────────────
+
+const ics      = await fetchIcs();
+const events   = parseEvents(ics);
+const now      = Date.now();
 const upcoming = events
   .filter((e) => e.start && e.start.getTime() >= now && e.status !== 'CANCELLED')
   .sort((a, b) => a.start - b.start);
 
-const imageUrls = [];
-const usedEvents = [];
+const imageUrls   = [];
+const usedEvents  = [];
 for (const event of upcoming) {
-  if (imageUrls.length >= SLIDE_COUNT) break;
+  if (imageUrls.length >= EVENT_SLIDE_COUNT) break;
   const url = extractImageUrl(event.description);
-  if (url) {
-    imageUrls.push(url);
-    usedEvents.push(event);
-  }
+  if (url) { imageUrls.push(url); usedEvents.push(event); }
 }
 
 if (imageUrls.length === 0) {
-  console.log('No upcoming events with image URLs found; nothing to update.');
-  process.exit(0);
+  console.log('No upcoming events with image URLs found; clearing event slides.');
 }
 
-const html = await readFile(indexPath, 'utf8');
-const { updated, replacements } = updateCarousel(html, imageUrls);
+const html    = await readFile(indexPath, 'utf8');
+const updated = updateCarousel(html, usedEvents, imageUrls);
 
-console.log(`Found ${upcoming.length} upcoming event(s); applied ${replacements} slide image update(s):`);
+console.log(`Found ${upcoming.length} upcoming event(s); inserting ${usedEvents.length} event slide(s):`);
 usedEvents.forEach((e, i) => {
-  console.log(`  Slide ${i + 1}: ${e.summary || '(untitled)'} @ ${e.start.toISOString()}`);
+  console.log(`  Slide ${STATIC_FIRST + i + 1}: ${e.summary || '(untitled)'} @ ${e.start.toISOString()}`);
   console.log(`           -> ${imageUrls[i]}`);
 });
 
 if (updated === html) {
-  console.log('Carousel already matches calendar; no file changes.');
+  console.log('Carousel already up to date; no file changes.');
   process.exit(0);
 }
 
