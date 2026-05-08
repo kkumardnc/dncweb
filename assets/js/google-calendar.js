@@ -1,5 +1,5 @@
 // Google Calendar Integration for Demarest Nature Center
-const CALENDAR_ID = 'c_581c56b4d09b99b96af9481e68dcc181cf7102482f19fcbcf71f453dc493d6d2@group.calendar.google.com';
+const CALENDAR_ID = 'c_981c56b4d09b99b96af9481e68dcc181cf7102482f19fcbcf71f453dc493d6d2@group.calendar.google.com';
 const API_KEY = 'YOUR_GOOGLE_API_KEY';
 
 // Embed Google Calendar
