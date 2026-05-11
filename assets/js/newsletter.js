@@ -5,8 +5,7 @@
 
 // IMPORTANT: Replace this with your Google Apps Script Web App URL
 // After deploying your Apps Script, paste the URL here
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyQqFa0cLddjMB1Ctxduu6G1gjstUJ-4LVzph_kmKtVHD0vTNnWEjQaNJ8kykO5dZJs/exec';
-
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylfUekC7aZBQNm74bvja1IU0_AABTbKTr7myZ0SIvskKFNDmHk2MA7Uj24OiVHVbRN/exec';
 // Initialize all newsletter forms when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     initializeNewsletterForms();
