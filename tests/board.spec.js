@@ -53,11 +53,11 @@ test.describe('Board of Trustees Page', () => {
       'Steve Chen',
       'Jeff Shaari',
       'Theodore Alevrontas',
-      'Patricia Chen',
+      'Sharon Goren',
       'Dave Emerson',
       'Ray Slaman',
       'Krishna Kumar',
-      'Stacey Braff',
+      'Marian Hayden',
       'Chris Jones',
       'Andrew Zimmerman',
       'Heidi Heintz'
