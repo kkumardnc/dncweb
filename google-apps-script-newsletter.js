@@ -18,13 +18,13 @@
  *      assets/js/newsletter.js.
  *
  * Frontend note
- *   newsletter.js currently sends `Content-Type: application/json`, which
- *   triggers a CORS preflight that Apps Script web apps do not handle.
- *   For reliable cross-origin posts, change the frontend fetch to either
- *   omit the Content-Type header (defaults to text/plain) or use
- *   `application/x-www-form-urlencoded` with a URLSearchParams body.
- *   This script reads from both e.postData.contents (JSON) and
- *   e.parameter (form fields) so either approach works.
+ *   newsletter.js posts an `application/x-www-form-urlencoded` body built
+ *   with URLSearchParams. That avoids the CORS preflight Apps Script web
+ *   apps do not handle and, unlike a text/plain JSON body, survives the
+ *   302 redirect from script.google.com to script.googleusercontent.com
+ *   on iOS Safari and in-app webviews. This script still reads from both
+ *   e.postData.contents (JSON) and e.parameter (form fields), so a JSON
+ *   body would also work if the frontend ever switches back.
  */
 
 const SHEET_ID = 'REPLACE_WITH_YOUR_GOOGLE_SHEET_ID';
