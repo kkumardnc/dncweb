@@ -16,15 +16,21 @@ document.addEventListener('DOMContentLoaded', function() {
  * Initialize all newsletter forms on the page
  */
 function initializeNewsletterForms() {
-    // Find all newsletter forms
-    const forms = [
-        document.getElementById('footerNewsletter'),
-        document.getElementById('newsletterForm'),
-        document.querySelector('.newsletter-form'),
-        document.querySelector('.mini-newsletter')
-    ].filter(form => form !== null);
+    // Collect every newsletter form on the page without double-registering.
+    // The earlier list mixed IDs with class selectors that aliased the same
+    // element (e.g. .mini-newsletter === #footerNewsletter) and also matched
+    // a wrapping <div class="newsletter-form">, which silently no-ops.
+    const selectors = [
+        '#newsletterForm',
+        '#footerNewsletter',
+        'form.newsletter-form',
+        'form.mini-newsletter'
+    ];
+    const forms = new Set();
+    selectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(form => forms.add(form));
+    });
 
-    // Add event listeners to each form
     forms.forEach(form => {
         form.addEventListener('submit', handleNewsletterSubmit);
     });
@@ -63,17 +69,21 @@ async function handleNewsletterSubmit(e) {
         // Get source page for tracking
         const source = getPageSource();
 
-        // Send subscription request.
-        // Note: no Content-Type header — that would trigger a CORS preflight
-        // which Apps Script web apps do not handle. The body is sent as
-        // text/plain and parsed as JSON by the Apps Script.
+        // Send as application/x-www-form-urlencoded. This is a CORS-safelisted
+        // content type (no preflight) and, unlike a text/plain JSON body,
+        // survives the 302 redirect from script.google.com to
+        // script.googleusercontent.com on iOS Safari and in-app webviews
+        // (Instagram, Facebook, Gmail) that were otherwise dropping the body
+        // and triggering the "An error occurred" fallback. The Apps Script
+        // reads these fields from e.parameter.
+        const body = new URLSearchParams({
+            email: email,
+            source: source,
+            timestamp: new Date().toISOString()
+        });
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
-            body: JSON.stringify({
-                email: email,
-                source: source,
-                timestamp: new Date().toISOString()
-            })
+            body: body
         });
 
         // Parse the JSON response from Google Apps Script
