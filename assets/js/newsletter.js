@@ -63,12 +63,12 @@ async function handleNewsletterSubmit(e) {
         // Get source page for tracking
         const source = getPageSource();
 
-        // Send subscription request
+        // Send subscription request.
+        // Note: no Content-Type header — that would trigger a CORS preflight
+        // which Apps Script web apps do not handle. The body is sent as
+        // text/plain and parsed as JSON by the Apps Script.
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify({
                 email: email,
                 source: source,
