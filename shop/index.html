@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Demarest Nature Center</title>
+    <meta name="description" content="Shop Demarest Nature Center merchandise. Apparel, gifts, and more from our official online store.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <style>
+        .shop-embed {
+            width: 100%;
+            height: calc(100vh - 80px);
+            min-height: 700px;
+            border: 0;
+            display: block;
+        }
+        .shop-fallback {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="/assets/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/support/membership.html">Membership</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/ecoexplorer/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">
+                            <li><a href="/events/">Upcoming Events</a></li>
+                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter & Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li class="has-dropdown">
+                                <a href="/photocontest/">Photo Contest</a>
+                                <ul class="dropdown">
+                                    <li><a href="/photocontest/">John C. Goodwin Nature Photo Contest</a></li>
+                                    <li><a href="/photocontest/2025-winners/">2025 Photo Contest Winners</a></li>
+                                    <li><a href="/photocontest/memorial/">In Memory of John Goodwin</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="/shop/">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <iframe
+            class="shop-embed"
+            src="https://dncshop.merchologysolutions.com/"
+            title="Demarest Nature Center Shop"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allow="payment *; clipboard-write">
+        </iframe>
+        <noscript>
+            <p class="shop-fallback">
+                Visit our shop directly at
+                <a href="https://dncshop.merchologysolutions.com/" target="_blank" rel="noopener">dncshop.merchologysolutions.com</a>.
+            </p>
+        </noscript>
+        <p class="shop-fallback">
+            Having trouble viewing the shop?
+            <a href="https://dncshop.merchologysolutions.com/" target="_blank" rel="noopener">Open it in a new tab</a>.
+        </p>
+    </main>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
