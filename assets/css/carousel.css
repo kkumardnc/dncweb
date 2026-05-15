@@ -259,3 +259,36 @@
 .carousel-slide.active .carousel-caption .btn {
   animation: slideInFromLeft 0.8s ease-out 0.4s both;
 }
+
+/* 2026 Photo Contest Slideshow pill — floats above the hero carousel */
+.hero-carousel { position: relative; }
+.slideshow-pill {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.slideshow-pill:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateX(-50%) translateY(-1px);
+  color: #fff;
+}
+.slideshow-pill__icon { font-size: 0.95rem; line-height: 1; }
+@media (max-width: 480px) {
+  .slideshow-pill { font-size: 0.75rem; padding: 0.35rem 0.7rem; top: 8px; }
+}

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Photo Contest Slideshow - Demarest Nature Center</title>
+    <meta name="description" content="Fullscreen slideshow of the 2026 John C. Goodwin Nature Photo Contest entries.">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <style>
+        :root {
+            --caption-bg: rgba(0, 0, 0, 0.55);
+            --chrome-fg: #fff;
+            --accent: #6cbf3c;
+        }
+        * { box-sizing: border-box; }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: var(--chrome-fg);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+            overflow: hidden;
+            cursor: default;
+        }
+        body.idle { cursor: none; }
+        body.idle .chrome { opacity: 0; pointer-events: none; }
+
+        #stage {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide.active { opacity: 1; }
+
+        /* Background blur layer (used in "blurred" mode) */
+        .slide .bg {
+            position: absolute;
+            inset: -5%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(40px) brightness(0.6);
+            transform: scale(1.1);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        body[data-mode="blurred"] .slide .bg { opacity: 1; }
+
+        .slide img {
+            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Mode: fit (default behavior of max-width/max-height) */
+        body[data-mode="fit"] .slide img,
+        body[data-mode="blurred"] .slide img {
+            object-fit: contain;
+        }
+
+        /* Mode: cover - fill the screen, crop edges */
+        body[data-mode="cover"] .slide img {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            object-fit: cover;
+        }
+
+        /* Mode: kenburns - cover + slow zoom/pan */
+        body[data-mode="kenburns"] .slide img {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            object-fit: cover;
+            transform-origin: center;
+        }
+        body[data-mode="kenburns"] .slide.active img {
+            animation: kenburns var(--duration, 8s) ease-in-out forwards;
+        }
+        @keyframes kenburns {
+            0%   { transform: scale(1.0)  translate(0, 0); }
+            100% { transform: scale(1.15) translate(-2%, -2%); }
+        }
+        body[data-mode="kenburns"] .slide.active.kb-alt img {
+            animation-name: kenburns-alt;
+        }
+        @keyframes kenburns-alt {
+            0%   { transform: scale(1.15) translate(2%, 2%); }
+            100% { transform: scale(1.0)  translate(0, 0); }
+        }
+
+        /* Chrome (caption, controls, counter) */
+        .chrome {
+            position: fixed;
+            z-index: 10;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        #caption {
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1.5rem 2.5rem 2rem;
+            background: linear-gradient(to top, var(--caption-bg), transparent);
+            pointer-events: none;
+        }
+        #caption .title {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 600;
+            margin: 0 0 0.25rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        #caption .photographer {
+            font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+        #caption .photographer::before {
+            content: "Photo by ";
+            opacity: 0.7;
+        }
+
+        #counter {
+            top: 1rem;
+            right: 1.25rem;
+            font-size: 0.9rem;
+            opacity: 0.85;
+            background: rgba(0,0,0,0.4);
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+        }
+
+        #controls {
+            top: 1rem;
+            left: 1.25rem;
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+            background: rgba(0,0,0,0.4);
+            padding: 0.4rem 0.6rem;
+            border-radius: 999px;
+            backdrop-filter: blur(8px);
+        }
+        #controls button, #controls select {
+            background: transparent;
+            color: var(--chrome-fg);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        #controls button:hover, #controls select:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        #controls select {
+            appearance: none;
+            padding-right: 1.5rem;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'%3E%3Cpath fill='%23fff' d='M0 0l4 6 4-6z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.6rem center;
+        }
+        #controls .sep {
+            width: 1px;
+            height: 18px;
+            background: rgba(255,255,255,0.2);
+            margin: 0 0.2rem;
+        }
+
+        #empty-state {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            gap: 0.5rem;
+        }
+        #empty-state h1 { margin: 0; font-size: 2rem; }
+        #empty-state p { margin: 0; opacity: 0.7; max-width: 30rem; }
+
+        /* Kiosk mode hides every chrome element */
+        body.kiosk .chrome { display: none !important; }
+
+        @media (max-width: 600px) {
+            #caption { padding: 1rem 1.25rem 1.5rem; }
+            #controls { left: 0.5rem; top: 0.5rem; padding: 0.3rem 0.4rem; gap: 0.25rem; }
+            #controls button, #controls select { padding: 0.25rem 0.5rem; font-size: 0.75rem; }
+            #counter { top: 0.5rem; right: 0.5rem; }
+        }
+    </style>
+</head>
+<body data-mode="kenburns">
+
+    <div id="stage" aria-live="polite"></div>
+
+    <div id="counter" class="chrome" aria-hidden="true"></div>
+
+    <div id="caption" class="chrome">
+        <p class="title"></p>
+        <p class="photographer"></p>
+    </div>
+
+    <div id="controls" class="chrome" role="toolbar" aria-label="Slideshow controls">
+        <select id="mode-select" aria-label="Display mode" title="Display mode">
+            <option value="kenburns">Ken Burns</option>
+            <option value="fit">Fit</option>
+            <option value="cover">Cover</option>
+            <option value="blurred">Blurred backdrop</option>
+        </select>
+        <span class="sep"></span>
+        <button id="prev-btn" title="Previous (←)" aria-label="Previous">‹</button>
+        <button id="play-btn" title="Play/Pause (Space)" aria-label="Play/Pause">⏸</button>
+        <button id="next-btn" title="Next (→)" aria-label="Next">›</button>
+        <span class="sep"></span>
+        <button id="shuffle-btn" title="Toggle shuffle" aria-label="Shuffle">⇆</button>
+        <button id="fs-btn" title="Fullscreen (F)" aria-label="Fullscreen">⛶</button>
+    </div>
+
+    <div id="empty-state" style="display:none;">
+        <h1>2026 Photo Contest Slideshow</h1>
+        <p>No photos found yet. Add image files to <code>photocontest/2026/images/</code> and run <code>python3 photocontest/2026/build-manifest.py</code>.</p>
+    </div>
+
+    <script>
+    (function () {
+        const PER_SLIDE_MS = 7000;     // how long each slide stays on screen
+        const TRANSITION_MS = 1000;    // crossfade duration (matches CSS)
+        const PRELOAD_AHEAD = 2;
+
+        const stage = document.getElementById('stage');
+        const captionEl = document.getElementById('caption');
+        const titleEl = captionEl.querySelector('.title');
+        const photogEl = captionEl.querySelector('.photographer');
+        const counterEl = document.getElementById('counter');
+        const modeSelect = document.getElementById('mode-select');
+        const playBtn = document.getElementById('play-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const shuffleBtn = document.getElementById('shuffle-btn');
+        const fsBtn = document.getElementById('fs-btn');
+        const emptyState = document.getElementById('empty-state');
+
+        const params = new URLSearchParams(location.search);
+        if (params.get('kiosk') === '1') document.body.classList.add('kiosk');
+        const initialMode = params.get('mode');
+        if (initialMode && ['kenburns','fit','cover','blurred'].includes(initialMode)) {
+            document.body.dataset.mode = initialMode;
+        }
+        modeSelect.value = document.body.dataset.mode;
+
+        let entries = [];
+        let order = [];
+        let cursor = 0;
+        let timer = null;
+        let playing = true;
+        let shuffled = false;
+        let kbToggle = false;
+
+        function shuffle(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function buildOrder() {
+            order = shuffled ? shuffle(entries.map((_, i) => i)) : entries.map((_, i) => i);
+        }
+
+        function preload(idx) {
+            for (let k = 1; k <= PRELOAD_AHEAD; k++) {
+                const e = entries[order[(idx + k) % order.length]];
+                if (!e) continue;
+                const im = new Image();
+                im.src = e.file;
+            }
+        }
+
+        function updateCaption(entry, index, total) {
+            titleEl.textContent = entry.title || '';
+            photogEl.textContent = entry.photographer || '';
+            photogEl.style.display = entry.photographer ? '' : 'none';
+            counterEl.textContent = `${index + 1} / ${total}`;
+        }
+
+        function showSlide(idx) {
+            if (entries.length === 0) return;
+            const entry = entries[order[idx]];
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            kbToggle = !kbToggle;
+            if (kbToggle) slide.classList.add('kb-alt');
+            slide.style.setProperty('--duration', (PER_SLIDE_MS + TRANSITION_MS) + 'ms');
+
+            const bg = document.createElement('div');
+            bg.className = 'bg';
+            bg.style.backgroundImage = `url("${entry.file}")`;
+            slide.appendChild(bg);
+
+            const img = document.createElement('img');
+            img.alt = entry.title ? `${entry.title} by ${entry.photographer}` : entry.file;
+            img.src = entry.file;
+            slide.appendChild(img);
+
+            stage.appendChild(slide);
+            // Force reflow so the transition fires.
+            void slide.offsetWidth;
+            slide.classList.add('active');
+
+            // Fade previous slides out and remove after transition.
+            const prevSlides = stage.querySelectorAll('.slide');
+            prevSlides.forEach(s => {
+                if (s !== slide) {
+                    s.classList.remove('active');
+                    setTimeout(() => s.remove(), TRANSITION_MS + 50);
+                }
+            });
+
+            updateCaption(entry, idx, order.length);
+            preload(idx);
+        }
+
+        function scheduleNext() {
+            clearTimeout(timer);
+            if (!playing) return;
+            timer = setTimeout(() => {
+                cursor = (cursor + 1) % order.length;
+                showSlide(cursor);
+                scheduleNext();
+            }, PER_SLIDE_MS);
+        }
+
+        function go(delta) {
+            cursor = (cursor + delta + order.length) % order.length;
+            showSlide(cursor);
+            scheduleNext();
+        }
+
+        function togglePlay() {
+            playing = !playing;
+            playBtn.textContent = playing ? '⏸' : '▶';
+            if (playing) scheduleNext();
+            else clearTimeout(timer);
+        }
+
+        function toggleShuffle() {
+            shuffled = !shuffled;
+            shuffleBtn.style.color = shuffled ? 'var(--accent)' : '';
+            const currentEntry = entries[order[cursor]];
+            buildOrder();
+            // Resume from the same photo if possible.
+            const idxOfCurrent = order.findIndex(i => entries[i] === currentEntry);
+            cursor = idxOfCurrent >= 0 ? idxOfCurrent : 0;
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+            else document.exitFullscreen?.();
+        }
+
+        // Idle-cursor / chrome hiding
+        let idleTimer = null;
+        function wake() {
+            document.body.classList.remove('idle');
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => document.body.classList.add('idle'), 2500);
+        }
+        ['mousemove', 'touchstart', 'keydown'].forEach(ev =>
+            window.addEventListener(ev, wake, { passive: true })
+        );
+
+        // Wire up controls
+        modeSelect.addEventListener('change', e => {
+            document.body.dataset.mode = e.target.value;
+        });
+        prevBtn.addEventListener('click', () => go(-1));
+        nextBtn.addEventListener('click', () => go(1));
+        playBtn.addEventListener('click', togglePlay);
+        shuffleBtn.addEventListener('click', toggleShuffle);
+        fsBtn.addEventListener('click', toggleFullscreen);
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') go(1);
+            else if (e.key === 'ArrowLeft') go(-1);
+            else if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+            else if (e.key.toLowerCase() === 'f') toggleFullscreen();
+            else if (e.key.toLowerCase() === 's') toggleShuffle();
+            else if (e.key === 'Escape' && document.fullscreenElement) document.exitFullscreen?.();
+        });
+
+        // Load manifest and start
+        fetch('manifest.json?_=' + Date.now())
+            .then(r => r.ok ? r.json() : [])
+            .then(data => {
+                entries = Array.isArray(data) ? data : [];
+                if (entries.length === 0) {
+                    emptyState.style.display = 'flex';
+                    document.querySelectorAll('.chrome').forEach(el => el.style.display = 'none');
+                    return;
+                }
+                buildOrder();
+                showSlide(cursor);
+                scheduleNext();
+                wake();
+            })
+            .catch(err => {
+                console.error('Failed to load manifest:', err);
+                emptyState.style.display = 'flex';
+            });
+    })();
+    </script>
+</body>
+</html>
