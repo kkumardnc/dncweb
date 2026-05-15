@@ -1,1 +1,97 @@
-[]
+[
+  {
+    "file": "aligatorsnose_loretta.jpg",
+    "title": "Aligatorsnose",
+    "photographer": "Loretta"
+  },
+  {
+    "file": "barred_owl.jpeg",
+    "title": "Barred",
+    "photographer": "Owl"
+  },
+  {
+    "file": "barred_owlet_anonymous.png",
+    "title": "Barred Owlet",
+    "photographer": "Anonymous"
+  },
+  {
+    "file": "bird_rachel.jpeg",
+    "title": "Bird",
+    "photographer": "Rachel"
+  },
+  {
+    "file": "Eastern Phoebe-JOEL.jpg",
+    "title": "Eastern Phoebe",
+    "photographer": "Joel"
+  },
+  {
+    "file": "egret_rachel.jpeg",
+    "title": "Egret",
+    "photographer": "Rachel"
+  },
+  {
+    "file": "fox_rachel.jpg",
+    "title": "Fox",
+    "photographer": "Rachel"
+  },
+  {
+    "file": "grackle_nicholas.jpeg",
+    "title": "Grackle",
+    "photographer": "Nicholas"
+  },
+  {
+    "file": "groundhog_alex.jpeg",
+    "title": "Groundhog",
+    "photographer": "Alex"
+  },
+  {
+    "file": "image_rachel.jpeg",
+    "title": "Image",
+    "photographer": "Rachel"
+  },
+  {
+    "file": "Raccoon-JOEL.jpg",
+    "title": "Raccoon",
+    "photographer": "Joel"
+  },
+  {
+    "file": "RubyCrownedKinglet-JOEL.jpg",
+    "title": "Ruby Crowned Kinglet",
+    "photographer": "Joel"
+  },
+  {
+    "file": "skipperbfly_nicholas.jpeg",
+    "title": "Skipperbfly",
+    "photographer": "Nicholas"
+  },
+  {
+    "file": "whatisleftofdeer_tylerkim.jpg",
+    "title": "Whatisleftofdeer",
+    "photographer": "Tylerkim"
+  },
+  {
+    "file": "woodchuck_bensebkim.jpg",
+    "title": "Woodchuck",
+    "photographer": "Bensebkim"
+  },
+  {
+    "file": "woodpecker_nicholas.jpeg",
+    "title": "Woodpecker",
+    "photographer": "Nicholas"
+  },
+  {
+    "file": "woodpecker_rachel.jpeg",
+    "title": "Woodpecker",
+    "photographer": "Rachel"
+  },
+  {
+    "file": "YellowRumpedWarbler-JOEL.jpg",
+    "title": "Yellow Rumped Warbler",
+    "photographer": "Joel"
+  },
+  {
+    "file": "yellowwing_rachel.jpeg",
+    "title": "Yellowwing",
+    "photographer": "Rachel"
+  }
+]
