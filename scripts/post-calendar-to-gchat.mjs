@@ -66,21 +66,50 @@ function parseEvents(ics) {
   return events;
 }
 
-function formatEvent(event) {
+function formatWhen(event) {
   const opts = event.allDay
     ? { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' }
     : { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: TIME_ZONE };
-  const when  = event.start.toLocaleString('en-US', opts);
-  const title = event.summary || '(untitled)';
-  const where = event.location ? ` — ${event.location}` : '';
-  return `• *${title}* — ${when}${where}`;
+  return event.start.toLocaleString('en-US', opts);
 }
 
-async function postToGchat(webhookUrl, text) {
+function buildCard(events) {
+  const widgets = [];
+  events.forEach((event, i) => {
+    if (i > 0) widgets.push({ divider: {} });
+    widgets.push({
+      decoratedText: {
+        startIcon: { knownIcon: 'EVENT_SEAT' },
+        topLabel: formatWhen(event),
+        text: `<b>${event.summary || '(untitled)'}</b>`,
+        bottomLabel: event.location || undefined,
+        wrapText: true,
+      },
+    });
+  });
+
+  return {
+    cardsV2: [
+      {
+        cardId: 'dnc-upcoming-events',
+        card: {
+          header: {
+            title: 'Upcoming DNC Events',
+            subtitle: `Next ${events.length} on the calendar`,
+            imageType: 'CIRCLE',
+          },
+          sections: [{ widgets }],
+        },
+      },
+    ],
+  };
+}
+
+async function postToGchat(webhookUrl, payload) {
   const res = await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify(payload),
   });
   if (!res.ok) {
     const body = await res.text().catch(() => '');
@@ -111,13 +140,9 @@ if (upcoming.length === 0) {
   process.exit(0);
 }
 
-const header = `*Upcoming DNC events (next ${upcoming.length})*`;
-const body   = upcoming.map(formatEvent).join('\n');
-const text   = `${header}\n${body}`;
-
 upcoming.forEach((e) => {
   console.log(`  - ${e.summary || '(untitled)'} @ ${e.start.toISOString()}`);
 });
 
-await postToGchat(webhookUrl, text);
+await postToGchat(webhookUrl, buildCard(upcoming));
 console.log('Posted to Google Chat webhook.');
