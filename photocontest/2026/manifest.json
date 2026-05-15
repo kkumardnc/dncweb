@@ -1,13 +1,13 @@
 [
   {
-    "file": "aligatorsnose_loretta.jpg",
-    "title": "Aligatorsnose",
+    "file": "alligators_nose_loretta.jpg",
+    "title": "Alligators Nose",
     "photographer": "Loretta"
   },
   {
-    "file": "barred_owl.jpeg",
-    "title": "Barred",
-    "photographer": "Owl"
+    "file": "barred_owl_anonymous.jpeg",
+    "title": "Barred Owl",
+    "photographer": "Anonymous"
   },
   {
     "file": "barred_owlet_anonymous.png",
@@ -45,14 +45,14 @@
     "photographer": "Alex"
   },
   {
-    "file": "image_rachel.jpeg",
-    "title": "Image",
-    "photographer": "Rachel"
-  },
-  {
     "file": "Raccoon-JOEL.jpg",
     "title": "Raccoon",
     "photographer": "Joel"
+  },
+  {
+    "file": "red_tailed_hawk_rachel.jpeg",
+    "title": "Red Tailed Hawk",
+    "photographer": "Rachel"
   },
   {
     "file": "RubyCrownedKinglet-JOEL.jpg",
@@ -65,9 +65,9 @@
     "photographer": "Nicholas"
   },
   {
-    "file": "whatisleftofdeer_tylerkim.jpg",
-    "title": "Whatisleftofdeer",
-    "photographer": "Tylerkim"
+    "file": "what_is_left_of_deer-tyler_kim.jpg",
+    "title": "What Is Left Of Deer",
+    "photographer": "Tyler Kim"
   },
   {
     "file": "woodchuck_bensebkim.jpg",

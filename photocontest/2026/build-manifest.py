@@ -2,15 +2,24 @@
 """Generate manifest.json for the 2026 photo contest slideshow.
 
 Scans the current folder for image files and parses filenames into
-{title, photographer} entries based on the convention used for entries:
+{title, photographer} entries.
 
-    title_photographername.ext        # underscore separator
-    title-photographername.ext        # dash separator
-    CamelCaseTitle-photographer.ext   # CamelCase title gets split on case
+Naming convention:
 
-The title and photographer parts are split on the LAST `-` or `_` so that
-multi-word titles like `barred_owlet_anonymous.png` still work
-("Barred Owlet" / "Anonymous"). The result is title-cased.
+    title_words-photographer_name.ext
+
+That is: use `_` for spaces within the title or photographer, and a
+single `-` to separate title from photographer. Examples:
+
+    eastern_phoebe-joel.jpg                 -> "Eastern Phoebe" / "Joel"
+    what_is_left_of_deer-tyler_kim.jpg      -> "What Is Left Of Deer" / "Tyler Kim"
+
+For backwards compatibility with older filenames that use only `_`,
+the script falls back to splitting on the last underscore:
+
+    barred_owlet_anonymous.png              -> "Barred Owlet" / "Anonymous"
+
+CamelCase titles like `RubyCrownedKinglet-JOEL.jpg` are split on case.
 """
 
 import json
@@ -36,11 +45,16 @@ def pretty(s: str) -> str:
 
 
 def parse(stem: str):
-    # Split on the rightmost `-` or `_` so multi-word titles work.
-    m = re.search(r"[-_](?=[^-_]*$)", stem)
-    if m:
-        return pretty(stem[: m.start()]), pretty(stem[m.end() :])
-    return pretty(stem), ""
+    # Prefer `-` as the explicit title/photographer boundary so that
+    # photographer names with spaces (encoded as `_`) work correctly.
+    # Fall back to splitting on the last `_` for older filenames.
+    if "-" in stem:
+        title_part, photog_part = stem.rsplit("-", 1)
+    elif "_" in stem:
+        title_part, photog_part = stem.rsplit("_", 1)
+    else:
+        title_part, photog_part = stem, ""
+    return pretty(title_part), pretty(photog_part)
 
 
 def main():
