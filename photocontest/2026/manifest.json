@@ -20,6 +20,16 @@
     "photographer": "Rachel"
   },
   {
+    "file": "brook_taide.jpg",
+    "title": "Brook",
+    "photographer": "Taide"
+  },
+  {
+    "file": "deer_taide.jpg",
+    "title": "Deer",
+    "photographer": "Taide"
+  },
+  {
     "file": "Eastern Phoebe-JOEL.jpg",
     "title": "Eastern Phoebe",
     "photographer": "Joel"
@@ -45,6 +55,11 @@
     "photographer": "Alex"
   },
   {
+    "file": "mushroom_taide.jpg",
+    "title": "Mushroom",
+    "photographer": "Taide"
+  },
+  {
     "file": "Raccoon-JOEL.jpg",
     "title": "Raccoon",
     "photographer": "Joel"
@@ -63,6 +78,11 @@
     "file": "skipper_butterfly-nicholas.jpeg",
     "title": "Skipper Butterfly",
     "photographer": "Nicholas"
+  },
+  {
+    "file": "sunlightleaves_taide.jpg",
+    "title": "Sunlightleaves",
+    "photographer": "Taide"
   },
   {
     "file": "what_is_left_of_deer-tyler_kim.jpg",
