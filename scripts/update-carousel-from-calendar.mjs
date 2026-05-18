@@ -81,7 +81,12 @@ function extractUrls(description) {
   if (!urls) return { imageUrl: null, linkUrl: null };
   const imgExt = /\.(jpe?g|png|gif|webp|avif|svg)(\?|#|$)/i;
   const imageUrl = urls.find((u) => imgExt.test(u)) || urls[0];
-  const linkUrl = urls.find((u) => u !== imageUrl) || null;
+  // Prefer the deepest/longest non-image URL so a generic
+  // "https://example.com/" doesn't beat "https://example.com/specific/page".
+  const candidates = urls.filter((u) => u !== imageUrl);
+  const linkUrl = candidates.length
+    ? candidates.reduce((a, b) => (b.length > a.length ? b : a))
+    : null;
   return { imageUrl, linkUrl };
 }
 
@@ -99,6 +104,9 @@ function buildEventSlide(event, imageUrl, linkUrl) {
   const imgHtml = linkUrl
     ? `<a href="${escapeAttr(linkUrl)}" target="_blank" rel="noopener">${imgTag}</a>`
     : imgTag;
+  const button = linkUrl
+    ? `<a href="${escapeAttr(linkUrl)}" target="_blank" rel="noopener" class="btn btn-primary">Learn More</a>`
+    : `<a href="/events/" class="btn btn-primary">View Events</a>`;
   return `\
           <div class="carousel-slide">
             ${imgHtml}
@@ -106,7 +114,7 @@ function buildEventSlide(event, imageUrl, linkUrl) {
               <div class="container">
                 <h2>${title}</h2>
                 <p>${dateStr}</p>
-                <a href="/events/" class="btn btn-primary">View Events</a>
+                ${button}
               </div>
             </div>
           </div>`;
