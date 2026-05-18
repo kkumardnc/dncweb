@@ -104,6 +104,9 @@ function buildEventSlide(event, imageUrl, linkUrl) {
   const imgHtml = linkUrl
     ? `<a href="${escapeAttr(linkUrl)}" target="_blank" rel="noopener">${imgTag}</a>`
     : imgTag;
+  const button = linkUrl
+    ? `<a href="${escapeAttr(linkUrl)}" target="_blank" rel="noopener" class="btn btn-primary">Learn More</a>`
+    : `<a href="/events/" class="btn btn-primary">View Events</a>`;
   return `\
           <div class="carousel-slide">
             ${imgHtml}
@@ -111,7 +114,7 @@ function buildEventSlide(event, imageUrl, linkUrl) {
               <div class="container">
                 <h2>${title}</h2>
                 <p>${dateStr}</p>
-                <a href="/events/" class="btn btn-primary">View Events</a>
+                ${button}
               </div>
             </div>
           </div>`;
