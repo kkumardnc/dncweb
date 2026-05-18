@@ -81,7 +81,12 @@ function extractUrls(description) {
   if (!urls) return { imageUrl: null, linkUrl: null };
   const imgExt = /\.(jpe?g|png|gif|webp|avif|svg)(\?|#|$)/i;
   const imageUrl = urls.find((u) => imgExt.test(u)) || urls[0];
-  const linkUrl = urls.find((u) => u !== imageUrl) || null;
+  // Prefer the deepest/longest non-image URL so a generic
+  // "https://example.com/" doesn't beat "https://example.com/specific/page".
+  const candidates = urls.filter((u) => u !== imageUrl);
+  const linkUrl = candidates.length
+    ? candidates.reduce((a, b) => (b.length > a.length ? b : a))
+    : null;
   return { imageUrl, linkUrl };
 }
 
