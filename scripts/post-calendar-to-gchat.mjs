@@ -8,7 +8,7 @@
 
 const CALENDAR_ID = 'c_981c56b4d09b99b96af9481e68dcc181cf7102482f19fcbcf71f453dc493d6d2@group.calendar.google.com';
 const ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(CALENDAR_ID)}/public/basic.ics`;
-const EVENT_COUNT = 5;
+const EVENT_COUNT = 6;
 const TIME_ZONE = 'America/New_York';
 
 async function fetchIcs() {
