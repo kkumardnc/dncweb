@@ -67,6 +67,7 @@ function parseEvents(ics) {
 
     if      (name === 'DTSTART')     cur.start       = parseDate(value, params);
     else if (name === 'DESCRIPTION') cur.description = unescapeIcsText(value);
+    else if (name === 'X-ALT-DESC')  cur.altDesc     = unescapeIcsText(value);
     else if (name === 'SUMMARY')     cur.summary     = unescapeIcsText(value);
     else if (name === 'STATUS')      cur.status      = value;
     else if (name === 'UID')         cur.uid         = value;
@@ -74,20 +75,45 @@ function parseEvents(ics) {
   return events;
 }
 
-function extractUrls(description) {
-  if (!description) return { imageUrl: null, linkUrl: null };
-  const stripped = description.replace(/<[^>]+>/g, ' ');
-  const urls = stripped.match(/https?:\/\/[^\s<>"']+/g);
-  if (!urls) return { imageUrl: null, linkUrl: null };
+function collectUrls(text) {
+  if (!text) return [];
+  const found = new Set();
+  // href="..." / href='...' attributes (HTML versions in X-ALT-DESC may
+  // carry the full URL where the plain-text DESCRIPTION only shows a
+  // truncated display label).
+  for (const m of text.matchAll(/href\s*=\s*["']([^"']+)["']/gi)) {
+    if (/^https?:\/\//i.test(m[1])) found.add(decodeGoogleRedirect(m[1]));
+  }
+  // Bare URLs in plain text (after stripping HTML tags).
+  const stripped = text.replace(/<[^>]+>/g, ' ');
+  for (const u of stripped.match(/https?:\/\/[^\s<>"']+/g) || []) {
+    found.add(decodeGoogleRedirect(u));
+  }
+  return [...found];
+}
+
+function decodeGoogleRedirect(url) {
+  // Google Calendar wraps outbound links as https://www.google.com/url?q=<real>&...
+  const m = url.match(/^https?:\/\/www\.google\.com\/url\?(?:[^&]*&)*q=([^&]+)/i);
+  if (!m) return url;
+  try { return decodeURIComponent(m[1]); } catch { return url; }
+}
+
+function extractUrls(event) {
+  const urls = [
+    ...collectUrls(event.description),
+    ...collectUrls(event.altDesc),
+  ];
+  if (urls.length === 0) return { imageUrl: null, linkUrl: null };
   const imgExt = /\.(jpe?g|png|gif|webp|avif|svg)(\?|#|$)/i;
   const imageUrl = urls.find((u) => imgExt.test(u)) || urls[0];
   // Prefer the deepest/longest non-image URL so a generic
   // "https://example.com/" doesn't beat "https://example.com/specific/page".
-  const candidates = urls.filter((u) => u !== imageUrl);
+  const candidates = [...new Set(urls.filter((u) => u !== imageUrl))];
   const linkUrl = candidates.length
     ? candidates.reduce((a, b) => (b.length > a.length ? b : a))
     : null;
-  return { imageUrl, linkUrl };
+  return { imageUrl, linkUrl, allUrls: urls };
 }
 
 function escapeAttr(s) {
@@ -161,10 +187,16 @@ const upcoming = events
 const imageUrls   = [];
 const linkUrls    = [];
 const usedEvents  = [];
+const debugUrls   = [];
 for (const event of upcoming) {
   if (imageUrls.length >= EVENT_SLIDE_COUNT) break;
-  const { imageUrl, linkUrl } = extractUrls(event.description);
-  if (imageUrl) { imageUrls.push(imageUrl); linkUrls.push(linkUrl); usedEvents.push(event); }
+  const { imageUrl, linkUrl, allUrls } = extractUrls(event);
+  if (imageUrl) {
+    imageUrls.push(imageUrl);
+    linkUrls.push(linkUrl);
+    usedEvents.push(event);
+    debugUrls.push(allUrls);
+  }
 }
 
 if (imageUrls.length === 0) {
@@ -179,6 +211,9 @@ usedEvents.forEach((e, i) => {
   console.log(`  Slide ${STATIC_FIRST + i + 1}: ${e.summary || '(untitled)'} @ ${e.start.toISOString()}`);
   console.log(`           -> img: ${imageUrls[i]}`);
   if (linkUrls[i]) console.log(`           -> link: ${linkUrls[i]}`);
+  if (debugUrls[i] && debugUrls[i].length > 1) {
+    console.log(`           -> all URLs found: ${debugUrls[i].join(' | ')}`);
+  }
 });
 
 if (updated === html) {
