@@ -15,6 +15,16 @@ const ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(
 const EVENT_SLIDE_COUNT = 6;
 const STATIC_FIRST = 1;   // slide 1 is always kept
 const STATIC_REST  = 3;   // slides 2-4 are always kept at the end
+const TIME_ZONE    = 'America/New_York';
+
+// YYYY-MM-DD calendar date for `date` in `tz`.  Lexicographic ordering on
+// the result matches calendar-date ordering, so callers can compare event
+// dates against today with a simple `>=`.
+function dateKey(date, tz) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(date);
+}
 
 const repoRoot  = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const indexPath = path.join(repoRoot, 'index.html');
@@ -54,7 +64,7 @@ function parseEvents(ics) {
   const events = [];
   let cur = null;
   for (const line of lines) {
-    if (line === 'BEGIN:VEVENT') { cur = {}; continue; }
+    if (line === 'BEGIN:VEVENT') { cur = { allDay: false }; continue; }
     if (line === 'END:VEVENT')   { if (cur) events.push(cur); cur = null; continue; }
     if (!cur) continue;
     const colon = line.indexOf(':');
@@ -65,7 +75,7 @@ function parseEvents(ics) {
     const name   = (semi < 0 ? left : left.slice(0, semi)).toUpperCase();
     const params = semi < 0 ? '' : left.slice(semi);
 
-    if      (name === 'DTSTART')     cur.start       = parseDate(value, params);
+    if      (name === 'DTSTART')     { cur.start = parseDate(value, params); cur.allDay = /VALUE=DATE(?!-TIME)/.test(params); }
     else if (name === 'DESCRIPTION') cur.description = unescapeIcsText(value);
     else if (name === 'X-ALT-DESC')  cur.altDesc     = unescapeIcsText(value);
     else if (name === 'SUMMARY')     cur.summary     = unescapeIcsText(value);
@@ -179,9 +189,12 @@ function updateCarousel(html, events, imageUrls, linkUrls) {
 
 const ics      = await fetchIcs();
 const events   = parseEvents(ics);
-const now      = Date.now();
+const todayKey = dateKey(new Date(), TIME_ZONE);
+// All-day events are parsed as UTC midnight on the event date, so their
+// calendar date lives in UTC; timed events use TIME_ZONE for their date.
 const upcoming = events
-  .filter((e) => e.start && e.start.getTime() >= now && e.status !== 'CANCELLED')
+  .filter((e) => e.start && e.status !== 'CANCELLED'
+    && dateKey(e.start, e.allDay ? 'UTC' : TIME_ZONE) >= todayKey)
   .sort((a, b) => a.start - b.start);
 
 const imageUrls   = [];

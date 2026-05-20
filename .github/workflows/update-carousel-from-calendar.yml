@@ -2,6 +2,9 @@ name: Update carousel from calendar
 
 on:
   workflow_dispatch:
+  schedule:
+    # 11:00 PM US Eastern -> 04:00 UTC (fixed; will run at 11pm EST / midnight EDT)
+    - cron: '0 4 * * *'
 
 jobs:
   update:
