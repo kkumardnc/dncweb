@@ -11,6 +11,15 @@ const ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(
 const EVENT_COUNT = 6;
 const TIME_ZONE = 'America/New_York';
 
+// YYYY-MM-DD calendar date for `date` in `tz`.  Lexicographic ordering on
+// the result matches calendar-date ordering, so callers can compare event
+// dates against today with a simple `>=`.
+function dateKey(date, tz) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(date);
+}
+
 async function fetchIcs() {
   const res = await fetch(ICS_URL);
   if (!res.ok) throw new Error(`ICS fetch failed: ${res.status} ${res.statusText}`);
@@ -127,9 +136,12 @@ if (!webhookUrl) {
 
 const ics      = await fetchIcs();
 const events   = parseEvents(ics);
-const now      = Date.now();
+const todayKey = dateKey(new Date(), TIME_ZONE);
+// All-day events are parsed as UTC midnight on the event date, so their
+// calendar date lives in UTC; timed events use TIME_ZONE for their date.
 const upcoming = events
-  .filter((e) => e.start && e.start.getTime() >= now && e.status !== 'CANCELLED')
+  .filter((e) => e.start && e.status !== 'CANCELLED'
+    && dateKey(e.start, e.allDay ? 'UTC' : TIME_ZONE) >= todayKey)
   .sort((a, b) => a.start - b.start)
   .slice(0, EVENT_COUNT);
 
