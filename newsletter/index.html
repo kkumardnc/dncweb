@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newsletter - Demarest Nature Center</title>
-    <meta name="description" content="Download recent and past issues of the Demarest Nature Center semi-annual newsletter. Free for members, all issues in PDF format.">
+    <meta name="description" content="Download recent and past issues of the Demarest Nature Center newsletter. Free for members, all issues in PDF format.">
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/dropdown.css">
     <link rel="stylesheet" href="/assets/css/pages.css">
@@ -128,7 +128,7 @@
 
         <section class="content-section">
             <div class="container">
-                <p class="lead">Demarest Nature Center members receive our free semi-annual newsletter. You can download recent and past issues below — all issues are in PDF format and should open automatically when you click on the link.</p>
+                <p class="lead">Demarest Nature Center members receive our free newsletter. You can download recent and past issues below — all issues are in PDF format and should open automatically when you click on the link.</p>
 
                 <h2 class="era-heading">Recent Issues</h2>
                 <div class="newsletter-grid">
@@ -181,10 +181,15 @@
 
                 <div class="cta-section" style="margin-top:3rem;">
                     <h3>Want the newsletter in your inbox?</h3>
-                    <p>Join the Demarest Nature Center and receive the semi-annual newsletter and other member benefits.</p>
-                    <div class="cta-buttons">
+                    <p>Subscribe below to receive the newsletter, or join the Demarest Nature Center for full member benefits.</p>
+                    <form id="newsletterForm" class="mini-newsletter" style="max-width:480px;margin:1rem auto;display:flex;gap:0.5rem;">
+                        <input type="email" placeholder="Your email address" required style="flex:1;padding:0.6rem 0.85rem;border:1px solid #ccc;border-radius:6px;">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                    <div id="newsletter-message" class="form-message"></div>
+                    <div class="cta-buttons" style="margin-top:1.5rem;">
                         <a href="/support/membership.html" class="btn btn-primary">Become a Member</a>
-                        <a href="/contact/" class="btn btn-secondary">Contact Us</a>
+                        <a href="mailto:newsletter@demarestnaturecenter.org" class="btn btn-secondary">Write to the Newsletter Editor</a>
                     </div>
                 </div>
             </div>
