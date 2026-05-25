@@ -10,3 +10,6 @@ package-lock.json
 test-results/
 playwright-report/
 playwright/.cache/
+
+# Backend Apps Script source (contains live Chat webhook key/token — keep out of repo)
+newsletterapp.js
