@@ -20,6 +20,11 @@
     "photographer": "Rachel"
   },
   {
+    "file": "birdstree_charlotte.jpeg",
+    "title": "Birdstree",
+    "photographer": "Charlotte"
+  },
+  {
     "file": "brook_taide.jpg",
     "title": "Brook",
     "photographer": "Taide"
@@ -83,6 +88,11 @@
     "file": "sunlightleaves_taide.jpg",
     "title": "Sunlightleaves",
     "photographer": "Taide"
+  },
+  {
+    "file": "turtle_charlotte.jpeg",
+    "title": "Turtle",
+    "photographer": "Charlotte"
   },
   {
     "file": "what_is_left_of_deer-tyler_kim.jpg",
