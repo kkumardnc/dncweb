@@ -81,6 +81,7 @@ function parseEvents(ics) {
     else if (name === 'SUMMARY')     cur.summary     = unescapeIcsText(value);
     else if (name === 'STATUS')      cur.status      = value;
     else if (name === 'UID')         cur.uid         = value;
+    else if (name === 'RECURRENCE-ID') cur.recurrenceId = value;
   }
   return events;
 }
@@ -185,6 +186,22 @@ function updateCarousel(html, events, imageUrls, linkUrls) {
   return updated;
 }
 
+// When a single instance of a recurring event is edited, the ICS feed carries
+// BOTH the RRULE "master" VEVENT and a separate RECURRENCE-ID "override" VEVENT
+// for that occurrence, sharing the same date.  Collapse those (and any
+// accidental exact duplicates) to one event per date+title, preferring the
+// override since it holds the edited details.
+function dedupeEvents(events) {
+  const keyOf = (e) => `${dateKey(e.start, e.allDay ? 'UTC' : TIME_ZONE)}|${e.summary || ''}`;
+  const chosen = new Map();
+  for (const e of events) {
+    const key = keyOf(e);
+    const existing = chosen.get(key);
+    if (!existing || (e.recurrenceId && !existing.recurrenceId)) chosen.set(key, e);
+  }
+  return events.filter((e) => chosen.get(keyOf(e)) === e);
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 const ics      = await fetchIcs();
@@ -192,10 +209,10 @@ const events   = parseEvents(ics);
 const todayKey = dateKey(new Date(), TIME_ZONE);
 // All-day events are parsed as UTC midnight on the event date, so their
 // calendar date lives in UTC; timed events use TIME_ZONE for their date.
-const upcoming = events
+const upcoming = dedupeEvents(events
   .filter((e) => e.start && e.status !== 'CANCELLED'
     && dateKey(e.start, e.allDay ? 'UTC' : TIME_ZONE) >= todayKey)
-  .sort((a, b) => a.start - b.start);
+  .sort((a, b) => a.start - b.start));
 
 const imageUrls   = [];
 const linkUrls    = [];
