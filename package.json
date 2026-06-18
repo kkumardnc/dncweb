@@ -7,6 +7,7 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
+    "test:calendar": "node scripts/test-recurrence.mjs",
     "validate:images": "node validate-images.js"
   },
   "repository": {

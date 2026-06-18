@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Verify calendar recurrence handling
+        run: node scripts/test-recurrence.mjs
+
       - name: Update carousel images from upcoming events
         run: node scripts/update-carousel-from-calendar.mjs
 
