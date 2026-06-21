@@ -107,14 +107,18 @@
       </a>
       <div class="carousel-container">
         <div class="carousel-slides">
-          <!-- Slide 1 -->
+          <!-- Slide 1 - Summer Solstice launch video -->
           <div class="carousel-slide active">
-            <img src="/assets/images/carousel/slide1.jpg" alt="Nature trails at Demarest Nature Center">
+            <video class="carousel-video" autoplay muted playsinline preload="auto" poster="/assets/images/carousel/slide1.jpg">
+              <!-- Add front.mp4 (H.264) for cross-browser playback; front.mov only plays in Safari. -->
+              <source src="/assets/images/carousel/front.mp4" type="video/mp4">
+              <source src="/assets/images/carousel/front.mov" type="video/quicktime">
+            </video>
             <div class="carousel-caption">
               <div class="container">
-                <h2>Explore Nature's Beauty</h2>
-                <p>Discover miles of scenic trails through forests, wetlands, and meadows</p>
-                <a href="/visit/" class="btn btn-primary">Plan Your Visit</a>
+                <h2>Summer Solstice at DNC</h2>
+                <p>Celebrate the longest day of the year at the Demarest Nature Center</p>
+                <a href="/events/" class="btn btn-primary">Upcoming Events</a>
               </div>
             </div>
           </div>
@@ -217,6 +221,18 @@
               </div>
             </div>
           </div>
+
+          <!-- Slide 5 - Explore Nature (moved here from slide 1) -->
+          <div class="carousel-slide">
+            <img src="/assets/images/carousel/slide1.jpg" alt="Nature trails at Demarest Nature Center">
+            <div class="carousel-caption">
+              <div class="container">
+                <h2>Explore Nature's Beauty</h2>
+                <p>Discover miles of scenic trails through forests, wetlands, and meadows</p>
+                <a href="/visit/" class="btn btn-primary">Plan Your Visit</a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Carousel Controls -->
@@ -240,6 +256,7 @@
           <button aria-label="Slide 8"></button>
           <button aria-label="Slide 9"></button>
           <button aria-label="Slide 10"></button>
+          <button aria-label="Slide 11"></button>
           <!-- CAROUSEL-INDICATORS-END -->
         </div>
       </div>
