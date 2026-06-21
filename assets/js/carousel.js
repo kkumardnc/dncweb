@@ -14,8 +14,10 @@ class Carousel {
     this.nextButton = this.container.querySelector('.carousel-control.next');
 
     this.currentIndex = 0;
-    this.autoPlayInterval = null;
-    this.autoPlayDelay = 5000; // 5 seconds
+    this.autoPlayTimer = null;
+    this.isPlaying = false;
+    this.autoPlayDelay = 5000;  // 5 seconds for image slides
+    this.videoMaxDwell = 30000; // safety cap if a video can't report 'ended'
 
     this.init();
   }
@@ -48,6 +50,13 @@ class Carousel {
   }
 
   goToSlide(index) {
+    // Pause/reset the outgoing slide's video, if any
+    const prevVideo = this.slides[this.currentIndex].querySelector('video');
+    if (prevVideo) {
+      prevVideo.pause();
+      prevVideo.currentTime = 0;
+    }
+
     // Remove active class from current slide and indicator
     this.slides[this.currentIndex].classList.remove('active');
     this.indicators[this.currentIndex]?.classList.remove('active');
@@ -58,6 +67,17 @@ class Carousel {
     // Add active class to new slide and indicator
     this.slides[this.currentIndex].classList.add('active');
     this.indicators[this.currentIndex]?.classList.add('active');
+
+    // Restart playback if the incoming slide carries a video
+    const video = this.slides[this.currentIndex].querySelector('video');
+    if (video) {
+      video.currentTime = 0;
+      // Autoplay may be blocked by the browser; the dwell timer still advances.
+      video.play()?.catch(() => {});
+    }
+
+    // Re-arm the advance timer for the new slide while autoplaying
+    if (this.isPlaying) this.scheduleNext();
   }
 
   next() {
@@ -70,16 +90,31 @@ class Carousel {
     this.goToSlide(prevIndex);
   }
 
+  scheduleNext() {
+    clearTimeout(this.autoPlayTimer);
+    const video = this.slides[this.currentIndex].querySelector('video');
+    if (video) {
+      // Advance when the clip ends; cap the wait in case 'ended' never fires
+      // (e.g. an unsupported format that can't play at all).
+      video.addEventListener('ended', () => this.next(), { once: true });
+      this.autoPlayTimer = setTimeout(() => this.next(), this.videoMaxDwell);
+    } else {
+      this.autoPlayTimer = setTimeout(() => this.next(), this.autoPlayDelay);
+    }
+  }
+
   startAutoPlay() {
-    this.stopAutoPlay(); // Clear any existing interval
-    this.autoPlayInterval = setInterval(() => this.next(), this.autoPlayDelay);
+    this.isPlaying = true;
+    const video = this.slides[this.currentIndex].querySelector('video');
+    if (video) video.play()?.catch(() => {});
+    this.scheduleNext();
   }
 
   stopAutoPlay() {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
+    this.isPlaying = false;
+    clearTimeout(this.autoPlayTimer);
+    const video = this.slides[this.currentIndex].querySelector('video');
+    if (video) video.pause();
   }
 
   setupTouchEvents() {
