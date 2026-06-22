@@ -732,7 +732,11 @@
                 }, formData))
               });
               successBox.hidden = false;
+              var savedType = typeInput.value;
+              var savedAmount = amountInput.value;
               form.reset();
+              typeInput.value = savedType;
+              amountInput.value = savedAmount;
               cardNumber.clear();
               cardExpiry.clear();
               cardCvc.clear();
