@@ -77,16 +77,24 @@
             resize: vertical;
             min-height: 60px;
         }
-        #card-element {
+        #card-number,
+        #card-expiry,
+        #card-cvc {
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 6px;
             background: white;
         }
-        #card-errors { 
-            color: #e74c3c; 
-            margin-top: 8px; 
-            font-size: 13px; 
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        #card-errors {
+            color: #e74c3c;
+            margin-top: 8px;
+            font-size: 13px;
         }
         .membership-info {
             background: #f0f7eb;
@@ -311,10 +319,20 @@
             <div class="section-title">Payment Information</div>
             
             <div class="form-row">
-                <label for="card-element">Card Information *</label>
-                <div id="card-element"></div>
-                <div id="card-errors" role="alert"></div>
+                <label>Card Number *</label>
+                <div id="card-number"></div>
             </div>
+            <div class="card-row">
+                <div class="form-row">
+                    <label>Expiration Date *</label>
+                    <div id="card-expiry"></div>
+                </div>
+                <div class="form-row">
+                    <label>Security Code (CVC) *</label>
+                    <div id="card-cvc"></div>
+                </div>
+            </div>
+            <div id="card-errors" role="alert"></div>
             
             <button type="submit" id="submit-button">
                 <span id="button-text">Complete Membership Payment</span>
@@ -357,21 +375,26 @@
 
         const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
         const elements = stripe.elements();
-        const cardElement = elements.create('card', {
-            style: {
-                base: {
-                    fontSize: '16px',
-                    color: '#32325d',
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-                    '::placeholder': { color: '#aab7c4' }
-                },
-                invalid: { color: '#e74c3c' }
-            }
-        });
-        cardElement.mount('#card-element');
+        const cardStyle = {
+            base: {
+                fontSize: '16px',
+                color: '#32325d',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                '::placeholder': { color: '#aab7c4' }
+            },
+            invalid: { color: '#e74c3c' }
+        };
+        const cardNumber = elements.create('cardNumber', { style: cardStyle });
+        const cardExpiry = elements.create('cardExpiry', { style: cardStyle });
+        const cardCvc    = elements.create('cardCvc',    { style: cardStyle });
+        cardNumber.mount('#card-number');
+        cardExpiry.mount('#card-expiry');
+        cardCvc.mount('#card-cvc');
 
-        cardElement.addEventListener('change', ({error}) => {
-            document.getElementById('card-errors').textContent = error ? error.message : '';
+        [cardNumber, cardExpiry, cardCvc].forEach(el => {
+            el.addEventListener('change', ({error}) => {
+                document.getElementById('card-errors').textContent = error ? error.message : '';
+            });
         });
 
         // Update membership info and price when selection changes
@@ -445,7 +468,7 @@
                     intentData.clientSecret,
                     {
                         payment_method: {
-                            card: cardElement,
+                            card: cardNumber,
                             billing_details: {
                                 name: formData.name,
                                 email: formData.email,
@@ -478,7 +501,9 @@
 
                     successMessage.style.display = 'block';
                     document.getElementById('payment-form').reset();
-                    cardElement.clear();
+                    cardNumber.clear();
+                    cardExpiry.clear();
+                    cardCvc.clear();
                     document.getElementById('price-info').style.display = 'none';
                     document.getElementById('membership-info').style.display = 'none';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
