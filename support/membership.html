@@ -668,7 +668,7 @@
 
         form.addEventListener('submit', async function (e) {
           e.preventDefault();
-          if (!stripe || !cardElement) {
+          if (!stripe || !cardNumber) {
             errorBox.textContent = 'Payment system is not loaded. Please refresh and try again.';
             errorBox.hidden = false;
             return;
