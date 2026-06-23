@@ -305,6 +305,15 @@
         #donate-card-expiry,
         #donate-card-cvc { padding: 12px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
         #donate-card-errors { color: #c0392b; margin-top: 6px; font-size: 13px; min-height: 1em; }
+        #donate-submit-btn[disabled] { opacity: 0.75; cursor: not-allowed; }
+        .donate-spinner {
+            display: inline-block; width: 16px; height: 16px;
+            border: 2px solid rgba(255,255,255,0.45); border-top-color: #fff;
+            border-radius: 50%; animation: donate-spin 0.7s linear infinite;
+            vertical-align: middle; margin-right: 8px;
+        }
+        .donate-spinner[hidden] { display: none; }
+        @keyframes donate-spin { to { transform: rotate(360deg); } }
         @media (max-width: 600px) {
             .donate-modal__form .form-row-half { grid-template-columns: 1fr; }
             .donate-modal__dialog { padding: 22px; }
@@ -767,6 +776,7 @@
           <div id="donate-card-errors" role="alert"></div>
 
           <button type="submit" class="btn btn-primary" id="donate-submit-btn" style="width:100%;margin-top:8px;">
+            <span id="donate-spinner" class="donate-spinner" hidden aria-hidden="true"></span>
             <span id="donate-btn-text">Donate $100</span>
           </button>
         </form>
@@ -784,6 +794,7 @@
         var amountInput = document.getElementById('donate-amount');
         var submitBtn = document.getElementById('donate-submit-btn');
         var btnText = document.getElementById('donate-btn-text');
+        var spinner = document.getElementById('donate-spinner');
         var successBox = document.getElementById('donate-success');
         var errorBox = document.getElementById('donate-error');
         var cardErrors = document.getElementById('donate-card-errors');
@@ -861,6 +872,7 @@
           successBox.hidden = true;
           errorBox.hidden = true;
           submitBtn.disabled = true;
+          spinner.hidden = false;
           var originalText = btnText.textContent;
           btnText.textContent = 'Processing...';
 
@@ -923,6 +935,7 @@
             errorBox.hidden = false;
           } finally {
             submitBtn.disabled = false;
+            spinner.hidden = true;
             btnText.textContent = originalText;
           }
         });
