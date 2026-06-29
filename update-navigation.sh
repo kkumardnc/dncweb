@@ -10,7 +10,7 @@ NEW_NAV='      <nav id="mainNav">
             <a href="/about/">About</a>
             <ul class="dropdown">
               <li><a href="/about/">About</a></li>
-              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of DNC</a></li>
+              <li><a href="https://www.demarestnaturecenter.org/wp-content/uploads/2024/01/History-of-Demarest.pdf" target="_blank" rel="noopener">History of Demarest</a></li>
               <li><a href="/about/#board">Board of Trustees</a></li>
               <li><a href="/about/#mission">Our Mission</a></li>
               <li><a href="/about/#policies">Policies</a></li>
