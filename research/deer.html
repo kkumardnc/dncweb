@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-CZceb_kH.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-Bam3NpBI.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-C_DwAp7Z.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-CEsLFVD9.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-D5MAsWEG.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-C6PDArdf.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        const scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          // Guard against race condition where iframe isn't ready
+          if (!obj.contentWindow?.document?.documentElement) {
+            return;
+          }
+          const element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          const hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          const newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((_entries) => {
+          setHeight();
+        });
+        // Only observe if iframe content is ready
+        if (obj.contentWindow?.document?.body) {
+          resizeObserver.observe(obj.contentWindow.document.body);
+        }
+      }
+    </script>
+    <marimo-filename hidden>notebook.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="{{ version }}" hidden></marimo-version>
+    <marimo-user-config data-config="{{ user_config }}" hidden></marimo-user-config>
+    <marimo-server-token data-token="{{ server_token }}" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>demarest deer population</title>
+    <script type="module" crossorigin src="./assets/index-Dbvu7Fs-.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/preload-helper-BW0IMuFq.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-LvLJmgfZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-Bj1aDYRI.js">
+    <link rel="modulepreload" crossorigin href="./assets/compiler-runtime-B3qBwwSJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-PbYoItBR.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEventListener-BakX-tnw.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-OkOxlkkM.js">
+    <link rel="modulepreload" crossorigin href="./assets/precisionRound-BOmLQIKI.js">
+    <link rel="modulepreload" crossorigin href="./assets/defaultLocale-DK1MWd7f.js">
+    <link rel="modulepreload" crossorigin href="./assets/vega-loader.browser-CZV6_g2i.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-DPvpQ891.js">
+    <link rel="modulepreload" crossorigin href="./assets/clsx-BtEcuwwV.js">
+    <link rel="modulepreload" crossorigin href="./assets/cn-X2M2usMq.js">
+    <link rel="modulepreload" crossorigin href="./assets/badge-6yGCqY1Z.js">
+    <link rel="modulepreload" crossorigin href="./assets/button-BF7GSjhW.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-dom-CSu739Rf.js">
+    <link rel="modulepreload" crossorigin href="./assets/fullscreen-BXI8V5i6.js">
+    <link rel="modulepreload" crossorigin href="./assets/menu-items-CQMqwayA.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DCqDlsgq.js">
+    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-BTp1tQDO.js">
+    <link rel="modulepreload" crossorigin href="./assets/check-DQmqoJgr.js">
+    <link rel="modulepreload" crossorigin href="./assets/x-9vLEgLY6.js">
+    <link rel="modulepreload" crossorigin href="./assets/select-Cjly7tmx.js">
+    <link rel="modulepreload" crossorigin href="./assets/tooltip-CgQpRVyN.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-toast-kCNiuc-_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useEvent-D91BmmQi.js">
+    <link rel="modulepreload" crossorigin href="./assets/invariant-C2E8KCbD.js">
+    <link rel="modulepreload" crossorigin href="./assets/isObject-DvLSfCY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseFor-DKD1r8uL.js">
+    <link rel="modulepreload" crossorigin href="./assets/merge-_9WLTEyt.js">
+    <link rel="modulepreload" crossorigin href="./assets/zod-H_cgTO0M.js">
+    <link rel="modulepreload" crossorigin href="./assets/utils-CCzEbCvM.js">
+    <link rel="modulepreload" crossorigin href="./assets/Deferred-BMfCOLaw.js">
+    <link rel="modulepreload" crossorigin href="./assets/uuid-ClFZlR7U.js">
+    <link rel="modulepreload" crossorigin href="./assets/DeferredRequestRegistry-RuL7NV1n.js">
+    <link rel="modulepreload" crossorigin href="./assets/constants-B9JJ72XE.js">
+    <link rel="modulepreload" crossorigin href="./assets/session-CsT5Gg9j.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-Vyzo6FSF.js">
+    <link rel="modulepreload" crossorigin href="./assets/requests-KshNNAOp.js">
+    <link rel="modulepreload" crossorigin href="./assets/useLifecycle-Baf35rp4.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNonce-0SWz6w4W.js">
+    <link rel="modulepreload" crossorigin href="./assets/useTheme-COorCcXC.js">
+    <link rel="modulepreload" crossorigin href="./assets/arrays-DWxvyYxP.js">
+    <link rel="modulepreload" crossorigin href="./assets/strings-DvZlHYnD.js">
+    <link rel="modulepreload" crossorigin href="./assets/once-CXj_gH7S.js">
+    <link rel="modulepreload" crossorigin href="./assets/capabilities-CjNGDxxx.js">
+    <link rel="modulepreload" crossorigin href="./assets/createReducer-3wF4dU7I.js">
+    <link rel="modulepreload" crossorigin href="./assets/paths-DhuNSnZ_.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-Dez1I5M9.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-B0WqBUnf.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CwfKvuyQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CNKFZCiw.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-ZjSH4Z6x.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-D-2yWcX9.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-DblYTes5.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-BtrqKtvn.js">
+    <link rel="modulepreload" crossorigin href="./assets/dist-CfGDksO-.js">
+    <link rel="modulepreload" crossorigin href="./assets/stex-0ac7Aukl.js">
+    <link rel="modulepreload" crossorigin href="./assets/toDate-DCE7d2fN.js">
+    <link rel="modulepreload" crossorigin href="./assets/purify.es-DfJp_of2.js">
+    <link rel="modulepreload" crossorigin href="./assets/cjs-DXo9vDEJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/isSymbol-BT6B8Bon.js">
+    <link rel="modulepreload" crossorigin href="./assets/now-CsYTPAhW.js">
+    <link rel="modulepreload" crossorigin href="./assets/debounce-OiXznToA.js">
+    <link rel="modulepreload" crossorigin href="./assets/database-zap-DIlSqcdp.js">
+    <link rel="modulepreload" crossorigin href="./assets/main-DmhaVp6Y.js">
+    <link rel="modulepreload" crossorigin href="./assets/cells-ChH37lAD.js">
+    <link rel="modulepreload" crossorigin href="./assets/kbd-UVzWBHfi.js">
+    <link rel="modulepreload" crossorigin href="./assets/useInstallPackage-C1Dd0aIZ.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-dialog-CC0gG4Av.js">
+    <link rel="modulepreload" crossorigin href="./assets/dialog-DkJmIrsG.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDebounce-CpLI2dsc.js">
+    <link rel="modulepreload" crossorigin href="./assets/numbers-_ry1Nlla.js">
+    <link rel="modulepreload" crossorigin href="./assets/SSRProvider-DX2edArU.js">
+    <link rel="modulepreload" crossorigin href="./assets/context-C2Ie4tn_.js">
+    <link rel="modulepreload" crossorigin href="./assets/useNumberFormatter-CuxZh3Bq.js">
+    <link rel="modulepreload" crossorigin href="./assets/usePress-BSFUeqnS.js">
+    <link rel="modulepreload" crossorigin href="./assets/input-DB2LiTiQ.js">
+    <link rel="modulepreload" crossorigin href="./assets/ImperativeModal-B62Q6S9l.js">
+    <link rel="modulepreload" crossorigin href="./assets/cell-link-BZg1pgHT.js">
+    <link rel="modulepreload" crossorigin href="./assets/config-CjCV0n0j.js">
+    <link rel="modulepreload" crossorigin href="./assets/alert-1y_DnRWn.js">
+    <link rel="modulepreload" crossorigin href="./assets/chevron-right-C7RH0Nc7.js">
+    <link rel="modulepreload" crossorigin href="./assets/dropdown-menu-DfGLyCbP.js">
+    <link rel="modulepreload" crossorigin href="./assets/links-CCkJpphF.js">
+    <link rel="modulepreload" crossorigin href="./assets/useRunCells-Dmf7GVGt.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-D8MtpXgN.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-IBNGDypD.js">
+    <link rel="modulepreload" crossorigin href="./assets/copy-icon-EHMT-qlr.js">
+    <link rel="modulepreload" crossorigin href="./assets/RenderHTML-DZz6EFTa.js">
+    <link rel="modulepreload" crossorigin href="./assets/datasource-ii4hOmhM.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-DIDUL4YY.js">
+    <link rel="modulepreload" crossorigin href="./assets/hat-glasses-DlK0E4SX.js">
+    <link rel="modulepreload" crossorigin href="./assets/package-BTIV9-Dk.js">
+    <link rel="modulepreload" crossorigin href="./assets/sparkles-COaEc8Qn.js">
+    <link rel="modulepreload" crossorigin href="./assets/MarimoErrorOutput-t_4q7nKD.js">
+    <link rel="modulepreload" crossorigin href="./assets/ErrorBoundary-Bo313Z9X.js">
+    <link rel="modulepreload" crossorigin href="./assets/eye-off-DI0EQXw0.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-cw-C9FftltI.js">
+    <link rel="modulepreload" crossorigin href="./assets/tree-actions-DONHntzY.js">
+    <link rel="modulepreload" crossorigin href="./assets/spinner-BbI9qk88.js">
+    <link rel="modulepreload" crossorigin href="./assets/html-to-image-B9XAiAY5.js">
+    <link rel="modulepreload" crossorigin href="./assets/focus-CeA7VBO7.js">
+    <link rel="modulepreload" crossorigin href="./assets/useAsyncData-DAQcLiyE.js">
+    <link rel="modulepreload" crossorigin href="./assets/LazyAnyLanguageCodeMirror-BSGwa0jm.js">
+    <link rel="modulepreload" crossorigin href="./assets/micromark-factory-space-BUQpMdx2.js">
+    <link rel="modulepreload" crossorigin href="./assets/chunk-5FQGJX7Z-OScactr4.js">
+    <link rel="modulepreload" crossorigin href="./assets/markdown-renderer-BxBgsCTf.js">
+    <link rel="modulepreload" crossorigin href="./assets/command-DRHbYHUP.js">
+    <link rel="modulepreload" crossorigin href="./assets/field-DlNY-dDH.js">
+    <link rel="modulepreload" crossorigin href="./assets/popover-DMNO6Poc.js">
+    <link rel="modulepreload" crossorigin href="./assets/errors-Bi-kjxOy.js">
+    <link rel="modulepreload" crossorigin href="./assets/download-BVqpOaYz.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-CnW850Wt.js">
+    <link rel="modulepreload" crossorigin href="./assets/useIframeCapabilities-B0dNZiKK.js">
+    <link rel="modulepreload" crossorigin href="./assets/error-banner-DEWyImqa.js">
+    <link rel="modulepreload" crossorigin href="./assets/formats-ZGU43GQU.js">
+    <link rel="modulepreload" crossorigin href="./assets/en-US-BXNio91F.js">
+    <link rel="modulepreload" crossorigin href="./assets/isValid-DKyiOp4U.js">
+    <link rel="modulepreload" crossorigin href="./assets/dates-D8uxHHPL.js">
+    <link rel="modulepreload" crossorigin href="./assets/extends-CeSFM22p.js">
+    <link rel="modulepreload" crossorigin href="./assets/emotion-is-prop-valid.esm-CK2zY6a8.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDateFormatter-CAlTJ8HV.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-icons.esm-DCqqMD4w.js">
+    <link rel="modulepreload" crossorigin href="./assets/RSPContexts-VzcTZjG1.js">
+    <link rel="modulepreload" crossorigin href="./assets/table-DxdydCSG.js">
+    <link rel="modulepreload" crossorigin href="./assets/ellipsis-D0iYysLh.js">
+    <link rel="modulepreload" crossorigin href="./assets/external-link-BktyywYg.js">
+    <link rel="modulepreload" crossorigin href="./assets/message-circle-RkIzfQEi.js">
+    <link rel="modulepreload" crossorigin href="./assets/plus-ZXRHY1up.js">
+    <link rel="modulepreload" crossorigin href="./assets/trash-2-CqTUwVuU.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-resizable-panels.browser.esm-Ce2ksurd.js">
+    <link rel="modulepreload" crossorigin href="./assets/JsonOutput-Cqq7S3wn.js">
+    <link rel="modulepreload" crossorigin href="./assets/chart-no-axes-column-DVEV2j1H.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-function-Dx0pKHko.js">
+    <link rel="modulepreload" crossorigin href="./assets/spec-CDgWI0fT.js">
+    <link rel="modulepreload" crossorigin href="./assets/column-preview-47aOuXOh.js">
+    <link rel="modulepreload" crossorigin href="./assets/icons-avFV3lBF.js">
+    <link rel="modulepreload" crossorigin href="./assets/radio-group-xSHDhdM7.js">
+    <link rel="modulepreload" crossorigin href="./assets/floating-outline-Dy8nXch3.js">
+    <link rel="modulepreload" crossorigin href="./assets/objectWithoutPropertiesLoose-BkUn3I0-.js">
+    <link rel="modulepreload" crossorigin href="./assets/esm-X3Tr2pur.js">
+    <link rel="modulepreload" crossorigin href="./assets/readonly-python-code-C12Tt_qR.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-headphone-CUN2DC78.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-BvoBtS_V.js">
+    <link rel="modulepreload" crossorigin href="./assets/image-BzUcK6ho.js">
+    <link rel="modulepreload" crossorigin href="./assets/file-icons-BSYRCaKq.js">
+    <link rel="modulepreload" crossorigin href="./assets/switch-DqXjpgoL.js">
+    <link rel="modulepreload" crossorigin href="./assets/events-XR_LpvHc.js">
+    <link rel="modulepreload" crossorigin href="./assets/globals-B2VpoaLA.js">
+    <link rel="modulepreload" crossorigin href="./assets/share-DQjChRJG.js">
+    <link rel="modulepreload" crossorigin href="./assets/blob-BiK5xmlC.js">
+    <link rel="modulepreload" crossorigin href="./assets/memoize-Tp7rARFe.js">
+    <link rel="modulepreload" crossorigin href="./assets/get-C-qh_et5.js">
+    <link rel="modulepreload" crossorigin href="./assets/_baseSet-CsW0tABf.js">
+    <link rel="modulepreload" crossorigin href="./assets/state-Csq9SFHN.js">
+    <link rel="modulepreload" crossorigin href="./assets/label-CFvCMYuj.js">
+    <link rel="modulepreload" crossorigin href="./assets/textarea-D_WnJbC1.js">
+    <link rel="modulepreload" crossorigin href="./assets/refresh-ccw-Bee7JLOl.js">
+    <link rel="modulepreload" crossorigin href="./assets/form-x2vXRBGq.js">
+    <link rel="modulepreload" crossorigin href="./assets/renderShortcut-DTZeni4V.js">
+    <link rel="modulepreload" crossorigin href="./assets/useBoolean-DmobZaim.js">
+    <link rel="modulepreload" crossorigin href="./assets/useDeepCompareMemoize-CWcgQCbT.js">
+    <link rel="modulepreload" crossorigin href="./assets/types-BnrgJ4Gh.js">
+    <link rel="modulepreload" crossorigin href="./assets/semaphore-X3ApuO41.js">
+    <link rel="modulepreload" crossorigin href="./assets/fileToBase64-BSOFR3RV.js">
+    <link rel="modulepreload" crossorigin href="./assets/pathUtils-BXCjaLHB.js">
+    <link rel="modulepreload" crossorigin href="./assets/prop-types-B6Y2e__V.js">
+    <link rel="modulepreload" crossorigin href="./assets/es-EItoYvXh.js">
+    <link rel="modulepreload" crossorigin href="./assets/_hasPath-hMc_3QZy.js">
+    <link rel="modulepreload" crossorigin href="./assets/hasIn-CSsM95b1.js">
+    <link rel="modulepreload" crossorigin href="./assets/flatten-Bd5tsfm_.js">
+    <link rel="modulepreload" crossorigin href="./assets/pick-D1xb4gl6.js">
+    <link rel="modulepreload" crossorigin href="./assets/code-xml-tqeFGeKJ.js">
+    <link rel="modulepreload" crossorigin href="./assets/house-DHu4JLi3.js">
+    <link rel="modulepreload" crossorigin href="./assets/square-35tXIgiR.js">
+    <link rel="modulepreload" crossorigin href="./assets/triangle-alert-D8Ft17xk.js">
+    <link rel="modulepreload" crossorigin href="./assets/bundle.esm-D544r2Sr.js">
+    <link rel="stylesheet" crossorigin href="./assets/cells-BVzo2MHf.css">
+    <link rel="stylesheet" crossorigin href="./assets/markdown-renderer-DdDKmWlR.css">
+    <link rel="stylesheet" crossorigin href="./assets/JsonOutput-BQtz7-np.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DZAttTAm.css">
+  <marimo-wasm hidden=""></marimo-wasm>
+    <script>
+        if (window.location.protocol === 'file:') {
+            alert('Warning: This file must be served by an HTTP server to function correctly.');
+        }
+    </script>
+    
+    <style>
+        #save-button {
+            display: none !important;
+        }
+        #filename-input {
+            display: none !important;
+        }
+    </style>
+    
+<script data-marimo="true">
+    Object.defineProperty(window, "__MARIMO_EXPORT_CONTEXT__", {
+        value: Object.freeze({
+            trusted: true,
+            notebookCode: "# /// script\n# requires-python = \"\u003E=3.12\"\n# dependencies = [\n#     \"marimo\",\n#     \"plotly\u003E=5.18.0\",\n#     \"pandas\u003E=2.0.0\",\n#     \"numpy\u003E=1.24.0\",\n# ]\n# ///\n\"\"\"\nDemarest Deer Population \u2014 Interactive Explorer\n\nSystem dynamics model with inline Euler integration.\n2 stocks, 5 flows, 6 parameters, 1 computed variables.\n\nNo PySD required \u2014 runs in WASM/Pyodide.\n\"\"\"\n\nimport marimo\n\n__generated_with = \"0.23.14\"\napp = marimo.App(width=\"medium\")\n\n\n@app.cell\ndef imports():\n    import marimo as mo\n    import plotly.graph_objects as go\n    import pandas as pd\n    import numpy as np\n\n    return go, mo, pd\n\n\n@app.cell\ndef run_simulation(\n    browsing_coefficient,\n    final_time,\n    initial_deer_population,\n    max_birth_rate,\n    natural_death_rate,\n    pd,\n    regrowth_rate,\n    removal_rate,\n    time_step,\n):\n    # Initial stock values\n    deer_population = initial_deer_population.value\n    vegetation_quality = 10.0\n    vegetation_fraction = 0  # Will be computed in loop\n\n    rows = []\n    t = 0.0\n    dt = time_step.value\n    t_end = final_time.value\n\n    while t \u003C= t_end + dt / 2:\n        # Flows and computed variables (dependency order)\n        deer_deaths = (deer_population * natural_death_rate.value)\n        managed_removal = (deer_population * removal_rate.value)\n        vegetation_regrowth = (regrowth_rate.value * (100 - vegetation_quality))\n        vegetation_fraction = (vegetation_quality / 100)\n        deer_births = (deer_population * max_birth_rate.value * vegetation_fraction)\n        browsing_loss = (deer_population * browsing_coefficient.value * vegetation_fraction)\n\n        rows.append(\n            {\n                \"time\": t,\n                \"deer_population\": deer_population,\n                \"vegetation_quality\": vegetation_quality,\n                \"deer_births\": deer_births,\n                \"deer_deaths\": deer_deaths,\n                \"managed_removal\": managed_removal,\n                \"vegetation_regrowth\": vegetation_regrowth,\n                \"browsing_loss\": browsing_loss,\n                \"vegetation_fraction\": vegetation_fraction,\n            }\n        )\n\n        # Euler integration\n        deer_population += dt * (deer_births - deer_deaths - managed_removal)\n        deer_population = max(deer_population, 0)\n        vegetation_quality += dt * (vegetation_regrowth - browsing_loss)\n        vegetation_quality = max(vegetation_quality, 0)\n        t += dt\n\n    results = pd.DataFrame(rows).set_index(\"time\")\n    return (results,)\n\n\n@app.cell\ndef header(mo):\n    mo.md(\"\"\"\n    # Demarest Deer Population \u2014 Interactive Explorer\n\n    **Stocks:** 2 | **Flows:** 5 | **Parameters:** 6 | **Computed:** 1\n\n    Adjust the sliders below to change parameters and see how the model responds in real time.\n    \"\"\")\n    return\n\n\n@app.cell\ndef time_controls(mo):\n    final_time = mo.ui.number(\n        value=100, start=1, stop=1000, step=1, label=\"Final Time\"\n    )\n    time_step = mo.ui.number(\n        value=1, start=0.1, stop=5.0, step=0.1, label=\"Time Step\"\n    )\n    mo.hstack([final_time, time_step], justify=\"start\", gap=1)\n    return final_time, time_step\n\n\n@app.cell\ndef parameter_controls(mo):\n    initial_deer_population = mo.ui.slider(\n        value=30.0, start=0.0, stop=200.0, step=2.0,\n        label=\"Initial Deer Population (deer)\",\n    )\n    max_birth_rate = mo.ui.slider(\n        value=0.45, start=0.0, stop=4.5, step=0.045,\n        label=\"Max Birth Rate (1/year)\",\n    )\n    natural_death_rate = mo.ui.slider(\n        value=0.2, start=0.0, stop=2.0, step=0.02,\n        label=\"Natural Death Rate (1/year)\",\n    )\n    removal_rate = mo.ui.slider(\n        value=0.0, start=0.0, stop=1.0, step=0.01,\n        label=\"Removal Rate (1/year)\",\n    )\n    regrowth_rate = mo.ui.slider(\n        value=0.25, start=0.0, stop=2.5, step=0.025,\n        label=\"Regrowth Rate (1/year)\",\n    )\n    browsing_coefficient = mo.ui.slider(\n        value=5.5, start=0.0, stop=27.5, step=0.275,\n        label=\"Browsing Coefficient (index/deer/year)\",\n    )\n    mo.vstack(\n        [\n        initial_deer_population,\n        max_birth_rate,\n        natural_death_rate,\n        removal_rate,\n        regrowth_rate,\n        browsing_coefficient,\n        ]\n    )\n    return (\n        browsing_coefficient,\n        initial_deer_population,\n        max_birth_rate,\n        natural_death_rate,\n        regrowth_rate,\n        removal_rate,\n    )\n\n\n@app.cell\ndef chart_controls(mo):\n    stock_selector = mo.ui.multiselect(\n        options={\"Deer Population (deer)\": \"deer_population\", \"Vegetation Quality (index (0-100))\": \"vegetation_quality\"},\n        value=[\"Deer Population (deer)\", \"Vegetation Quality (index (0-100))\"],\n        label=\"Stock variables\",\n    )\n    flow_selector = mo.ui.multiselect(\n        options={\"Deer Births (deer/year)\": \"deer_births\", \"Deer Deaths (deer/year)\": \"deer_deaths\", \"Managed Removal (deer/year)\": \"managed_removal\", \"Vegetation Regrowth (index/year)\": \"vegetation_regrowth\", \"Browsing Loss (index/year)\": \"browsing_loss\"},\n        value=[\"Deer Births (deer/year)\", \"Deer Deaths (deer/year)\", \"Managed Removal (deer/year)\", \"Vegetation Regrowth (index/year)\", \"Browsing Loss (index/year)\"],\n        label=\"Flow variables\",\n    )\n    aux_selector = mo.ui.multiselect(\n        options={\"Vegetation Fraction (dimensionless)\": \"vegetation_fraction\"},\n        value=[\"Vegetation Fraction (dimensionless)\"],\n        label=\"Auxiliary variables\",\n    )\n    return aux_selector, flow_selector, stock_selector\n\n\n@app.cell\ndef tabbed_content(\n    aux_selector,\n    flow_selector,\n    go,\n    mo,\n    results,\n    stock_selector,\n):\n    # --- Analysis tab ---\n    analysis_content = mo.vstack([\n            mo.md(\"\"\"\n    # Could the Deer Eat Themselves Out of a Home?\n\n    Demarest Nature Center's 55 acres show an estimated 25-30 deer, ~135 deer/km2 \u2014 about fifteen times the density at which forest understory regeneration is possible. The result: a bare woodland floor, elevated Lyme disease risk in surrounding Bergen County, collapse of pollinator floral resources, and increased deer-vehicle collisions.\n\n    ## Three Feedback Loops\n\n    **R1 \u2014 Population Growth (Reinforcing).** Deer produce fawns, fawns become adults, more fawns follow. Unchecked without predators (`Deer_Population` -\u003E `Deer_Births` -\u003E `Deer_Population`).\n\n    **B1 \u2014 Vegetation Depletion (Balancing, weak).** More deer means more browsing, less vegetation, and lower birth rates (via `Vegetation_Fraction`), which means slightly fewer deer. This is the only natural brake, and it is too weak on its own since deer supplement their diet from surrounding gardens and lawns.\n\n    **B2 \u2014 Management Response (Balancing, strong).** An aggressive removal program (`Removal_Rate` -\u003E `Managed_Removal`) reduces deer, reduces browsing, and lets vegetation recover. This is the only lever strong enough to restore the ecosystem within a human timescale.\n\n    ## Scenario Summary\n\n    **No management** (`Removal_Rate = 0`): the herd declines slowly toward a degraded equilibrium (roughly 6 deer from a starting population of 30) over 20-30 years. Vegetation plateaus around 40-43% and never reaches the 70% recovery threshold.\n\n    **Active management** (`Removal_Rate` around 0.6, an aggressive professional removal program taking out roughly 50-60% of the herd per year): the population falls through the sustainable target within 3-4 years, and vegetation crosses the 70% recovery threshold around year 7.\n\n    ## How to Explore the Two Scenarios\n\n    Set `Removal_Rate` to 0 for the no-management case, or to about 0.6 for active management, and compare the two runs. `Initial_Deer_Population` sets the starting herd size (30 matches the Demarest field count, but try other values to see how starting density changes the outcome). `Max_Birth_Rate` and `Natural_Death_Rate` control how fast R1 and natural attrition operate; `Regrowth_Rate` and `Browsing_Coefficient` control how fast B1 acts by governing how quickly vegetation recovers versus how much damage each deer does at a given vegetation level.\n\n    ## Key Parameters\n\n    | Parameter | Value | Source |\n    |---|---|---|\n    | Max birth rate | 0.45/yr | No predators; 1.5 fawns/doe, 50% sex ratio, 60% fawn survival |\n    | Natural death rate | 0.20/yr | Suburban literature |\n    | Sustainable density | 9 deer/km2 | Understory regeneration threshold (~2 deer for 55 acres) |\n    | Vegetation regrowth rate | 0.25/yr | Applied to (100 - Vegetation Quality) |\n    | Browsing coefficient | 5.5 | Vegetation loss per deer at full browsing pressure |\n    \"\"\"),\n    ])\n\n    # --- Model Structure tab ---\n    mermaid_diagram = mo.vstack([\n        mo.md(\"## Model Structure\"),\n        mo.Html(\"\"\"\n            \u003Cstyle\u003E\n                .mermaid-container {\n                    width: 100%;\n                    max-height: 70vh;\n                    overflow: auto;\n                }\n                .mermaid-container svg {\n                    min-width: 900px !important;\n                    height: auto !important;\n                }\n            \u003C/style\u003E\n        \"\"\"),\n        mo.Html(\"\u003Cdiv class='mermaid-container'\u003E\"),\n        mo.mermaid(\n            \"\"\"\n    graph LR\n        classDef stock fill:#4a90d9,stroke:#2c5f8a,color:white,stroke-width:3px\n        classDef flow fill:#e8a838,stroke:#b8842c,color:white,stroke-width:2px\n        classDef constant fill:#7bc67e,stroke:#5a9d5c,color:white\n        classDef computed fill:#c084fc,stroke:#9333ea,color:white\n\n        deer_population[\"Deer Population\"]:::stock\n        vegetation_quality[\"Vegetation Quality\"]:::stock\n        deer_births([\"Deer Births\"]):::flow\n        deer_deaths([\"Deer Deaths\"]):::flow\n        managed_removal([\"Managed Removal\"]):::flow\n        vegetation_regrowth([\"Vegetation Regrowth\"]):::flow\n        browsing_loss([\"Browsing Loss\"]):::flow\n        initial_deer_population{{\"Initial Deer Population = 30.0\"}}:::constant\n        max_birth_rate{{\"Max Birth Rate = 0.45\"}}:::constant\n        natural_death_rate{{\"Natural Death Rate = 0.2\"}}:::constant\n        removal_rate{{\"Removal Rate = 0.0\"}}:::constant\n        regrowth_rate{{\"Regrowth Rate = 0.25\"}}:::constant\n        browsing_coefficient{{\"Browsing Coefficient = 5.5\"}}:::constant\n        vegetation_fraction[/\"Vegetation Fraction\"/]:::computed\n\n        deer_births ==\u003E|\"+\"| deer_population\n        deer_population ==\u003E|\"-\"| deer_deaths\n        deer_population ==\u003E|\"-\"| managed_removal\n        vegetation_regrowth ==\u003E|\"+\"| vegetation_quality\n        vegetation_quality ==\u003E|\"-\"| browsing_loss\n\n        max_birth_rate -.-\u003E deer_births\n        vegetation_fraction -.-\u003E deer_births\n        natural_death_rate -.-\u003E deer_deaths\n        removal_rate -.-\u003E managed_removal\n        regrowth_rate -.-\u003E vegetation_regrowth\n        deer_population -.-\u003E browsing_loss\n        browsing_coefficient -.-\u003E browsing_loss\n        vegetation_fraction -.-\u003E browsing_loss\n        vegetation_quality -.-\u003E vegetation_fraction\n        \"\"\"\n        ),\n        mo.Html(\"\u003C/div\u003E\"),\n        mo.md(\"*Boxes: stocks | Rounded: flows | Hexagons: parameters | Slanted: computed*\"),\n    ])\n\n    # --- Simulation tab ---\n    _stock_labels = {'deer_population': 'Deer Population (deer)', 'vegetation_quality': 'Vegetation Quality (index (0-100))'}\n    fig_stocks = go.Figure()\n    for _key in stock_selector.value:\n        fig_stocks.add_trace(go.Scatter(x=results.index, y=results[_key], mode=\"lines\", name=_stock_labels.get(_key, _key)))\n    fig_stocks.update_layout(title=\"Stock Variables Over Time\", xaxis_title=\"Time\", yaxis_title=\"Value\", template=\"plotly_white\")\n\n    _flow_labels = {'deer_births': 'Deer Births (deer/year)', 'deer_deaths': 'Deer Deaths (deer/year)', 'managed_removal': 'Managed Removal (deer/year)', 'vegetation_regrowth': 'Vegetation Regrowth (index/year)', 'browsing_loss': 'Browsing Loss (index/year)'}\n    fig_flows = go.Figure()\n    for _key in flow_selector.value:\n        fig_flows.add_trace(go.Scatter(x=results.index, y=results[_key], mode=\"lines\", name=_flow_labels.get(_key, _key)))\n    fig_flows.update_layout(title=\"Flow Variables Over Time\", xaxis_title=\"Time\", yaxis_title=\"Rate\", template=\"plotly_white\")\n\n    _aux_labels = {'vegetation_fraction': 'Vegetation Fraction (dimensionless)'}\n    fig_aux = go.Figure()\n    for _key in aux_selector.value:\n        fig_aux.add_trace(go.Scatter(x=results.index, y=results[_key], mode=\"lines\", name=_aux_labels.get(_key, _key)))\n    fig_aux.update_layout(title=\"Computed Auxiliary Variables Over Time\", xaxis_title=\"Time\", yaxis_title=\"Value\", template=\"plotly_white\")\n\n    simulation_content = mo.vstack([\n        stock_selector,\n        mo.ui.plotly(fig_stocks),\n        flow_selector,\n        mo.ui.plotly(fig_flows),\n        aux_selector,\n        mo.ui.plotly(fig_aux),\n        mo.ui.table(results.reset_index().rename(columns={\"time\": \"Time\"})),\n    ])\n\n    mo.ui.tabs({\n        \"Simulation\": simulation_content,\n        \"Analysis\": analysis_content,\n        \"Model Structure\": mermaid_diagram,\n    })\n    return\n\n\nif __name__ == \"__main__\":\n    app.run()\n",
+        }),
+        writable: false,
+        configurable: false,
+    });
+</script>
+<marimo-code hidden="">%23%20%2F%2F%2F%20script%0A%23%20requires-python%20%3D%20%22%3E%3D3.12%22%0A%23%20dependencies%20%3D%20%5B%0A%23%20%20%20%20%20%22marimo%22%2C%0A%23%20%20%20%20%20%22plotly%3E%3D5.18.0%22%2C%0A%23%20%20%20%20%20%22pandas%3E%3D2.0.0%22%2C%0A%23%20%20%20%20%20%22numpy%3E%3D1.24.0%22%2C%0A%23%20%5D%0A%23%20%2F%2F%2F%0A%22%22%22%0ADemarest%20Deer%20Population%20%E2%80%94%20Interactive%20Explorer%0A%0ASystem%20dynamics%20model%20with%20inline%20Euler%20integration.%0A2%20stocks%2C%205%20flows%2C%206%20parameters%2C%201%20computed%20variables.%0A%0ANo%20PySD%20required%20%E2%80%94%20runs%20in%20WASM%2FPyodide.%0A%22%22%22%0A%0Aimport%20marimo%0A%0A__generated_with%20%3D%20%220.23.14%22%0Aapp%20%3D%20marimo.App(width%3D%22medium%22)%0A%0A%0A%40app.cell%0Adef%20imports()%3A%0A%20%20%20%20import%20marimo%20as%20mo%0A%20%20%20%20import%20plotly.graph_objects%20as%20go%0A%20%20%20%20import%20pandas%20as%20pd%0A%20%20%20%20import%20numpy%20as%20np%0A%0A%20%20%20%20return%20go%2C%20mo%2C%20pd%0A%0A%0A%40app.cell%0Adef%20run_simulation(%0A%20%20%20%20browsing_coefficient%2C%0A%20%20%20%20final_time%2C%0A%20%20%20%20initial_deer_population%2C%0A%20%20%20%20max_birth_rate%2C%0A%20%20%20%20natural_death_rate%2C%0A%20%20%20%20pd%2C%0A%20%20%20%20regrowth_rate%2C%0A%20%20%20%20removal_rate%2C%0A%20%20%20%20time_step%2C%0A)%3A%0A%20%20%20%20%23%20Initial%20stock%20values%0A%20%20%20%20deer_population%20%3D%20initial_deer_population.value%0A%20%20%20%20vegetation_quality%20%3D%2010.0%0A%20%20%20%20vegetation_fraction%20%3D%200%20%20%23%20Will%20be%20computed%20in%20loop%0A%0A%20%20%20%20rows%20%3D%20%5B%5D%0A%20%20%20%20t%20%3D%200.0%0A%20%20%20%20dt%20%3D%20time_step.value%0A%20%20%20%20t_end%20%3D%20final_time.value%0A%0A%20%20%20%20while%20t%20%3C%3D%20t_end%20%2B%20dt%20%2F%202%3A%0A%20%20%20%20%20%20%20%20%23%20Flows%20and%20computed%20variables%20(dependency%20order)%0A%20%20%20%20%20%20%20%20deer_deaths%20%3D%20(deer_population%20*%20natural_death_rate.value)%0A%20%20%20%20%20%20%20%20managed_removal%20%3D%20(deer_population%20*%20removal_rate.value)%0A%20%20%20%20%20%20%20%20vegetation_regrowth%20%3D%20(regrowth_rate.value%20*%20(100%20-%20vegetation_quality))%0A%20%20%20%20%20%20%20%20vegetation_fraction%20%3D%20(vegetation_quality%20%2F%20100)%0A%20%20%20%20%20%20%20%20deer_births%20%3D%20(deer_population%20*%20max_birth_rate.value%20*%20vegetation_fraction)%0A%20%20%20%20%20%20%20%20browsing_loss%20%3D%20(deer_population%20*%20browsing_coefficient.value%20*%20vegetation_fraction)%0A%0A%20%20%20%20%20%20%20%20rows.append(%0A%20%20%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22time%22%3A%20t%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22deer_population%22%3A%20deer_population%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22vegetation_quality%22%3A%20vegetation_quality%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22deer_births%22%3A%20deer_births%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22deer_deaths%22%3A%20deer_deaths%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22managed_removal%22%3A%20managed_removal%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22vegetation_regrowth%22%3A%20vegetation_regrowth%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22browsing_loss%22%3A%20browsing_loss%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22vegetation_fraction%22%3A%20vegetation_fraction%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20)%0A%0A%20%20%20%20%20%20%20%20%23%20Euler%20integration%0A%20%20%20%20%20%20%20%20deer_population%20%2B%3D%20dt%20*%20(deer_births%20-%20deer_deaths%20-%20managed_removal)%0A%20%20%20%20%20%20%20%20deer_population%20%3D%20max(deer_population%2C%200)%0A%20%20%20%20%20%20%20%20vegetation_quality%20%2B%3D%20dt%20*%20(vegetation_regrowth%20-%20browsing_loss)%0A%20%20%20%20%20%20%20%20vegetation_quality%20%3D%20max(vegetation_quality%2C%200)%0A%20%20%20%20%20%20%20%20t%20%2B%3D%20dt%0A%0A%20%20%20%20results%20%3D%20pd.DataFrame(rows).set_index(%22time%22)%0A%20%20%20%20return%20(results%2C)%0A%0A%0A%40app.cell%0Adef%20header(mo)%3A%0A%20%20%20%20mo.md(%22%22%22%0A%20%20%20%20%23%20Demarest%20Deer%20Population%20%E2%80%94%20Interactive%20Explorer%0A%0A%20%20%20%20**Stocks%3A**%202%20%7C%20**Flows%3A**%205%20%7C%20**Parameters%3A**%206%20%7C%20**Computed%3A**%201%0A%0A%20%20%20%20Adjust%20the%20sliders%20below%20to%20change%20parameters%20and%20see%20how%20the%20model%20responds%20in%20real%20time.%0A%20%20%20%20%22%22%22)%0A%20%20%20%20return%0A%0A%0A%40app.cell%0Adef%20time_controls(mo)%3A%0A%20%20%20%20final_time%20%3D%20mo.ui.number(%0A%20%20%20%20%20%20%20%20value%3D100%2C%20start%3D1%2C%20stop%3D1000%2C%20step%3D1%2C%20label%3D%22Final%20Time%22%0A%20%20%20%20)%0A%20%20%20%20time_step%20%3D%20mo.ui.number(%0A%20%20%20%20%20%20%20%20value%3D1%2C%20start%3D0.1%2C%20stop%3D5.0%2C%20step%3D0.1%2C%20label%3D%22Time%20Step%22%0A%20%20%20%20)%0A%20%20%20%20mo.hstack(%5Bfinal_time%2C%20time_step%5D%2C%20justify%3D%22start%22%2C%20gap%3D1)%0A%20%20%20%20return%20final_time%2C%20time_step%0A%0A%0A%40app.cell%0Adef%20parameter_controls(mo)%3A%0A%20%20%20%20initial_deer_population%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20value%3D30.0%2C%20start%3D0.0%2C%20stop%3D200.0%2C%20step%3D2.0%2C%0A%20%20%20%20%20%20%20%20label%3D%22Initial%20Deer%20Population%20(deer)%22%2C%0A%20%20%20%20)%0A%20%20%20%20max_birth_rate%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20value%3D0.45%2C%20start%3D0.0%2C%20stop%3D4.5%2C%20step%3D0.045%2C%0A%20%20%20%20%20%20%20%20label%3D%22Max%20Birth%20Rate%20(1%2Fyear)%22%2C%0A%20%20%20%20)%0A%20%20%20%20natural_death_rate%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20value%3D0.2%2C%20start%3D0.0%2C%20stop%3D2.0%2C%20step%3D0.02%2C%0A%20%20%20%20%20%20%20%20label%3D%22Natural%20Death%20Rate%20(1%2Fyear)%22%2C%0A%20%20%20%20)%0A%20%20%20%20removal_rate%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20value%3D0.0%2C%20start%3D0.0%2C%20stop%3D1.0%2C%20step%3D0.01%2C%0A%20%20%20%20%20%20%20%20label%3D%22Removal%20Rate%20(1%2Fyear)%22%2C%0A%20%20%20%20)%0A%20%20%20%20regrowth_rate%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20value%3D0.25%2C%20start%3D0.0%2C%20stop%3D2.5%2C%20step%3D0.025%2C%0A%20%20%20%20%20%20%20%20label%3D%22Regrowth%20Rate%20(1%2Fyear)%22%2C%0A%20%20%20%20)%0A%20%20%20%20browsing_coefficient%20%3D%20mo.ui.slider(%0A%20%20%20%20%20%20%20%20value%3D5.5%2C%20start%3D0.0%2C%20stop%3D27.5%2C%20step%3D0.275%2C%0A%20%20%20%20%20%20%20%20label%3D%22Browsing%20Coefficient%20(index%2Fdeer%2Fyear)%22%2C%0A%20%20%20%20)%0A%20%20%20%20mo.vstack(%0A%20%20%20%20%20%20%20%20%5B%0A%20%20%20%20%20%20%20%20initial_deer_population%2C%0A%20%20%20%20%20%20%20%20max_birth_rate%2C%0A%20%20%20%20%20%20%20%20natural_death_rate%2C%0A%20%20%20%20%20%20%20%20removal_rate%2C%0A%20%20%20%20%20%20%20%20regrowth_rate%2C%0A%20%20%20%20%20%20%20%20browsing_coefficient%2C%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20)%0A%20%20%20%20return%20(%0A%20%20%20%20%20%20%20%20browsing_coefficient%2C%0A%20%20%20%20%20%20%20%20initial_deer_population%2C%0A%20%20%20%20%20%20%20%20max_birth_rate%2C%0A%20%20%20%20%20%20%20%20natural_death_rate%2C%0A%20%20%20%20%20%20%20%20regrowth_rate%2C%0A%20%20%20%20%20%20%20%20removal_rate%2C%0A%20%20%20%20)%0A%0A%0A%40app.cell%0Adef%20chart_controls(mo)%3A%0A%20%20%20%20stock_selector%20%3D%20mo.ui.multiselect(%0A%20%20%20%20%20%20%20%20options%3D%7B%22Deer%20Population%20(deer)%22%3A%20%22deer_population%22%2C%20%22Vegetation%20Quality%20(index%20(0-100))%22%3A%20%22vegetation_quality%22%7D%2C%0A%20%20%20%20%20%20%20%20value%3D%5B%22Deer%20Population%20(deer)%22%2C%20%22Vegetation%20Quality%20(index%20(0-100))%22%5D%2C%0A%20%20%20%20%20%20%20%20label%3D%22Stock%20variables%22%2C%0A%20%20%20%20)%0A%20%20%20%20flow_selector%20%3D%20mo.ui.multiselect(%0A%20%20%20%20%20%20%20%20options%3D%7B%22Deer%20Births%20(deer%2Fyear)%22%3A%20%22deer_births%22%2C%20%22Deer%20Deaths%20(deer%2Fyear)%22%3A%20%22deer_deaths%22%2C%20%22Managed%20Removal%20(deer%2Fyear)%22%3A%20%22managed_removal%22%2C%20%22Vegetation%20Regrowth%20(index%2Fyear)%22%3A%20%22vegetation_regrowth%22%2C%20%22Browsing%20Loss%20(index%2Fyear)%22%3A%20%22browsing_loss%22%7D%2C%0A%20%20%20%20%20%20%20%20value%3D%5B%22Deer%20Births%20(deer%2Fyear)%22%2C%20%22Deer%20Deaths%20(deer%2Fyear)%22%2C%20%22Managed%20Removal%20(deer%2Fyear)%22%2C%20%22Vegetation%20Regrowth%20(index%2Fyear)%22%2C%20%22Browsing%20Loss%20(index%2Fyear)%22%5D%2C%0A%20%20%20%20%20%20%20%20label%3D%22Flow%20variables%22%2C%0A%20%20%20%20)%0A%20%20%20%20aux_selector%20%3D%20mo.ui.multiselect(%0A%20%20%20%20%20%20%20%20options%3D%7B%22Vegetation%20Fraction%20(dimensionless)%22%3A%20%22vegetation_fraction%22%7D%2C%0A%20%20%20%20%20%20%20%20value%3D%5B%22Vegetation%20Fraction%20(dimensionless)%22%5D%2C%0A%20%20%20%20%20%20%20%20label%3D%22Auxiliary%20variables%22%2C%0A%20%20%20%20)%0A%20%20%20%20return%20aux_selector%2C%20flow_selector%2C%20stock_selector%0A%0A%0A%40app.cell%0Adef%20tabbed_content(%0A%20%20%20%20aux_selector%2C%0A%20%20%20%20flow_selector%2C%0A%20%20%20%20go%2C%0A%20%20%20%20mo%2C%0A%20%20%20%20results%2C%0A%20%20%20%20stock_selector%2C%0A)%3A%0A%20%20%20%20%23%20---%20Analysis%20tab%20---%0A%20%20%20%20analysis_content%20%3D%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20mo.md(%22%22%22%0A%20%20%20%20%23%20Could%20the%20Deer%20Eat%20Themselves%20Out%20of%20a%20Home%3F%0A%0A%20%20%20%20Demarest%20Nature%20Center's%2055%20acres%20show%20an%20estimated%2025-30%20deer%2C%20~135%20deer%2Fkm2%20%E2%80%94%20about%20fifteen%20times%20the%20density%20at%20which%20forest%20understory%20regeneration%20is%20possible.%20The%20result%3A%20a%20bare%20woodland%20floor%2C%20elevated%20Lyme%20disease%20risk%20in%20surrounding%20Bergen%20County%2C%20collapse%20of%20pollinator%20floral%20resources%2C%20and%20increased%20deer-vehicle%20collisions.%0A%0A%20%20%20%20%23%23%20Three%20Feedback%20Loops%0A%0A%20%20%20%20**R1%20%E2%80%94%20Population%20Growth%20(Reinforcing).**%20Deer%20produce%20fawns%2C%20fawns%20become%20adults%2C%20more%20fawns%20follow.%20Unchecked%20without%20predators%20(%60Deer_Population%60%20-%3E%20%60Deer_Births%60%20-%3E%20%60Deer_Population%60).%0A%0A%20%20%20%20**B1%20%E2%80%94%20Vegetation%20Depletion%20(Balancing%2C%20weak).**%20More%20deer%20means%20more%20browsing%2C%20less%20vegetation%2C%20and%20lower%20birth%20rates%20(via%20%60Vegetation_Fraction%60)%2C%20which%20means%20slightly%20fewer%20deer.%20This%20is%20the%20only%20natural%20brake%2C%20and%20it%20is%20too%20weak%20on%20its%20own%20since%20deer%20supplement%20their%20diet%20from%20surrounding%20gardens%20and%20lawns.%0A%0A%20%20%20%20**B2%20%E2%80%94%20Management%20Response%20(Balancing%2C%20strong).**%20An%20aggressive%20removal%20program%20(%60Removal_Rate%60%20-%3E%20%60Managed_Removal%60)%20reduces%20deer%2C%20reduces%20browsing%2C%20and%20lets%20vegetation%20recover.%20This%20is%20the%20only%20lever%20strong%20enough%20to%20restore%20the%20ecosystem%20within%20a%20human%20timescale.%0A%0A%20%20%20%20%23%23%20Scenario%20Summary%0A%0A%20%20%20%20**No%20management**%20(%60Removal_Rate%20%3D%200%60)%3A%20the%20herd%20declines%20slowly%20toward%20a%20degraded%20equilibrium%20(roughly%206%20deer%20from%20a%20starting%20population%20of%2030)%20over%2020-30%20years.%20Vegetation%20plateaus%20around%2040-43%25%20and%20never%20reaches%20the%2070%25%20recovery%20threshold.%0A%0A%20%20%20%20**Active%20management**%20(%60Removal_Rate%60%20around%200.6%2C%20an%20aggressive%20professional%20removal%20program%20taking%20out%20roughly%2050-60%25%20of%20the%20herd%20per%20year)%3A%20the%20population%20falls%20through%20the%20sustainable%20target%20within%203-4%20years%2C%20and%20vegetation%20crosses%20the%2070%25%20recovery%20threshold%20around%20year%207.%0A%0A%20%20%20%20%23%23%20How%20to%20Explore%20the%20Two%20Scenarios%0A%0A%20%20%20%20Set%20%60Removal_Rate%60%20to%200%20for%20the%20no-management%20case%2C%20or%20to%20about%200.6%20for%20active%20management%2C%20and%20compare%20the%20two%20runs.%20%60Initial_Deer_Population%60%20sets%20the%20starting%20herd%20size%20(30%20matches%20the%20Demarest%20field%20count%2C%20but%20try%20other%20values%20to%20see%20how%20starting%20density%20changes%20the%20outcome).%20%60Max_Birth_Rate%60%20and%20%60Natural_Death_Rate%60%20control%20how%20fast%20R1%20and%20natural%20attrition%20operate%3B%20%60Regrowth_Rate%60%20and%20%60Browsing_Coefficient%60%20control%20how%20fast%20B1%20acts%20by%20governing%20how%20quickly%20vegetation%20recovers%20versus%20how%20much%20damage%20each%20deer%20does%20at%20a%20given%20vegetation%20level.%0A%0A%20%20%20%20%23%23%20Key%20Parameters%0A%0A%20%20%20%20%7C%20Parameter%20%7C%20Value%20%7C%20Source%20%7C%0A%20%20%20%20%7C---%7C---%7C---%7C%0A%20%20%20%20%7C%20Max%20birth%20rate%20%7C%200.45%2Fyr%20%7C%20No%20predators%3B%201.5%20fawns%2Fdoe%2C%2050%25%20sex%20ratio%2C%2060%25%20fawn%20survival%20%7C%0A%20%20%20%20%7C%20Natural%20death%20rate%20%7C%200.20%2Fyr%20%7C%20Suburban%20literature%20%7C%0A%20%20%20%20%7C%20Sustainable%20density%20%7C%209%20deer%2Fkm2%20%7C%20Understory%20regeneration%20threshold%20(~2%20deer%20for%2055%20acres)%20%7C%0A%20%20%20%20%7C%20Vegetation%20regrowth%20rate%20%7C%200.25%2Fyr%20%7C%20Applied%20to%20(100%20-%20Vegetation%20Quality)%20%7C%0A%20%20%20%20%7C%20Browsing%20coefficient%20%7C%205.5%20%7C%20Vegetation%20loss%20per%20deer%20at%20full%20browsing%20pressure%20%7C%0A%20%20%20%20%22%22%22)%2C%0A%20%20%20%20%5D)%0A%0A%20%20%20%20%23%20---%20Model%20Structure%20tab%20---%0A%20%20%20%20mermaid_diagram%20%3D%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20mo.md(%22%23%23%20Model%20Structure%22)%2C%0A%20%20%20%20%20%20%20%20mo.Html(%22%22%22%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.mermaid-container%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20max-height%3A%2070vh%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20overflow%3A%20auto%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.mermaid-container%20svg%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20min-width%3A%20900px%20!important%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20auto%20!important%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fstyle%3E%0A%20%20%20%20%20%20%20%20%22%22%22)%2C%0A%20%20%20%20%20%20%20%20mo.Html(%22%3Cdiv%20class%3D'mermaid-container'%3E%22)%2C%0A%20%20%20%20%20%20%20%20mo.mermaid(%0A%20%20%20%20%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20graph%20LR%0A%20%20%20%20%20%20%20%20classDef%20stock%20fill%3A%234a90d9%2Cstroke%3A%232c5f8a%2Ccolor%3Awhite%2Cstroke-width%3A3px%0A%20%20%20%20%20%20%20%20classDef%20flow%20fill%3A%23e8a838%2Cstroke%3A%23b8842c%2Ccolor%3Awhite%2Cstroke-width%3A2px%0A%20%20%20%20%20%20%20%20classDef%20constant%20fill%3A%237bc67e%2Cstroke%3A%235a9d5c%2Ccolor%3Awhite%0A%20%20%20%20%20%20%20%20classDef%20computed%20fill%3A%23c084fc%2Cstroke%3A%239333ea%2Ccolor%3Awhite%0A%0A%20%20%20%20%20%20%20%20deer_population%5B%22Deer%20Population%22%5D%3A%3A%3Astock%0A%20%20%20%20%20%20%20%20vegetation_quality%5B%22Vegetation%20Quality%22%5D%3A%3A%3Astock%0A%20%20%20%20%20%20%20%20deer_births(%5B%22Deer%20Births%22%5D)%3A%3A%3Aflow%0A%20%20%20%20%20%20%20%20deer_deaths(%5B%22Deer%20Deaths%22%5D)%3A%3A%3Aflow%0A%20%20%20%20%20%20%20%20managed_removal(%5B%22Managed%20Removal%22%5D)%3A%3A%3Aflow%0A%20%20%20%20%20%20%20%20vegetation_regrowth(%5B%22Vegetation%20Regrowth%22%5D)%3A%3A%3Aflow%0A%20%20%20%20%20%20%20%20browsing_loss(%5B%22Browsing%20Loss%22%5D)%3A%3A%3Aflow%0A%20%20%20%20%20%20%20%20initial_deer_population%7B%7B%22Initial%20Deer%20Population%20%3D%2030.0%22%7D%7D%3A%3A%3Aconstant%0A%20%20%20%20%20%20%20%20max_birth_rate%7B%7B%22Max%20Birth%20Rate%20%3D%200.45%22%7D%7D%3A%3A%3Aconstant%0A%20%20%20%20%20%20%20%20natural_death_rate%7B%7B%22Natural%20Death%20Rate%20%3D%200.2%22%7D%7D%3A%3A%3Aconstant%0A%20%20%20%20%20%20%20%20removal_rate%7B%7B%22Removal%20Rate%20%3D%200.0%22%7D%7D%3A%3A%3Aconstant%0A%20%20%20%20%20%20%20%20regrowth_rate%7B%7B%22Regrowth%20Rate%20%3D%200.25%22%7D%7D%3A%3A%3Aconstant%0A%20%20%20%20%20%20%20%20browsing_coefficient%7B%7B%22Browsing%20Coefficient%20%3D%205.5%22%7D%7D%3A%3A%3Aconstant%0A%20%20%20%20%20%20%20%20vegetation_fraction%5B%2F%22Vegetation%20Fraction%22%2F%5D%3A%3A%3Acomputed%0A%0A%20%20%20%20%20%20%20%20deer_births%20%3D%3D%3E%7C%22%2B%22%7C%20deer_population%0A%20%20%20%20%20%20%20%20deer_population%20%3D%3D%3E%7C%22-%22%7C%20deer_deaths%0A%20%20%20%20%20%20%20%20deer_population%20%3D%3D%3E%7C%22-%22%7C%20managed_removal%0A%20%20%20%20%20%20%20%20vegetation_regrowth%20%3D%3D%3E%7C%22%2B%22%7C%20vegetation_quality%0A%20%20%20%20%20%20%20%20vegetation_quality%20%3D%3D%3E%7C%22-%22%7C%20browsing_loss%0A%0A%20%20%20%20%20%20%20%20max_birth_rate%20-.-%3E%20deer_births%0A%20%20%20%20%20%20%20%20vegetation_fraction%20-.-%3E%20deer_births%0A%20%20%20%20%20%20%20%20natural_death_rate%20-.-%3E%20deer_deaths%0A%20%20%20%20%20%20%20%20removal_rate%20-.-%3E%20managed_removal%0A%20%20%20%20%20%20%20%20regrowth_rate%20-.-%3E%20vegetation_regrowth%0A%20%20%20%20%20%20%20%20deer_population%20-.-%3E%20browsing_loss%0A%20%20%20%20%20%20%20%20browsing_coefficient%20-.-%3E%20browsing_loss%0A%20%20%20%20%20%20%20%20vegetation_fraction%20-.-%3E%20browsing_loss%0A%20%20%20%20%20%20%20%20vegetation_quality%20-.-%3E%20vegetation_fraction%0A%20%20%20%20%20%20%20%20%22%22%22%0A%20%20%20%20%20%20%20%20)%2C%0A%20%20%20%20%20%20%20%20mo.Html(%22%3C%2Fdiv%3E%22)%2C%0A%20%20%20%20%20%20%20%20mo.md(%22*Boxes%3A%20stocks%20%7C%20Rounded%3A%20flows%20%7C%20Hexagons%3A%20parameters%20%7C%20Slanted%3A%20computed*%22)%2C%0A%20%20%20%20%5D)%0A%0A%20%20%20%20%23%20---%20Simulation%20tab%20---%0A%20%20%20%20_stock_labels%20%3D%20%7B'deer_population'%3A%20'Deer%20Population%20(deer)'%2C%20'vegetation_quality'%3A%20'Vegetation%20Quality%20(index%20(0-100))'%7D%0A%20%20%20%20fig_stocks%20%3D%20go.Figure()%0A%20%20%20%20for%20_key%20in%20stock_selector.value%3A%0A%20%20%20%20%20%20%20%20fig_stocks.add_trace(go.Scatter(x%3Dresults.index%2C%20y%3Dresults%5B_key%5D%2C%20mode%3D%22lines%22%2C%20name%3D_stock_labels.get(_key%2C%20_key)))%0A%20%20%20%20fig_stocks.update_layout(title%3D%22Stock%20Variables%20Over%20Time%22%2C%20xaxis_title%3D%22Time%22%2C%20yaxis_title%3D%22Value%22%2C%20template%3D%22plotly_white%22)%0A%0A%20%20%20%20_flow_labels%20%3D%20%7B'deer_births'%3A%20'Deer%20Births%20(deer%2Fyear)'%2C%20'deer_deaths'%3A%20'Deer%20Deaths%20(deer%2Fyear)'%2C%20'managed_removal'%3A%20'Managed%20Removal%20(deer%2Fyear)'%2C%20'vegetation_regrowth'%3A%20'Vegetation%20Regrowth%20(index%2Fyear)'%2C%20'browsing_loss'%3A%20'Browsing%20Loss%20(index%2Fyear)'%7D%0A%20%20%20%20fig_flows%20%3D%20go.Figure()%0A%20%20%20%20for%20_key%20in%20flow_selector.value%3A%0A%20%20%20%20%20%20%20%20fig_flows.add_trace(go.Scatter(x%3Dresults.index%2C%20y%3Dresults%5B_key%5D%2C%20mode%3D%22lines%22%2C%20name%3D_flow_labels.get(_key%2C%20_key)))%0A%20%20%20%20fig_flows.update_layout(title%3D%22Flow%20Variables%20Over%20Time%22%2C%20xaxis_title%3D%22Time%22%2C%20yaxis_title%3D%22Rate%22%2C%20template%3D%22plotly_white%22)%0A%0A%20%20%20%20_aux_labels%20%3D%20%7B'vegetation_fraction'%3A%20'Vegetation%20Fraction%20(dimensionless)'%7D%0A%20%20%20%20fig_aux%20%3D%20go.Figure()%0A%20%20%20%20for%20_key%20in%20aux_selector.value%3A%0A%20%20%20%20%20%20%20%20fig_aux.add_trace(go.Scatter(x%3Dresults.index%2C%20y%3Dresults%5B_key%5D%2C%20mode%3D%22lines%22%2C%20name%3D_aux_labels.get(_key%2C%20_key)))%0A%20%20%20%20fig_aux.update_layout(title%3D%22Computed%20Auxiliary%20Variables%20Over%20Time%22%2C%20xaxis_title%3D%22Time%22%2C%20yaxis_title%3D%22Value%22%2C%20template%3D%22plotly_white%22)%0A%0A%20%20%20%20simulation_content%20%3D%20mo.vstack(%5B%0A%20%20%20%20%20%20%20%20stock_selector%2C%0A%20%20%20%20%20%20%20%20mo.ui.plotly(fig_stocks)%2C%0A%20%20%20%20%20%20%20%20flow_selector%2C%0A%20%20%20%20%20%20%20%20mo.ui.plotly(fig_flows)%2C%0A%20%20%20%20%20%20%20%20aux_selector%2C%0A%20%20%20%20%20%20%20%20mo.ui.plotly(fig_aux)%2C%0A%20%20%20%20%20%20%20%20mo.ui.table(results.reset_index().rename(columns%3D%7B%22time%22%3A%20%22Time%22%7D))%2C%0A%20%20%20%20%5D)%0A%0A%20%20%20%20mo.ui.tabs(%7B%0A%20%20%20%20%20%20%20%20%22Simulation%22%3A%20simulation_content%2C%0A%20%20%20%20%20%20%20%20%22Analysis%22%3A%20analysis_content%2C%0A%20%20%20%20%20%20%20%20%22Model%20Structure%22%3A%20mermaid_diagram%2C%0A%20%20%20%20%7D)%0A%20%20%20%20return%0A%0A%0Aif%20__name__%20%3D%3D%20%22__main__%22%3A%0A%20%20%20%20app.run()%0A</marimo-code></head>
+  <body>
+    <div id="root"></div>
+    <script data-marimo="true">
+      Object.defineProperty(window, "__MARIMO_MOUNT_CONFIG__", {
+        value: Object.freeze({
+            "filename": "notebook.py",
+            "cwd": "",
+            "lspWorkspace": null,
+            "mode": "read",
+            "version": "0.23.14",
+            "serverToken": "unused",
+            "config": {"ai": {"custom_providers": {}, "enabled": true, "models": {"custom_models": [], "displayed_models": []}}, "completion": {"activate_on_typing": true, "auto_close_pairs": true, "copilot": false, "signature_hint_on_typing": false}, "diagnostics": {"sql_linter": true}, "display": {"cell_output": "below", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "medium", "reference_highlighting": true, "theme": "light"}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": false}}, "mcp": {"mcpServers": {}, "presets": []}, "package_management": {"manager": "uv"}, "runtime": {"auto_instantiate": false, "auto_reload": "off", "default_csv_encoding": "utf-8", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "reactive_tests": true, "show_tracebacks": false, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "off", "autosave_delay": 1000, "format_on_save": false}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "medium"},
+            "view": {"showAppCode": false},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        }),
+        writable: false,
+        configurable: false,
+      });
+    </script>
+  </body>
+</html>
