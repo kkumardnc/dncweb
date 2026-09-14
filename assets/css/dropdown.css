@@ -144,3 +144,66 @@
 #mainNav > ul > li {
   position: relative;
 }
+
+/* Nested submenu (e.g. Public Services > Research > Deer Population) */
+#mainNav .dropdown .has-submenu {
+  position: relative;
+}
+
+#mainNav .dropdown .has-submenu > a::after {
+  content: ' \25B8';
+  font-size: 0.8em;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+#mainNav .submenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -0.5rem;
+  left: 100%;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  transition: all 0.25s ease;
+  z-index: 1001;
+  padding: 0.5rem 0;
+  list-style: none;
+}
+
+#mainNav .dropdown .has-submenu:hover > .submenu,
+#mainNav .dropdown .has-submenu:focus-within > .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Mobile: show the submenu inline, indented under its parent */
+@media (max-width: 768px) {
+  #mainNav .submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin-left: 1rem;
+  }
+
+  #mainNav .dropdown .has-submenu > a::after {
+    content: '';
+    margin-left: 0;
+  }
+
+  #mainNav .submenu a::before {
+    content: '\2013';
+    margin-right: 0.5rem;
+    opacity: 0.6;
+  }
+}
