@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Demarest Nature Center</title>
+    <meta name="description" content="Research from the Demarest Nature Center preserve, including our study of the local white-tailed deer population and an interactive model of deer density and forest recovery.">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/pages.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <style>
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1rem;
+            margin: 1.75rem 0 2rem;
+        }
+        .stat-card {
+            background: #f8faf6;
+            border: 1px solid #d8e2d4;
+            border-radius: 8px;
+            padding: 1.1rem 1.25rem;
+        }
+        .stat-card .stat-number {
+            display: block;
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: #2d5016;
+            line-height: 1.2;
+        }
+        .stat-card .stat-label {
+            display: block;
+            margin-top: 0.35rem;
+            font-size: 0.92rem;
+            color: #555;
+        }
+        .study-card {
+            background: #f8f9fa;
+            border-left: 4px solid #4a7c59;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .study-card h2 {
+            color: #2c5f2d;
+            margin-top: 0;
+        }
+        .study-card .byline {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1.25rem;
+        }
+        .study-card ul {
+            margin: 0 0 1.5rem 1.25rem;
+        }
+        .study-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        .model-note {
+            background: #eaf3e2;
+            border-radius: 6px;
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        .model-note p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Demarest Nature Center" id="site-logo">
+                    <span class="logo-text">Demarest Nature Center</span>
+                </a>
+            </div>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="/about/">About</a>
+                        <ul class="dropdown">
+                            <li><a href="/about/">About</a></li>
+                            <li><a href="/assets/History-of-Demarest.pdf" target="_blank" rel="noopener">History of Demarest</a></li>
+                            <li><a href="/about/board.html">Board of Trustees</a></li>
+                            <li><a href="/about/mission.html">Our Mission</a></li>
+                            <li><a href="/about/policies.html">Policies</a></li>
+                            <li><a href="/about/policies.html#meetings">Monthly Board Meetings</a></li>
+                            <li><a href="/support/membership.html">Membership</a></li>
+                            <li><a href="/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/visit/">Maps and Trails</a>
+                        <ul class="dropdown">
+                            <li><a href="/visit/#getting-here">Getting Here</a></li>
+                            <li><a href="/eco0/">EcoExplorer Guides</a></li>
+                            <li><a href="/visit/#trail-maps">Trail Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/events/">News and Events</a>
+                        <ul class="dropdown">
+                            <li><a href="/events/">Upcoming Events</a></li>
+                            <li><a href="/events/#nature-walks">Nature Walks</a></li>
+                            <li><a href="/newsletter/">Newsletter</a></li>
+                            <li><a href="/fall-festival/">Oktoberfest/Fall Festival</a></li>
+                            <li><a href="/events/#crafter-vendor">Crafter &amp; Vendor</a></li>
+                            <li><a href="/scholarship/">Scholarship</a></li>
+                            <li><a href="/photocontest/">John C. Goodwin Photo Contest</a></li>
+                            <li><a href="/photocontest/2026-winners/">2026 Photo Contest Winners</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="/programs/">Public Services</a>
+                        <ul class="dropdown">
+                            <li><a href="/support/volunteer.html">Volunteer Program</a></li>
+                            <li><a href="/programs/">Educational Programs</a></li>
+                            <li><a href="/programs/#what-we-sponsor">What We Sponsor</a></li>
+                            <li><a href="/about/#preservation">Preservation</a></li>
+                            <li class="has-submenu"><a href="/research/">Research</a>
+                                <ul class="submenu">
+                                    <li><a href="/research/deer.html">Deer Population</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="/events/#calendar">Calendar</a></li>
+                    <li><a href="https://dncshop.merchologysolutions.com/" target="_blank" rel="noopener noreferrer">Shop</a></li>
+                </ul>
+            </nav>
+
+            <button id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Research</h1>
+                <p class="subtitle">Studying the 55 acres we protect</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <p class="lead">The Demarest Nature Center is a 55-acre preserve of meadows, forest and wetlands in the middle of a suburban borough &mdash; which makes it a useful place to study how a small woodland holds up under pressure. This page collects the research we publish about the preserve, along with the interactive tools that go with it.</p>
+
+                <div class="study-card">
+                    <h2 id="deer-population">Deer Population</h2>
+                    <p class="byline">Featured in &ldquo;Oh, Deer!&rdquo; by Amrita Kumar &mdash; Demarest Nature News, Summer 2026 (Vol. 52, No. 2)</p>
+
+                    <p>The animal you are most likely to spot at the nature center is the white-tailed deer. DNC trustees estimate between 30 and 50 deer living within our 55 acres &mdash; roughly 135 to 225 deer per square kilometer. Research compiled across multiple forest studies finds that a forest understory can only regenerate at densities below about 10 deer per square kilometer.</p>
+
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">30&ndash;50</span>
+                            <span class="stat-label">deer estimated within DNC&rsquo;s 55 acres</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">135&ndash;225</span>
+                            <span class="stat-label">deer per square kilometer</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">10</span>
+                            <span class="stat-label">deer per square kilometer &mdash; the density below which the understory can regenerate</span>
+                        </div>
+                    </div>
+
+                    <p>The understory &mdash; the layer of shrubs, wildflowers and saplings closest to the ground &mdash; is where much of a forest&rsquo;s biodiversity lives, and it is also where deer do most of their foraging. At current densities, seedlings are eaten before they can take root. The full article traces what follows from that:</p>
+
+                    <ul>
+                        <li><strong>The pollinator problem.</strong> The wildflowers and low shrubs deer eat are the early-spring food supply for bees and butterflies. In heavily grazed forests, bumblebee visitation drops measurably.</li>
+                        <li><strong>The front yard effect.</strong> The browsing does not stop at the preserve&rsquo;s edge. Hydrangeas, hostas, arborvitae and daylilies are favorites, and even &ldquo;deer-resistant&rdquo; plantings are no longer a sure thing.</li>
+                        <li><strong>Lyme disease.</strong> Deer are the primary reproductive host for the black-legged tick. New Jersey ranked fourth in the nation for Lyme disease cases in 2023, and Bergen County records confirmed cases every year.</li>
+                        <li><strong>Road safety.</strong> Bergen County consistently ranks among the top New Jersey counties for deer-vehicle collisions, with hundreds of crashes recorded each year.</li>
+                        <li><strong>What comes next.</strong> Ecologists call this an overshoot. Left unmanaged, the herd settles at a permanently degraded equilibrium &mdash; but with effective management, studies suggest meaningful vegetation recovery is possible within a decade.</li>
+                    </ul>
+
+                    <div class="cta-buttons">
+                        <a href="/assets/newsletters/DNC-Summer-Newsletter-2026.pdf" target="_blank" rel="noopener" class="btn btn-primary">Read &ldquo;Oh, Deer!&rdquo; (Summer 2026 Newsletter, PDF)</a>
+                        <a href="/research/deer.html" class="btn btn-secondary">Open the Interactive Model</a>
+                    </div>
+                </div>
+
+                <h2>The Interactive Model</h2>
+                <p>To see how those pieces fit together, we built a working simulation of the preserve: <a href="/research/deer.html">Demarest Deer Population &mdash; Interactive Explorer</a>. It is the page the QR code in the Summer 2026 newsletter points to.</p>
+
+                <p>The model tracks two stocks &mdash; the size of the herd and the quality of the vegetation &mdash; and lets you move six sliders to see how they interact over time: starting herd size, birth rate, natural death rate, managed removal rate, vegetation regrowth rate, and how much browsing damage each deer does. Set the removal rate to zero and the herd drifts toward a degraded equilibrium where the vegetation never recovers. Raise it, and both the herd and the forest floor find a healthier balance within years rather than decades.</p>
+
+                <div class="model-note">
+                    <p><strong>Three tabs:</strong> <em>Simulation</em> for the sliders and charts, <em>Analysis</em> for the feedback loops and parameter sources, and <em>Model Structure</em> for a diagram of how the stocks and flows connect.</p>
+                    <p>The model runs entirely in your browser &mdash; nothing to install, and it may take a few seconds to load the first time.</p>
+                </div>
+
+                <div class="cta-section">
+                    <h3>Want the newsletter in your inbox?</h3>
+                    <p>Our research and feature stories are published twice a year in Demarest Nature News. Past issues are free to read, and members receive every issue.</p>
+                    <div class="cta-buttons">
+                        <a href="/newsletter/" class="btn btn-primary">Browse the Newsletter Archive</a>
+                        <a href="/support/membership.html" class="btn btn-secondary">Become a Member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Demarest Nature Center</h3>
+                    <p>P.O. Box 41<br>
+                    Demarest, NJ 07627</p>
+                    <p><strong>Phone:</strong> (555) 123-4567<br>
+                    <strong>Email:</strong> info@demarestnaturecenter.org</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/programs/">Programs</a></li>
+                        <li><a href="/events/">Events</a></li>
+                        <li><a href="/newsletter/">Newsletter</a></li>
+                        <li><a href="/visit/">Plan Your Visit</a></li>
+                        <li><a href="/support/membership.html">Membership</a></li>
+                        <li><a href="/support/volunteer.html">Volunteer</a></li>
+                        <li><a href="/contact/">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/demarestnaturectr/?hl=en" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>
+                    <a href="/privacy.html">Privacy Policy</a> |
+                    <a href="/terms.html">Terms of Use</a> |
+                    <a href="/sitemap.html">Sitemap</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/dropdown.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
