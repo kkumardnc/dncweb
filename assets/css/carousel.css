@@ -37,12 +37,26 @@
   z-index: 2;
 }
 
+/* Slides whose image is wrapped in a link still need to fill the slide,
+   since the anchor is otherwise an inline box with no height. */
+.carousel-slide > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .carousel-slide img,
 .carousel-slide video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+/* Portrait event flyers: anchor the crop to the top so the title, date and
+   location stay visible in the landscape hero. */
+.carousel-slide--flyer img {
+  object-position: top center;
 }
 
 /* Carousel Caption */
