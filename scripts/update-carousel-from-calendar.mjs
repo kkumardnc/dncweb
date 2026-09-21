@@ -15,8 +15,8 @@ import path from 'node:path';
 const CALENDAR_ID = 'c_981c56b4d09b99b96af9481e68dcc181cf7102482f19fcbcf71f453dc493d6d2@group.calendar.google.com';
 const ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(CALENDAR_ID)}/public/basic.ics`;
 const EVENT_SLIDE_COUNT = 6;
-const STATIC_FIRST = 2;   // StoryWalk graphic + Explore Nature are always kept
-const STATIC_REST  = 4;   // Educational, Wildlife, Community + Summer Solstice video are always kept at the end
+const STATIC_FIRST = 2;   // Oktoberfest graphic + Explore Nature are always kept
+const STATIC_REST  = 5;   // Educational, Wildlife, Community, Summer Solstice video + StoryWalk are always kept at the end
 const TIME_ZONE    = 'America/New_York';
 
 // YYYY-MM-DD calendar date for `date` in `tz`.  Lexicographic ordering on
