@@ -321,7 +321,7 @@
                         </div>
 
                         <div class="agreement">
-                            <p>In consideration of permission to use the canoes provided during the Oktoberfest, held by the Demarest Nature Center on 11 October 2025, the undersigned hereby expressly agrees:</p>
+                            <p>In consideration of permission to use the canoes provided during the Oktoberfest, held by the Demarest Nature Center on <span id="event-date">the date of signing</span>, the undersigned hereby expressly agrees:</p>
                             <ol>
                                 <li>THAT canoeing is a participation sport, and I am fully aware of the risks and hazards involved in or arising from my use, participation, or presence upon the canoes. I HEREBY ASSUME ANY AND ALL RISKS INVOLVED IN OR ARISING FROM MY USE OF OR PRESENCE UPON THE DEMAREST DUCK POND AND CANOES including, without limitation, the risks of bodily injury, death and/or loss or damage to personal property with respect to myself and any and all passengers in the canoe.</li>
                                 <li>TO RELEASE THE DEMAREST NATURE CENTER and all of its successors, assigns, affiliates, officers, directors, trustees, instructors, employees, members and agents from, and AGREE NOT TO SUE ANY OR ALL OF THEM on account of or in connection with any claims, causes of action, injuries, damages, costs or expenses arising from my use of or presence upon the canoes or the Demarest Duck Pond, including but not limited to those claims for bodily injury, whether or not caused by the negligence or other fault of the Demarest Nature Center, with respect to myself and any and all passengers in the canoe.</li>
@@ -416,7 +416,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>&copy; <span id="footer-year">2026</span> Demarest Nature Center. All rights reserved.</p>
                 <p>
                     <a href="/privacy.html">Privacy Policy</a> |
                     <a href="/terms.html">Terms of Use</a> |
@@ -460,7 +460,10 @@
             });
 
             // Set current date
-            document.getElementById('date').value = new Date().toLocaleDateString();
+            const today = new Date();
+            document.getElementById('date').value = today.toLocaleDateString();
+            document.getElementById('footer-year').textContent = today.getFullYear();
+            document.getElementById('event-date').textContent = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
             // Form submission
             document.getElementById('waiver-form').addEventListener('submit', function(e) {
