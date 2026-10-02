@@ -416,7 +416,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Demarest Nature Center. All rights reserved.</p>
+                <p>&copy; <span id="footer-year">2026</span> Demarest Nature Center. All rights reserved.</p>
                 <p>
                     <a href="/privacy.html">Privacy Policy</a> |
                     <a href="/terms.html">Terms of Use</a> |
@@ -462,6 +462,7 @@
             // Set current date
             const today = new Date();
             document.getElementById('date').value = today.toLocaleDateString();
+            document.getElementById('footer-year').textContent = today.getFullYear();
             document.getElementById('event-date').textContent = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
             // Form submission
