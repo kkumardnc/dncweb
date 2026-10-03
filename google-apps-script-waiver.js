@@ -16,7 +16,17 @@
  *      brand-new deployment would change it.
  *        - Execute as: Me
  *        - Who has access: Anyone
+ *
+ * Sender address
+ *   SEND_AS is the address the waiver email comes from. Gmail only lets
+ *   a script send from the account that owns it or from a verified
+ *   "Send mail as" alias of that account (Gmail Settings > Accounts >
+ *   Send mail as). If SEND_AS is neither, the email is sent from the
+ *   owning account instead and a warning is logged.
  */
+
+const SEND_AS = 'info@demarestnaturecenter.org';
+const SEND_AS_NAME = 'Demarest Nature Center';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -124,10 +134,7 @@ function doPost(e) {
         'Enjoy the canoe rides!\n\n' +
         'Demarest Nature Center\n' +
         'https://www.demarestnaturecenter.org',
-        {
-          name: 'Demarest Nature Center',
-          attachments: [pdfFile.getAs('application/pdf')]
-        }
+        buildSendOptions_([pdfFile.getAs('application/pdf')])
       );
       emailSent = true;
     } catch (err) {
@@ -141,4 +148,25 @@ function doPost(e) {
     pdfUrl: pdfFile.getUrl(),
     emailSent: emailSent
   })).setMimeType(ContentService.MimeType.JSON);
+}
+
+// Gmail options for the waiver email. Sets `from` to SEND_AS only when the
+// script's account can send as it — GmailApp throws on any other address.
+function buildSendOptions_(attachments) {
+  var options = {
+    name: SEND_AS_NAME,
+    replyTo: SEND_AS,
+    attachments: attachments
+  };
+  var sendAs = SEND_AS.toLowerCase();
+  var owner = Session.getEffectiveUser().getEmail().toLowerCase();
+  var aliases = GmailApp.getAliases().map(function(a) { return a.toLowerCase(); });
+  if (sendAs !== owner) {
+    if (aliases.indexOf(sendAs) !== -1) {
+      options.from = SEND_AS;
+    } else {
+      console.warn(SEND_AS + ' is not a Gmail alias of ' + owner + '; sending from ' + owner);
+    }
+  }
+  return options;
 }
