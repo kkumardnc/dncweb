@@ -55,17 +55,25 @@ function doPost(e) {
   // Set the font for the entire document
   body.setFontFamily('Arial');
 
-  // Add logo
+  // Add logo, centered, in the document's initial empty paragraph (a new
+  // paragraph would leave that one behind as a blank line). Scale it to a
+  // fixed width while keeping the logo's aspect ratio so it isn't squashed.
   var logoUrl = "https://www.demarestnaturecenter.org/assets/images/logo.png";
   var logoBlob = UrlFetchApp.fetch(logoUrl).getBlob();
-  var logoImage = body.insertImage(0, logoBlob);
-  logoImage.setWidth(200);
-  logoImage.setHeight(100);
+  var logoParagraph = body.getParagraphs()[0];
+  logoParagraph.setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var logoImage = logoParagraph.appendInlineImage(logoBlob);
+  var logoWidth = 110;
+  logoImage.setHeight(Math.round(logoWidth * logoImage.getHeight() / logoImage.getWidth()));
+  logoImage.setWidth(logoWidth);
 
   // Add a title
   var title = body.appendParagraph('Demarest Nature Center - Assumption of Risk and Complete Release Form');
   title.setHeading(DocumentApp.ParagraphHeading.HEADING1);
   title.setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  title.setFontSize(16);
+  title.setBold(true);
+  title.setSpacingBefore(12);
 
   // Add spacing
   body.appendParagraph('').setLineSpacing(2);
