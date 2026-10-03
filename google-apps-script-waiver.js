@@ -8,8 +8,10 @@
  * Deployment
  *   1. Open the waiver project at https://script.google.com.
  *   2. Paste the contents of this file into Code.gs.
- *   3. Run doPost once from the editor (or redeploy) and approve the new
- *      Gmail permission prompt — GmailApp needs its own authorization.
+ *   3. Set config.sheet_url below to the URL of the waivers spreadsheet.
+ *      Run doPost once from the editor (or redeploy) and approve the new
+ *      permission prompts — GmailApp and SpreadsheetApp each need their
+ *      own authorization.
  *   4. Deploy > Manage deployments > edit the existing web app >
  *      Version: New version. Editing the existing deployment keeps the
  *      /exec URL that waiver/index.html already points at; creating a
@@ -23,7 +25,20 @@
  *   "Send mail as" alias of that account (Gmail Settings > Accounts >
  *   Send mail as). If SEND_AS is neither, the email is sent from the
  *   owning account instead and a warning is logged.
+ *
+ * Waivers sheet
+ *   Every submission is also logged as a row in the "Waivers" tab of the
+ *   spreadsheet at config.sheet_url, with columns:
+ *     Name | Email | Phone | Waiver Form Name | Timestamp
+ *   The tab (and its header row) is created on first run if missing.
+ *   A sheet failure is logged but does not fail the request.
  */
+
+const config = {
+  sheet_url: 'REPLACE_WITH_YOUR_GOOGLE_SHEET_URL'
+};
+const WAIVERS_SHEET_NAME = 'Waivers';
+const WAIVER_FORM_NAME = 'Canoe Waiver';
 
 const SEND_AS = 'info@demarestnaturecenter.org';
 const SEND_AS_NAME = 'Demarest Nature Center';
@@ -119,6 +134,20 @@ function doPost(e) {
   // Delete the temporary Google Doc
   DriveApp.getFileById(doc.getId()).setTrashed(true);
 
+  // Log the submission to the Waivers sheet. A sheet failure is logged
+  // but does not fail the request — the PDF is already saved.
+  try {
+    getWaiversSheet_().appendRow([
+      formData.name,
+      formData.email,
+      formData.phone,
+      WAIVER_FORM_NAME,
+      new Date()
+    ]);
+  } catch (err) {
+    console.error('Failed to log waiver for ' + formData.email + ' to sheet: ' + err);
+  }
+
   // Email a copy of the signed waiver to the signer. A mail failure is
   // logged but does not fail the request — the PDF is already saved.
   var emailSent = false;
@@ -169,4 +198,17 @@ function buildSendOptions_(attachments) {
     }
   }
   return options;
+}
+
+// Returns the "Waivers" tab of the spreadsheet at config.sheet_url,
+// creating it with a header row if it does not exist yet.
+function getWaiversSheet_() {
+  var ss = SpreadsheetApp.openByUrl(config.sheet_url);
+  var sheet = ss.getSheetByName(WAIVERS_SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(WAIVERS_SHEET_NAME);
+    sheet.appendRow(['Name', 'Email', 'Phone', 'Waiver Form Name', 'Timestamp']);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
 }
