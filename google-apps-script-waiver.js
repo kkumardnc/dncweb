@@ -8,8 +8,10 @@
  * Deployment
  *   1. Open the waiver project at https://script.google.com.
  *   2. Paste the contents of this file into Code.gs.
- *   3. Run doPost once from the editor (or redeploy) and approve the new
- *      Gmail permission prompt — GmailApp needs its own authorization.
+ *   3. Set config.sheet_url below to the URL of the waivers spreadsheet.
+ *      Run testWaiverEmail once from the editor and approve the new
+ *      permission prompts — GmailApp and SpreadsheetApp each need their
+ *      own authorization.
  *   4. Deploy > Manage deployments > edit the existing web app >
  *      Version: New version. Editing the existing deployment keeps the
  *      /exec URL that waiver/index.html already points at; creating a
@@ -23,10 +25,35 @@
  *   "Send mail as" alias of that account (Gmail Settings > Accounts >
  *   Send mail as). If SEND_AS is neither, the email is sent from the
  *   owning account instead and a warning is logged.
+ *
+ * Waivers sheet
+ *   Every submission is also logged as a row in the "Waivers" tab of the
+ *   spreadsheet at config.sheet_url, with columns:
+ *     Name | Email | Phone | Waiver Form Name | Timestamp
+ *   The tab (and its header row) is created on first run if missing.
+ *   A sheet failure is logged but does not fail the request.
+ *
+ * Testing (run from the editor: pick the function, click Run, then open
+ * View > Logs / Execution log)
+ *   testWaiverEmail  Sends only the waiver email, with a small test PDF
+ *                    attached, to TEST_EMAIL (or your own address if
+ *                    blank). Writes nothing to Drive or the sheet.
+ *   testDoPost       Runs a full fake submission through doPost: builds
+ *                    and saves the PDF, appends a sheet row, and sends the
+ *                    email. Delete the test PDF and row afterwards.
  */
+
+const config = {
+  sheet_url: 'REPLACE_WITH_YOUR_GOOGLE_SHEET_URL'
+};
+const WAIVERS_SHEET_NAME = 'Waivers';
+const WAIVER_FORM_NAME = 'Canoe Waiver';
 
 const SEND_AS = 'info@demarestnaturecenter.org';
 const SEND_AS_NAME = 'Demarest Nature Center';
+
+// Recipient for testWaiverEmail / testDoPost. Blank = the script owner.
+const TEST_EMAIL = '';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -40,17 +67,25 @@ function doPost(e) {
   // Set the font for the entire document
   body.setFontFamily('Arial');
 
-  // Add logo
+  // Add logo, centered, in the document's initial empty paragraph (a new
+  // paragraph would leave that one behind as a blank line). Scale it to a
+  // fixed width while keeping the logo's aspect ratio so it isn't squashed.
   var logoUrl = "https://www.demarestnaturecenter.org/assets/images/logo.png";
   var logoBlob = UrlFetchApp.fetch(logoUrl).getBlob();
-  var logoImage = body.insertImage(0, logoBlob);
-  logoImage.setWidth(200);
-  logoImage.setHeight(100);
+  var logoParagraph = body.getParagraphs()[0];
+  logoParagraph.setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  var logoImage = logoParagraph.appendInlineImage(logoBlob);
+  var logoWidth = 110;
+  logoImage.setHeight(Math.round(logoWidth * logoImage.getHeight() / logoImage.getWidth()));
+  logoImage.setWidth(logoWidth);
 
   // Add a title
   var title = body.appendParagraph('Demarest Nature Center - Assumption of Risk and Complete Release Form');
   title.setHeading(DocumentApp.ParagraphHeading.HEADING1);
   title.setAlignment(DocumentApp.HorizontalAlignment.CENTER);
+  title.setFontSize(16);
+  title.setBold(true);
+  title.setSpacingBefore(12);
 
   // Add spacing
   body.appendParagraph('').setLineSpacing(2);
@@ -119,6 +154,20 @@ function doPost(e) {
   // Delete the temporary Google Doc
   DriveApp.getFileById(doc.getId()).setTrashed(true);
 
+  // Log the submission to the Waivers sheet. A sheet failure is logged
+  // but does not fail the request — the PDF is already saved.
+  try {
+    getWaiversSheet_().appendRow([
+      formData.name,
+      formData.email,
+      formData.phone,
+      WAIVER_FORM_NAME,
+      new Date()
+    ]);
+  } catch (err) {
+    console.error('Failed to log waiver for ' + formData.email + ' to sheet: ' + err);
+  }
+
   // Email a copy of the signed waiver to the signer. A mail failure is
   // logged but does not fail the request — the PDF is already saved.
   var emailSent = false;
@@ -169,4 +218,61 @@ function buildSendOptions_(attachments) {
     }
   }
   return options;
+}
+
+// Returns the "Waivers" tab of the spreadsheet at config.sheet_url,
+// creating it with a header row if it does not exist yet.
+function getWaiversSheet_() {
+  var ss = SpreadsheetApp.openByUrl(config.sheet_url);
+  var sheet = ss.getSheetByName(WAIVERS_SHEET_NAME);
+  if (!sheet) {
+    sheet = ss.insertSheet(WAIVERS_SHEET_NAME);
+    sheet.appendRow(['Name', 'Email', 'Phone', 'Waiver Form Name', 'Timestamp']);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+// Editor test: sends the waiver email with a small test PDF attached and
+// logs who it went to, which address it was sent from, and the remaining
+// daily mail quota. Throws (so the run shows as failed) if sending fails.
+function testWaiverEmail() {
+  var to = TEST_EMAIL || Session.getEffectiveUser().getEmail();
+  var pdf = HtmlService.createHtmlOutput('<p>Test waiver PDF from the canoe waiver script.</p>')
+    .getAs('application/pdf')
+    .setName('test_canoe_waiver.pdf');
+  var options = buildSendOptions_([pdf]);
+
+  GmailApp.sendEmail(
+    to,
+    '[TEST] Your signed canoe waiver - Demarest Nature Center',
+    'This is a test of the canoe waiver email. A test PDF is attached.\n\n' +
+    'Demarest Nature Center\n' +
+    'https://www.demarestnaturecenter.org',
+    options
+  );
+
+  console.log('Test email sent to ' + to +
+    ' from ' + (options.from || Session.getEffectiveUser().getEmail()) +
+    ' (reply-to ' + options.replyTo + ')');
+  console.log('Remaining daily email quota: ' + MailApp.getRemainingDailyQuota());
+}
+
+// Editor test: runs a fake submission end to end through doPost (PDF,
+// Drive folder, Waivers sheet row and email) and logs the response.
+function testDoPost() {
+  // 1x1 transparent PNG standing in for the drawn signature
+  var signature = 'data:image/png;base64,' +
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
+  var formData = {
+    name: 'Test Signer',
+    email: TEST_EMAIL || Session.getEffectiveUser().getEmail(),
+    phone: '555-555-5555',
+    signature: signature,
+    date: new Date().toLocaleDateString(),
+    parentGuardian: '',
+    underageParticipants: ''
+  };
+  var response = doPost({ postData: { contents: JSON.stringify(formData) } });
+  console.log(response.getContent());
 }
