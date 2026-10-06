@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 // Updates the homepage carousel with the next 6 upcoming events from the
-// public Google Calendar ICS feed.  Slides 1-2 are the StoryWalk graphic and
-// the Explore Nature photo.  Event slides are injected between
-// CAROUSEL-EVENTS-START / CAROUSEL-EVENTS-END markers and the kept static
-// slides (Educational Programs, Wildlife, Community Events, and the Summer
-// Solstice launch video) follow them.
+// public Google Calendar ICS feed.  Slide 1 is the Explore Nature photo.
+// Event slides are injected between CAROUSEL-EVENTS-START / CAROUSEL-EVENTS-END
+// markers, and the kept static slides (Educational Programs, Wildlife,
+// Community Events, and the Summer Solstice launch video) follow them.
 //
 // Run locally:  node scripts/update-carousel-from-calendar.mjs
 
@@ -15,7 +14,7 @@ import path from 'node:path';
 const CALENDAR_ID = 'c_981c56b4d09b99b96af9481e68dcc181cf7102482f19fcbcf71f453dc493d6d2@group.calendar.google.com';
 const ICS_URL = `https://calendar.google.com/calendar/ical/${encodeURIComponent(CALENDAR_ID)}/public/basic.ics`;
 const EVENT_SLIDE_COUNT = 6;
-const STATIC_FIRST = 2;   // Oktoberfest graphic + Explore Nature are always kept
+const STATIC_FIRST = 1;   // Explore Nature is always kept
 const STATIC_REST  = 5;   // Educational, Wildlife, Community, Summer Solstice video + StoryWalk are always kept at the end
 const TIME_ZONE    = 'America/New_York';
 
